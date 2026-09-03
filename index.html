@@ -1,0 +1,465 @@
+﻿<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+  <title>AxKuon — Наша задача облегчить жизнь и улучшить игровую индустрию</title>
+  <link rel="icon" type="image/png" href="favicon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: #0c0c0f;
+      color: #e0e0e0;
+      line-height: 1.5;
+      scroll-behavior: smooth;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* Навигация */
+    header {
+      position: sticky;
+      top: 0;
+      background-color: rgba(12, 12, 15, 0.85);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+      z-index: 100;
+      padding: 16px 0;
+    }
+
+    .nav-container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .logo {
+      font-weight: 700;
+      font-size: 1.8rem;
+      letter-spacing: -0.5px;
+      color: #ffffff;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .logo span {
+      color: #a78bfa;
+      font-weight: 600;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 32px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .nav-links a {
+      color: #b0b0b0;
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 0.95rem;
+      transition: color 0.2s;
+      position: relative;
+    }
+
+    .nav-links a:hover {
+      color: #ffffff;
+    }
+
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -6px;
+      left: 0;
+      width: 0%;
+      height: 2px;
+      background: #a78bfa;
+      transition: width 0.2s ease;
+    }
+
+    .nav-links a:hover::after {
+      width: 100%;
+    }
+
+    .btn-outline {
+      border: 1px solid rgba(167, 139, 250, 0.5);
+      color: #c4b5fd;
+      padding: 8px 20px;
+      border-radius: 30px;
+      font-weight: 500;
+      transition: all 0.2s;
+      text-decoration: none;
+      background: transparent;
+    }
+
+    .btn-outline:hover {
+      background: rgba(167, 139, 250, 0.1);
+      border-color: #a78bfa;
+      color: #e9d5ff;
+    }
+
+    /* Hero секция */
+    .hero {
+      padding: 80px 0 60px;
+      text-align: center;
+    }
+
+    .hero h1 {
+      font-size: clamp(2.5rem, 7vw, 4rem);
+      font-weight: 700;
+      line-height: 1.2;
+      margin-bottom: 20px;
+      background: linear-gradient(to right, #ffffff, #c4b5fd);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .hero p {
+      font-size: 1.2rem;
+      max-width: 700px;
+      margin: 0 auto 32px;
+      color: #a0a0b0;
+    }
+
+    .badge-group {
+      display: flex;
+      justify-content: center;
+      gap: 16px;
+      flex-wrap: wrap;
+      margin-top: 28px;
+    }
+
+    .badge {
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      padding: 10px 24px;
+      border-radius: 40px;
+      font-weight: 500;
+      color: #ccc;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      backdrop-filter: blur(4px);
+    }
+
+    .badge i {
+      color: #a78bfa;
+    }
+
+    /* Секции */
+    section {
+      padding: 70px 0;
+    }
+
+    .section-title {
+      font-size: 2.2rem;
+      font-weight: 600;
+      margin-bottom: 16px;
+      color: #f1f1f3;
+      letter-spacing: -0.5px;
+    }
+
+    .section-subtitle {
+      color: #9090a0;
+      margin-bottom: 48px;
+      font-size: 1.1rem;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 28px;
+    }
+
+    .card {
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      border-radius: 24px;
+      padding: 28px;
+      transition: transform 0.2s, border-color 0.2s;
+      backdrop-filter: blur(4px);
+    }
+
+    .card:hover {
+      transform: translateY(-4px);
+      border-color: rgba(167, 139, 250, 0.3);
+    }
+
+    .card i {
+      font-size: 2rem;
+      color: #a78bfa;
+      margin-bottom: 20px;
+    }
+
+    .card h3 {
+      font-size: 1.4rem;
+      margin-bottom: 12px;
+      color: #fff;
+    }
+
+    .card p {
+      color: #b0b0c0;
+      font-size: 0.95rem;
+    }
+
+    /* Стили для карточек-ссылок на разделы */
+    .link-cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 28px;
+      margin-top: 20px;
+    }
+
+    .link-card {
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 24px;
+      padding: 36px 28px;
+      text-decoration: none;
+      color: #e0e0e0;
+      transition: all 0.25s ease;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      backdrop-filter: blur(4px);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .link-card:hover {
+      border-color: rgba(167, 139, 250, 0.5);
+      background: rgba(167, 139, 250, 0.05);
+      transform: translateY(-5px);
+      box-shadow: 0 16px 32px rgba(0, 0, 0, 0.3);
+    }
+
+    .link-card .card-icon {
+      font-size: 2.8rem;
+      color: #a78bfa;
+      margin-bottom: 20px;
+      transition: transform 0.2s;
+    }
+
+    .link-card:hover .card-icon {
+      transform: scale(1.1);
+    }
+
+    .link-card h3 {
+      font-size: 1.8rem;
+      font-weight: 600;
+      margin-bottom: 12px;
+      color: #fff;
+    }
+
+    .link-card p {
+      color: #a0a0b0;
+      font-size: 1rem;
+      margin-bottom: 24px;
+    }
+
+    .card-arrow {
+      margin-top: auto;
+      color: #a78bfa;
+      font-size: 1.2rem;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-weight: 500;
+    }
+
+    .social-links {
+      display: flex;
+      gap: 24px;
+      flex-wrap: wrap;
+      margin-top: 24px;
+    }
+
+    .social-icon {
+      font-size: 2rem;
+      color: #9090a0;
+      transition: color 0.2s, transform 0.2s;
+    }
+
+    .social-icon:hover {
+      color: #c4b5fd;
+      transform: scale(1.1);
+    }
+
+    footer {
+      border-top: 1px solid rgba(255, 255, 255, 0.05);
+      padding: 32px 0;
+      text-align: center;
+      color: #6b6b7a;
+      font-size: 0.9rem;
+    }
+
+    @media (max-width: 640px) {
+      .nav-links {
+        gap: 18px;
+      }
+      .hero {
+        padding: 50px 0 40px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container nav-container">
+      <a href="#" class="logo">
+        AxKuon<span>.ru</span>
+      </a>
+      <div class="nav-links">
+        <a href="#about">О нас</a>
+        <a href="#content">Релизы и новости</a>
+        <a href="#social">Соцсети</a>
+        <a href="#contact" class="btn-outline"><i class="far fa-envelope"></i> Связаться</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- Главная / Hero -->
+    <section class="hero">
+      <div class="container">
+        <h1>Создаём приложения<br>для Android, Linux и Windows</h1>
+        <p>AxKuon — команда разработчиков, которая делает полезные приложения для десктопных системи Android, поддерживая open-source проекты. Открытый код, надёжность и сообщество.</p>
+        <div class="badge-group">
+          <div class="badge"><i class="fab fa-android"></i> Android</div>
+          <div class="badge"><i class="fab fa-linux"></i> Linux</div>
+          <div class="badge"><i class="fab fa-windows"></i> Windows</div>
+          <div class="badge"><i class="fab fa-github"></i> Open Source</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- О нас -->
+    <section id="about">
+      <div class="container">
+        <h2 class="section-title">О компании</h2>
+        <p class="section-subtitle">Мы верим в качественный софт и открытое сообщество.</p>
+        <div class="grid">
+          <div class="card">
+            <i class="fas fa-desktop"></i>
+            <h3>Десктопная разработка</h3>
+            <p>Создаём нативные приложения для Android, Linux и Windows. От небольших утилит до полноценных продуктов с современным интерфейсом.</p>
+          </div>
+          <div class="card">
+            <i class="fas fa-code-branch"></i>
+            <h3>Open-source проекты</h3>
+            <p>Публикуем библиотеки, инструменты и целые приложения с открытым исходным кодом.</p>
+          </div>
+          <div class="card">
+            <i class="fas fa-users"></i>
+            <h3>Комьюнити</h3>
+            <p>Присоединяйтесь к AxKuon и растите вместе с нами.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Ссылки на разделы с релизами и новостями -->
+    <section id="content">
+      <div class="container">
+        <h2 class="section-title">Релизы и новости</h2>
+        <p class="section-subtitle">Управляйте контентом сами — переходите в нужный раздел, чтобы добавить или просмотреть материалы.</p>
+        
+        <div class="link-cards">
+          <!-- Карточка "Релизы" -->
+          <a href="releases.html" class="link-card">
+            <div class="card-icon">
+              <i class="fas fa-rocket"></i>
+            </div>
+            <h3>Релизы</h3>
+            <p>Страница со списком всех релизов ваших проектов. Добавляйте новые версии, описания и ссылки для скачивания.</p>
+            <div class="card-arrow">
+              <span>Перейти к релизам</span>
+              <i class="fas fa-arrow-right"></i>
+            </div>
+          </a>
+
+          <!-- Карточка "Новости" -->
+          <a href="news.html" class="link-card">
+            <div class="card-icon">
+              <i class="far fa-newspaper"></i>
+            </div>
+            <h3>Новости</h3>
+            <p>Лента новостей компании AxKuon. Анонсы, статьи, обновления и всё, что важно длясообщества.</p>
+            <div class="card-arrow">
+              <span>Перейти к новостям</span>
+              <i class="fas fa-arrow-right"></i>
+            </div>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Соцсети и контакты -->
+    <section id="social">
+      <div class="container">
+        <h2 class="section-title">Социальные сети</h2>
+        <p class="section-subtitle">Подписывайтесь, чтобы следить за новинками и релизами.</p>
+        <div class="social-links">
+          <a href="#" aria-label="GitHub" class="social-icon"><i class="fab fa-github"></i></a>
+          <a href="#" aria-label="Twitter / X" class="social-icon"><i class="fab fa-x-twitter"></i></a>
+          <a href="#" aria-label="Telegram" class="social-icon"><i class="fab fa-telegram-plane"></i></a>
+          <a href="#" aria-label="YouTube" class="social-icon"><i class="fab fa-youtube"></i></a>
+          <a href="#" aria-label="Discord" class="social-icon"><i class="fab fa-discord"></i></a>
+        </div>
+        <div style="margin-top: 40px; background: rgba(255,255,255,0.02); border-radius: 20px; padding: 32px; text-align: center;" id="contact">
+          <h3 style="font-size: 1.5rem; margin-bottom: 12px; color: #fff;">Остались вопросы?</h3>
+          <p style="color: #a0a0b0; margin-bottom: 20px;">Напишите нам: <strong style="color: #c4b5fd;">Тут должна быть почта лол</strong></p>
+          <a href="#" class="btn-outline" style="font-size: 1rem;"><i class="far fa-paper-plane"></i> Пока у нас нет почты</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <p>© 2026 AxKuon.ru — приложения для Android, Linux и Windows, open-source проекты.</p>
+      <p style="margin-top: 8px; font-size: 0.8rem;">Made with <i class="fas fa-heart" style="color: #a78bfa;"></i> by AxKuon team</p>
+    </div>
+  </footer>
+
+  <script>
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        const href = this.getAttribute('href');
+        if (href === "#" || href === "#contact") {
+          const target = document.querySelector(href);
+          if (target) {
+            e.preventDefault();
+            target.scrollIntoView({ behavior: 'smooth' });
+          }
+        } else if (href.startsWith("#")) {
+          const target = document.querySelector(href);
+          if (target) {
+            e.preventDefault();
+            target.scrollIntoView({ behavior: 'smooth' });
+          }
+        }
+      });
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,420 @@
+﻿<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+  <title>Релизы | AxKuon</title>
+  <link rel="icon" type="image/png" href="favicon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: #0c0c0f;
+      color: #e0e0e0;
+      line-height: 1.5;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      background-color: rgba(12, 12, 15, 0.85);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+      z-index: 100;
+      padding: 16px 0;
+    }
+
+    .nav-container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .logo {
+      font-weight: 700;
+      font-size: 1.8rem;
+      letter-spacing: -0.5px;
+      color: #ffffff;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .logo span {
+      color: #a78bfa;
+      font-weight: 600;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 24px;
+      align-items: center;
+    }
+
+    .nav-links a {
+      color: #b0b0b0;
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 0.95rem;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover {
+      color: #ffffff;
+    }
+
+    .btn-back {
+      background: transparent;
+      border: 1px solid rgba(255,255,255,0.2);
+      color: #ccc;
+      padding: 8px 18px;
+      border-radius: 30px;
+      font-weight: 500;
+      text-decoration: none;
+      transition: all 0.2s;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .btn-back:hover {
+      border-color: #a78bfa;
+      color: #fff;
+      background: rgba(167,139,250,0.1);
+    }
+
+    .page-header {
+      padding: 60px 0 40px;
+      text-align: center;
+    }
+
+    .page-header h1 {
+      font-size: 3rem;
+      font-weight: 700;
+      margin-bottom: 12px;
+      background: linear-gradient(to right, #ffffff, #c4b5fd);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .page-header p {
+      color: #9090a0;
+      font-size: 1.1rem;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .releases-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+      gap: 28px;
+      padding: 20px 0 60px;
+    }
+
+    .release-card {
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      border-radius: 20px;
+      padding: 28px;
+      transition: all 0.25s ease;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .release-card:hover {
+      border-color: rgba(167, 139, 250, 0.4);
+      background: rgba(167, 139, 250, 0.04);
+      transform: translateY(-4px);
+      box-shadow: 0 12px 28px rgba(0, 0, 0, 0.3);
+    }
+
+    .release-header {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 16px;
+    }
+
+    .release-icon {
+      font-size: 2.5rem;
+      color: #a78bfa;
+    }
+
+    .release-info h2 {
+      font-size: 1.5rem;
+      font-weight: 600;
+      color: #fff;
+      margin-bottom: 4px;
+    }
+
+    .version-tag {
+      display: inline-block;
+      background: rgba(167, 139, 250, 0.2);
+      color: #c4b5fd;
+      padding: 4px 12px;
+      border-radius: 20px;
+      font-size: 0.85rem;
+      font-weight: 600;
+    }
+
+    .release-meta {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+      font-size: 0.85rem;
+      color: #7c7c8a;
+      margin-bottom: 16px;
+    }
+
+    .release-meta span {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .release-meta i {
+      color: #a78bfa;
+    }
+
+    .release-description {
+      color: #b0b0c0;
+      font-size: 0.95rem;
+      margin-bottom: 20px;
+      flex-grow: 1;
+    }
+
+    .changelog-preview {
+      background: rgba(0, 0, 0, 0.2);
+      border-radius: 12px;
+      padding: 16px;
+      margin-bottom: 20px;
+    }
+
+    .changelog-preview h4 {
+      font-size: 0.9rem;
+      color: #a78bfa;
+      margin-bottom: 10px;
+      font-weight: 600;
+    }
+
+    .changelog-preview ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .changelog-preview li {
+      font-size: 0.85rem;
+      color: #9090a0;
+      padding: 4px 0;
+      padding-left: 16px;
+      position: relative;
+    }
+
+    .changelog-preview li::before {
+      content: '•';
+      position: absolute;
+      left: 0;
+      color: #a78bfa;
+    }
+
+    .download-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: auto;
+    }
+
+    .btn-download {
+      background: #a78bfa;
+      color: #0c0c0f;
+      font-weight: 600;
+      padding: 10px 20px;
+      border-radius: 30px;
+      text-decoration: none;
+      font-size: 0.9rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: all 0.2s;
+      border: none;
+      cursor: pointer;
+    }
+
+    .btn-download:hover {
+      background: #c4b5fd;
+      transform: translateY(-1px);
+    }
+
+    .btn-download.outline {
+      background: transparent;
+      border: 1px solid #a78bfa;
+      color: #c4b5fd;
+    }
+
+    .btn-download.outline:hover {
+      background: rgba(167,139,250,0.15);
+    }
+
+    .add-release-card {
+      border: 2px dashed rgba(255,255,255,0.1);
+      background: transparent;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      cursor: pointer;
+      min-height: 300px;
+    }
+
+    .add-release-card:hover {
+      border-color: rgba(167,139,250,0.5);
+      background: rgba(167,139,250,0.03);
+    }
+
+    .add-release-content {
+      color: #9090a0;
+    }
+
+    .add-release-content i {
+      font-size: 3rem;
+      color: #a78bfa;
+      margin-bottom: 16px;
+    }
+
+    .add-release-content h3 {
+      color: #ccc;
+      margin-bottom: 8px;
+    }
+
+    footer {
+      border-top: 1px solid rgba(255,255,255,0.05);
+      padding: 32px 0;
+      text-align: center;
+      color: #6b6b7a;
+      font-size: 0.9rem;
+      margin-top: 40px;
+    }
+
+    @media (max-width: 640px) {
+      .page-header h1 {
+        font-size: 2.2rem;
+      }
+      .releases-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container nav-container">
+      <a href="index.html" class="logo">
+        AxKuon<span>.ru</span>
+      </a>
+      <div class="nav-links">
+        <a href="index.html">Главная</a>
+        <a href="news.html">Новости</a>
+        <a href="index.html" class="btn-back"><i class="fas fa-arrow-left"></i> Назад</a>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+    <div class="page-header">
+      <h1>Релизы</h1>
+      <p>Все версии наших проектов для Android, Linux и Windows. Скачивайте, тестируйте, участвуйте в разработке.</p>
+    </div>
+
+    <div class="releases-grid">
+      <!-- Карточка релиза 1 -->
+      <div class="release-card">
+        <div class="release-header">
+          <div class="release-icon">
+            <i class="fas fa-check-circle"></i>
+          </div>
+          <div class="release-info">
+            <h2>Code-Analyzer</h2>
+            <span class="version-tag">v1.0.0</span>
+          </div>
+        </div>
+        <div class="release-meta">
+          <span><i class="far fa-calendar-alt"></i> 28 июля 2026</span>
+          <span><i class="fab fa-linux"></i> Linux</span>
+          <span><i class="fab fa-windows"></i> Windows</span>
+        </div>
+        <p class="release-description">
+          Анализатор кода прямо в консоли
+        </p>
+        <div class="changelog-preview">
+          <h4>Что нового:</h4>
+          <ul>
+            <li>Первая версия</li>
+          </ul>
+        </div>
+        <div class="download-buttons">
+          <a href="https://github.com/Nekeos/code-analyzer" class="btn-download"><i class="fas fa-download"></i> Скачать (GitHub)</a>
+        </div>
+      </div>
+
+      <!-- Карточка релиза 2 -->
+
+      <div class="release-card">
+        <div class="release-header">
+          <div class="release-icon">
+            <i class="fas fa-check-circle"></i>
+          </div>
+          <div class="release-info">
+            <h2>FileDrop</h2>
+            <span class="version-tag">v1.0.0</span>
+          </div>
+        </div>
+        <div class="release-meta">
+          <span><i class="far fa-calendar-alt"></i> 10 августа 2026</span>
+          <!--<span><i class="fab fa-linux"></i> Linux</span>-->
+          <span><i class="fab fa-windows"></i> Windows</span>
+          <span><i class="fab fa-android"></i> Android</span>
+        </div>
+        <p class="release-description">
+          Удобный обмен файлами между устройствами без интернета по локальной сети
+        </p>
+        <div class="changelog-preview">
+         <!-- <h4>Что нового:</h4> -->
+          <ul>
+            <li>Релиз</li>
+          </ul>
+        </div>
+        <div class="download-buttons">
+          <a href="https://axkuon.ru/Releases/FileDrop.html" class="btn-download"><i class="fas fa-download"></i> Скачать</a>
+        </div>
+      </div>
+
+      <!-- Карточка релиза 3 -->
+     
+  </main>
+
+  <footer>
+    <div class="container">
+      <p>© 2026 AxKuon.ru — приложения для Android, Linux и Windows, open-source проекты.</p>
+    </div>
+  </footer>
+
+</body>
+</html>
