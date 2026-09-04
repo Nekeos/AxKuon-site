@@ -50,16 +50,17 @@
       font-weight: 700;
       font-size: 1.8rem;
       letter-spacing: -0.5px;
-      color: #ffffff;
+      color: #ffffff; /* Белый цвет для Ax и точки */
       text-decoration: none;
-      display: flex;
-      align-items: center;
-      gap: 8px;
     }
 
     .logo span {
-      color: #a78bfa;
-      font-weight: 600;
+      color: #a78bfa; /* Фиолетовый цвет для Kuon и ru */
+    }
+
+    /* Делаем Kuon жирным (700), как и Ax */
+    .logo span:first-of-type {
+      font-weight: inherit; 
     }
 
     .nav-links {
@@ -277,7 +278,7 @@
   <header>
     <div class="container nav-container">
       <a href="index.html" class="logo">
-        AxKuon<span>.ru</span>
+        Ax<span>Kuon</span> <!--<span>ru</span>-->
       </a>
       <div class="nav-links">
         <a href="index.html">Главная</a>
