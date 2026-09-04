@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="ru">
 <head>
   <meta charset="UTF-8">
@@ -10,7 +10,22 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
   <style>
-    * {
+    /* Выравниваем картинки-логотипы по центру кнопок social-icon */
+    .social-icon img {
+        width: 22px;         /* Задаем размер, как у шрифтовой иконки */
+        height: 22px;
+        object-fit: contain; /* Чтобы логотипы не сжимались */
+        vertical-align: middle; 
+        border-radius: 50%;  /* На случай, если исходная картинка квадратная */
+    }
+
+    /* Делаем так, чтобы при наведении на иконку с картинкой менялся только фон круга */
+    .social-icon:hover img {
+        transform: scale(1.05); /* Легкое увеличение логотипа при наведении */
+        transition: transform 0.3s ease;
+    }
+
+    {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
@@ -418,12 +433,21 @@
       <div class="container">
         <h2 class="section-title">Социальные сети</h2>
         <p class="section-subtitle">Подписывайтесь, чтобы следить за новинками и релизами.</p>
-        <div class="social-links">
-          <a href="#" aria-label="GitHub" class="social-icon"><i class="fab fa-github"></i></a>
-          <a href="#" aria-label="Twitter / X" class="social-icon"><i class="fab fa-x-twitter"></i></a>
-          <a href="#" aria-label="Telegram" class="social-icon"><i class="fab fa-telegram-plane"></i></a>
-          <a href="#" aria-label="YouTube" class="social-icon"><i class="fab fa-youtube"></i></a>
-          <a href="#" aria-label="Discord" class="social-icon"><i class="fab fa-discord"></i></a>
+        <div class="social-icons">
+            <!-- Иконка Telegram -->
+            <a href="https://t.me" aria-label="Telegram" class="social-icon">
+                <i class="fab fa-telegram-plane"></i>
+            </a>
+
+            <!-- Официальный цветной логотип мессенджера МАКС (Крупный) -->
+            <a href="https://max.ru" target="_blank" rel="noopener noreferrer" aria-label="Мессенджер МАКС" class="social-icon">
+                <img src="https://wikimedia.org" alt="MAX" style="width: 32px; height: 32px; object-fit: contain; vertical-align: middle;">
+            </a>
+
+            <!-- Официальный цветной логотип RuStore (Крупный) -->
+            <a href="https://rustore.ru" target="_blank" rel="noopener noreferrer" aria-label="RuStore" class="social-icon">
+                <img src="https://rustore.ru" alt="RuStore" style="width: 32px; height: 32px; object-fit: contain; vertical-align: middle;">
+            </a>
         </div>
         <div style="margin-top: 40px; background: rgba(255,255,255,0.02); border-radius: 20px; padding: 32px; text-align: center;" id="contact">
           <h3 style="font-size: 1.5rem; margin-bottom: 12px; color: #fff;">Остались вопросы?</h3>
