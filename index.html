@@ -5,6 +5,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
   <title>AxKuon — Наша задача облегчить жизнь и улучшить игровую индустрию</title>
   <link rel="icon" type="image/png" href="favicon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <link rel="icon" type="image/png" href="/favicon.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
@@ -400,6 +404,127 @@
       .hero {
         padding: 50px 0 40px;
       }
+    }
+
+    /* Мобильная адаптация */
+    @media (max-width: 768px) {
+      body {
+        overflow-x: hidden;
+        -webkit-text-size-adjust: 100%;
+      }
+
+      .container {
+        padding: 0 16px;
+        max-width: 100%;
+      }
+
+      /* Навигация */
+      header { padding: 12px 0; }
+      .nav-container {
+        flex-direction: column;
+        gap: 12px;
+      }
+      .nav-links {
+        gap: 12px;
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+      .logo { font-size: 1.5rem; }
+      .btn-back { padding: 6px 14px; font-size: 0.85rem; }
+
+      /* Шапка релиза */
+      .release-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
+      }
+      .app-icon {
+        width: 64px;
+        height: 64px;
+      }
+      .release-title h1 { font-size: 1.6rem; }
+      .version-badge { font-size: 0.85rem; padding: 4px 12px; }
+
+      /* Основная карточка */
+      .main-card {
+        padding: 20px 16px;
+        border-radius: 16px;
+      }
+      .description { font-size: 1rem; }
+
+      /* Секции */
+      .download-section h2,
+      .stores-section h2,
+      .requirements h2,
+      .changelog h2 {
+        font-size: 1.2rem;
+      }
+
+      /* Строки скачивания */
+      .download-row {
+        flex-direction: column;
+        align-items: stretch;
+        padding: 14px 16px;
+        gap: 12px;
+      }
+      .download-info {
+        width: 100%;
+      }
+      .download-count {
+        margin-left: 0 !important;
+        width: 100%;
+        text-align: left;
+      }
+      .btn-download {
+        width: 100%;
+        justify-content: center;
+        padding: 12px 18px;
+        font-size: 0.95rem;
+      }
+
+      /* Магазины */
+      .store-buttons {
+        width: 100%;
+      }
+      .btn-store {
+        width: 100%;
+        padding: 12px 18px;
+        justify-content: flex-start;
+      }
+
+      /* Системные требования — 2 колонки на телефоне */
+      .req-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+      .req-item {
+        padding: 12px;
+        font-size: 0.85rem;
+      }
+
+      /* Скриншоты */
+      .screenshots {
+        flex-direction: column;
+      }
+      .screenshot {
+        min-width: 100%;
+        height: 160px;
+      }
+
+      /* Ссылки внизу */
+      main > div:last-child {
+        flex-direction: column;
+        gap: 12px !important;
+      }
+    }
+
+    /* Очень маленькие экраны (телефоны) */
+    @media (max-width: 420px) {
+      .req-grid {
+        grid-template-columns: 1fr;
+      }
+      .release-title h1 { font-size: 1.4rem; }
+      .main-card { padding: 16px 12px; }
+      .container { padding: 0 12px; }
     }
   </style>
 </head>
