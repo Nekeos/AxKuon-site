@@ -9,6 +9,9 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+  <script async src="https://ad.mail.ru/static/ads-async.js"></script>
+
   <style>
         /* бурмалда */
     * {
@@ -364,9 +367,48 @@
         grid-template-columns: 1fr;
       }
     }
+    .ad-side {
+      position: fixed;
+      top: 100px;
+      z-index: 50;
+    }
+
+    .ad-left {
+      left: 20px;
+    }
+
+    .ad-right {
+      right: 20px;
+    }
+
+    /* Скрыть на маленьких экранах, чтобы не мешали */
+    @media (max-width: 1400px) {
+      .ad-side {
+        display: none;
+      }
+    }
+
   </style>
 </head>
+
+<!-- Левый баннер -->
+<div class="ad-side ad-left">
+  <ins class="mrg-tag" 
+      style="display:inline-block;width:240px;height:400px"
+      data-ad-client="ad-2064264" 
+      data-ad-slot="2064264"></ins>
+</div>
+
+<!-- Правый баннер -->
+<div class="ad-side ad-right">
+  <ins class="mrg-tag" 
+      style="display:inline-block;width:240px;height:400px"
+      data-ad-client="ad-2064264" 
+      data-ad-slot="2064264"></ins>
+</div>
+
 <body>
+<div class="page-layout">
   <header>
     <div class="container nav-container">
       <a href="index.html" class="logo">
@@ -379,7 +421,6 @@
       </div>
     </div>
   </header>
-
   <main class="container">
     <div class="page-header">
       <h1>Релизы</h1>
@@ -449,7 +490,7 @@
     </div>
 
       <!-- Карточка релиза 3 -->
-     
+
   </main>
 
   <footer>
@@ -457,6 +498,10 @@
       <p>© 2026 AxKuon.ru — приложения для Android, Linux и Windows, open-source проекты.</p>
     </div>
   </footer>
+
+<script>
+  (MRGtag = window.MRGtag || []).push({});
+</script>
 
 </body>
 </html>
