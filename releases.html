@@ -13,7 +13,7 @@
   <script async src="https://ad.mail.ru/static/ads-async.js"></script>
 
   <style>
-        /* бурмалда */
+    /* бурмалда */
     * {
       -webkit-user-select: none;
       -moz-user-select: none;
@@ -30,6 +30,7 @@
       user-drag: none;
       pointer-events: none;
     }
+
     /* ссылки не трогать */
     a {
       -webkit-user-select: none;
@@ -43,6 +44,7 @@
       user-drag: none;
       -webkit-touch-callout: none;
     }
+
     * {
       margin: 0;
       padding: 0;
@@ -83,17 +85,16 @@
       font-weight: 700;
       font-size: 1.8rem;
       letter-spacing: -0.5px;
-      color: #ffffff; /* Белый цвет для Ax и точки */
+      color: #ffffff;
       text-decoration: none;
     }
 
     .logo span {
-      color: #a78bfa; /* Фиолетовый цвет для Kuon и ru */
+      color: #a78bfa;
     }
 
-    /* Делаем Kuon жирным (700), как и Ax */
     .logo span:first-of-type {
-      font-weight: inherit; 
+      font-weight: inherit;
     }
 
     .nav-links {
@@ -367,10 +368,16 @@
         grid-template-columns: 1fr;
       }
     }
+
+    /* Боковая реклама */
     .ad-side {
       position: fixed;
       top: 100px;
       z-index: 50;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      width: 320px;
     }
 
     .ad-left {
@@ -379,6 +386,46 @@
 
     .ad-right {
       right: 20px;
+    }
+
+    .ad-slot {
+      width: 320px;
+      height: 400px;
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+    }
+
+    .ad-slot-sm {
+      width: 320px;
+      height: 50px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .ad-slot ins,
+    .ad-slot-sm ins {
+      display: block !important;
+      position: absolute !important;
+      top: 0 !important;
+      left: 0 !important;
+      margin: 0 !important;
+    }
+
+    .ad-slot ins {
+      left: 50% !important;
+      transform: translateX(-50%) !important;
+    }
+
+    .ad-slot iframe,
+    .ad-slot-sm iframe {
+      position: absolute !important;
+      top: 0 !important;
+      left: 0 !important;
+      width: 100% !important;
+      height: 100% !important;
     }
 
     /* Скрыть на маленьких экранах, чтобы не мешали */
@@ -400,7 +447,6 @@
         max-width: 100%;
       }
 
-      /* Навигация */
       header { padding: 12px 0; }
       .nav-container {
         flex-direction: column;
@@ -414,27 +460,14 @@
       .logo { font-size: 1.5rem; }
       .btn-back { padding: 6px 14px; font-size: 0.85rem; }
 
-      /* Шапка релиза */
       .release-header {
         flex-direction: column;
         align-items: flex-start;
         gap: 12px;
       }
-      .app-icon {
-        width: 64px;
-        height: 64px;
-      }
       .release-title h1 { font-size: 1.6rem; }
       .version-badge { font-size: 0.85rem; padding: 4px 12px; }
 
-      /* Основная карточка */
-      .main-card {
-        padding: 20px 16px;
-        border-radius: 16px;
-      }
-      .description { font-size: 1rem; }
-
-      /* Секции */
       .download-section h2,
       .stores-section h2,
       .requirements h2,
@@ -442,7 +475,6 @@
         font-size: 1.2rem;
       }
 
-      /* Строки скачивания */
       .download-row {
         flex-direction: column;
         align-items: stretch;
@@ -464,7 +496,6 @@
         font-size: 0.95rem;
       }
 
-      /* Магазины */
       .store-buttons {
         width: 100%;
       }
@@ -474,7 +505,6 @@
         justify-content: flex-start;
       }
 
-      /* Системные требования — 2 колонки на телефоне */
       .req-grid {
         grid-template-columns: 1fr 1fr;
       }
@@ -483,7 +513,6 @@
         font-size: 0.85rem;
       }
 
-      /* Скриншоты */
       .screenshots {
         flex-direction: column;
       }
@@ -492,14 +521,12 @@
         height: 160px;
       }
 
-      /* Ссылки внизу */
       main > div:last-child {
         flex-direction: column;
         gap: 12px !important;
       }
     }
 
-    /* Очень маленькие экраны (телефоны) */
     @media (max-width: 420px) {
       .req-grid {
         grid-template-columns: 1fr;
@@ -511,24 +538,7 @@
   </style>
 </head>
 
-<!-- Левый баннер -->
-<div class="ad-side ad-left">
-  <ins class="mrg-tag" 
-      style="display:inline-block;width:240px;height:400px"
-      data-ad-client="ad-2064264" 
-      data-ad-slot="2064264"></ins>
-</div>
-
-<!-- Правый баннер -->
-<div class="ad-side ad-right">
-  <ins class="mrg-tag" 
-      style="display:inline-block;width:240px;height:400px"
-      data-ad-client="ad-2064264" 
-      data-ad-slot="2064264"></ins>
-</div>
-
 <body>
-<div class="page-layout">
   <header>
     <div class="container nav-container">
       <a href="index.html" class="logo">
@@ -541,6 +551,7 @@
       </div>
     </div>
   </header>
+
   <main class="container">
     <div class="page-header">
       <h1>Релизы</h1>
@@ -578,39 +589,39 @@
         </div>
       </div>
 
-    <!-- Карточка релиза 2 -->
-    <div class="release-card">
-      <div class="release-header">
-        <div class="release-icon">
-          <img src="../images/FileDrop-icon.png" alt="FileDrop">
+      <!-- Карточка релиза 2 -->
+      <div class="release-card">
+        <div class="release-header">
+          <div class="release-icon">
+            <img src="../images/FileDrop-icon.png" alt="FileDrop">
+          </div>
+          <div class="release-info">
+            <h2>FileDrop</h2>
+            <span class="version-tag">v1.0.0</span>
+          </div>
         </div>
-        <div class="release-info">
-          <h2>FileDrop</h2>
-          <span class="version-tag">v1.0.0</span>
+        <div class="release-meta">
+          <span><i class="far fa-calendar-alt"></i> 10 августа 2026</span>
+          <!--<span><i class="fab fa-linux"></i> Linux</span>-->
+          <span><i class="fab fa-windows"></i> Windows</span>
+          <span><i class="fab fa-android"></i> Android</span>
+        </div>
+        <p class="release-description">
+          Удобный обмен файлами между устройствами без интернета по локальной сети
+        </p>
+        <div class="changelog-preview">
+          <!-- <h4>Что нового:</h4> -->
+          <ul>
+            <li>Релиз</li>
+          </ul>
+        </div>
+        <div class="download-buttons">
+          <a href="../Releases/FileDrop.html" class="btn-download"><i class="fas fa-download"></i> Скачать</a>
         </div>
       </div>
-      <div class="release-meta">
-        <span><i class="far fa-calendar-alt"></i> 10 августа 2026</span>
-        <!--<span><i class="fab fa-linux"></i> Linux</span>-->
-        <span><i class="fab fa-windows"></i> Windows</span>
-        <span><i class="fab fa-android"></i> Android</span>
-      </div>
-      <p class="release-description">
-        Удобный обмен файлами между устройствами без интернета по локальной сети
-      </p>
-      <div class="changelog-preview">
-        <!-- <h4>Что нового:</h4> -->
-        <ul>
-          <li>Релиз</li>
-        </ul>
-      </div>
-      <div class="download-buttons">
-        <a href="../Releases/FileDrop.html" class="btn-download"><i class="fas fa-download"></i> Скачать</a>
-      </div>
+
+      <!-- Карточка релиза 3 (пустая) -->
     </div>
-
-      <!-- Карточка релиза 3 -->
-
   </main>
 
   <footer>
@@ -619,9 +630,44 @@
     </div>
   </footer>
 
-<script>
-  (MRGtag = window.MRGtag || []).push({});
-</script>
+  <!-- Левый столбец рекламы -->
+  <div class="ad-side ad-left">
+    <div class="ad-slot">
+      <ins class="mrg-tag" 
+          style="display:inline-block;width:240px;height:400px"
+          data-ad-client="ad-2064264" 
+          data-ad-slot="2064264">
+      </ins>
+    </div>
+    <div class="ad-slot-sm">
+      <ins class="mrg-tag" 
+          style="display:inline-block;width:320px;height:50px"
+          data-ad-client="ad-2064565" 
+          data-ad-slot="2064565">
+      </ins>
+    </div>
+  </div>
 
+  <!-- Правый столбец рекламы -->
+  <div class="ad-side ad-right">
+    <div class="ad-slot">
+      <ins class="mrg-tag" 
+          style="display:inline-block;width:240px;height:400px"
+          data-ad-client="ad-2064264" 
+          data-ad-slot="2064264">
+      </ins>
+    </div>
+    <div class="ad-slot-sm">
+      <ins class="mrg-tag" 
+          style="display:inline-block;width:320px;height:50px"
+          data-ad-client="ad-2064565" 
+          data-ad-slot="2064565">
+      </ins>
+    </div>
+  </div>
+
+  <script>
+    (MRGtag = window.MRGtag || []).push({});
+  </script>
 </body>
 </html>
