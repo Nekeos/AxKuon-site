@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="ru">
 <head>
   <link rel="icon" type="image/png" href="favicon.png">
@@ -504,6 +504,28 @@
       font-weight: 500;
     }
 
+    /* Боковая реклама */
+    .ad-side {
+      position: fixed;
+      top: 100px;
+      z-index: 50;
+    }
+
+    .ad-left {
+      left: calc(50% - 720px);
+    }
+
+    .ad-right {
+      right: calc(50% - 720px);
+    }
+
+    /* Скрыть на узких экранах, чтобы не мешали */
+    @media (max-width: 1500px) {
+      .ad-side {
+        display: none;
+      }
+    }
+
     footer {
       border-top: 1px solid rgba(255,255,255,0.05);
       padding: 32px 0;
@@ -626,22 +648,6 @@ document.addEventListener('DOMContentLoaded', loadDownloadCounts);
 Просто. Быстро. Безопасно.</p>
         <p style="margin-top: 12px;">Самая первая версия</p>
       </div>
-
-<ins class="mrg-tag" 
-    style="display:inline-block;width:240px;height:400px"
-    data-ad-client="ad-2064264" 
-    data-ad-slot="2064264">
-</ins>
-<ins class="mrg-tag" 
-    style="display:inline-block;width:240px;height:400px"
-    data-ad-client="ad-2064264" 
-    data-ad-slot="2064264">
-</ins>
-<ins class="mrg-tag" 
-    style="display:inline-block;width:240px;height:400px"
-    data-ad-client="ad-2064264" 
-    data-ad-slot="2064264">
-</ins>
 
       <!-- Что нового -->
       <!--<div class="changelog">
@@ -815,6 +821,24 @@ document.addEventListener('DOMContentLoaded', loadDownloadCounts);
       <p>© 2026 <a href="../index.html">AxKuon.ru</a> — приложения для Linux и Windows, open-source проекты.</p>
     </div>
   </footer>
+
+<!-- Левый баннер -->
+<div class="ad-side ad-left">
+  <ins class="mrg-tag" 
+      style="display:inline-block;width:240px;height:400px"
+      data-ad-client="ad-2064264" 
+      data-ad-slot="2064264">
+  </ins>
+</div>
+
+<!-- Правый баннер -->
+<div class="ad-side ad-right">
+  <ins class="mrg-tag" 
+      style="display:inline-block;width:240px;height:400px"
+      data-ad-client="ad-2064264" 
+      data-ad-slot="2064264">
+  </ins>
+</div>
 
 <script>
   (MRGtag = window.MRGtag || []).push({});
