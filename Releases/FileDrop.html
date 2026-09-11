@@ -74,15 +74,14 @@
       font-weight: 700;
       font-size: 1.8rem;
       letter-spacing: -0.5px;
-      color: #ffffff; /* Белый цвет для Ax и точки */
+      color: #ffffff;
       text-decoration: none;
     }
 
     .logo span {
-      color: #a78bfa; /* Фиолетовый цвет для Kuon и ru */
+      color: #a78bfa;
     }
 
-    /* Делаем Kuon жирным (700), как и Ax */
     .logo span:first-of-type {
       font-weight: inherit; 
     }
@@ -171,6 +170,7 @@
       font-size: 2.5rem;
       color: #a78bfa;
       flex-shrink: 0;
+      overflow: hidden;
     }
 
     .release-title h1 {
@@ -509,14 +509,60 @@
       position: fixed;
       top: 100px;
       z-index: 50;
+      width: 320px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
     }
 
     .ad-left {
-      left: calc(50% - 720px);
+      left: 30px;
     }
 
     .ad-right {
-      right: calc(50% - 720px);
+      right: 30px;
+    }
+
+    /* Контейнер под вертикальный баннер 240x400 */
+    .ad-slot {
+      width: 320px;
+      height: 400px;
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+    }
+
+    /* Контейнер под горизонтальный баннер 320x50 */
+    .ad-slot-sm {
+      width: 320px;
+      height: 50px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .ad-slot ins,
+    .ad-slot-sm ins {
+      display: block !important;
+      position: absolute !important;
+      top: 0 !important;
+      left: 0 !important;
+      margin: 0 !important;
+    }
+
+    .ad-slot ins {
+      left: 50% !important;
+      transform: translateX(-50%) !important;
+    }
+
+    .ad-slot iframe,
+    .ad-slot-sm iframe {
+      position: absolute !important;
+      top: 0 !important;
+      left: 0 !important;
+      width: 100% !important;
+      height: 100% !important;
     }
 
     /* Скрыть на узких экранах, чтобы не мешали */
@@ -646,7 +692,6 @@
         font-size: 0.85rem;
       }
 
-      /* Скриншоты */
       .screenshots {
         flex-direction: column;
       }
@@ -655,14 +700,12 @@
         height: 160px;
       }
 
-      /* Ссылки внизу */
       main > div:last-child {
         flex-direction: column;
         gap: 12px !important;
       }
     }
 
-    /* Очень маленькие экраны (телефоны) */
     @media (max-width: 420px) {
       .req-grid {
         grid-template-columns: 1fr;
@@ -671,41 +714,9 @@
       .main-card { padding: 16px 12px; }
       .container { padding: 0 12px; }
     }
+
   </style>
 </head>
-
-<script>
-async function loadDownloadCounts() {
-  const owner = 'Nekeos';
-  const repo = 'FileDrop';
-  const tag = 'V1.0.1';
-  
-  try {
-    const response = await fetch(`https://api.github.com/repos/${owner}/${repo}/releases/tags/${tag}`);
-    const release = await response.json();
-    
-    release.assets.forEach(asset => {
-      // Ищем все кнопки с data-file, совпадающим с именем файла
-      document.querySelectorAll(`[data-file="${asset.name}"]`).forEach(link => {
-        const countSpan = link.querySelector('.download-count');
-        if (countSpan) {
-          countSpan.textContent = `↓ ${asset.download_count}`;
-        } else {
-          const span = document.createElement('span');
-          span.className = 'download-count';
-          span.style.cssText = 'margin-left: 8px; font-size: 0.75rem; opacity: 0.7;';
-          span.textContent = `↓ ${asset.download_count}`;
-          link.appendChild(span);
-        }
-      });
-    });
-  } catch(e) {
-    console.error('Не удалось загрузить счётчики:', e);
-  }
-}
-
-document.addEventListener('DOMContentLoaded', loadDownloadCounts);
-</script>
 
 <body>
   <header>
@@ -770,62 +781,10 @@ document.addEventListener('DOMContentLoaded', loadDownloadCounts);
         <p style="margin-top: 12px;">Самая первая версия</p>
       </div>
 
-      <!-- Что нового -->
-      <!--<div class="changelog">
-        <h2><i class="fas fa-clipboard-list"></i> Что нового в v2.1.0</h2>
-        <ul>
-          <li>Полностью обновлённый интерфейс в стиле Material Design 3</li>
-          <li>Тёмная тема с автоматическим переключением по расписанию</li>
-          <li>Интерактивные виджеты на рабочий стол (Linux KDE/GNOME, Windows)</li>
-          <li>Облачная синхронизация через аккаунт AxKuon (end-to-end шифрование)</li>
-          <li>Система тегов и цветовых меток для задач</li>
-          <li>Умные списки: «Сегодня», «На этой неделе», «Просроченные»</li>
-          <li>Экспорт задач в Markdown и CSV</li>
-          <li>Исправлен критический баг с дублированием уведомлений</li>
-          <li>Оптимизация: приложение стало на 40% легче и быстрее</li>
-        </ul>
-      </div>-->
-
-      <!-- Скриншоты (место для картинок) -->
-      <!-- <div class="screenshots">
-        <div class="screenshot">
-          <i class="fas fa-image" style="margin-right: 8px;"></i> Скриншот 1
-        </div>
-        <div class="screenshot">
-          <i class="fas fa-image" style="margin-right: 8px;"></i> Скриншот 2
-        </div>
-        <div class="screenshot">
-          <i class="fas fa-image" style="margin-right: 8px;"></i> Скриншот 3
-        </div>
-      </div>-->
-
       <!-- Скачать файлы -->
       <div class="download-section">
         <h2><i class="fas fa-download"></i> Прямые ссылки на скачивание</h2>
         <div class="download-grid">
-          <!-- Linux .deb -->
-          <!-- <div class="download-row">
-            <div class="download-info">
-              <i class="fab fa-linux"></i>
-              <div>
-                <div class="file-name">taskflow_2.1.0_amd64.deb</div>
-                <div class="file-meta">Для Ubuntu/Debian · 24.5 МБ</div>
-              </div>
-            </div>
-            <a href="../downloads/taskflow_2.1.0_amd64.deb" class="btn-download" download><i class="fas fa-download"></i> Скачать .deb</a>
-          </div>
-
-          <!-- Linux AppImage -->
-          <!-- <div class="download-row">
-            <div class="download-info">
-              <i class="fab fa-linux"></i>
-              <div>
-                <div class="file-name">taskflow-2.1.0-x86_64.AppImage</div>
-                <div class="file-meta">AppImage (любой дистрибутив) · 28.1 МБ</div>
-              </div>
-            </div>
-            <a href="../downloads/taskflow-2.1.0-x86_64.AppImage" class="btn-download" download><i class="fas fa-download"></i> Скачать AppImage</a>
-          </div>
 
     <!-- Windows .exe -->
     <div class="download-row">
@@ -901,10 +860,6 @@ document.addEventListener('DOMContentLoaded', loadDownloadCounts);
       <div class="requirements">
         <h2><i class="fas fa-microchip"></i> Системные требования</h2>
         <div class="req-grid">
-         <!-- <div class="req-item">
-            <div class="label">Linux</div>
-            <div class="value">Ubuntu 18.04</div>
-          </div> -->
           <div class="req-item">
             <div class="label">Windows</div>
             <div class="value">Windows 7 или новее</div>
@@ -943,22 +898,40 @@ document.addEventListener('DOMContentLoaded', loadDownloadCounts);
     </div>
   </footer>
 
-<!-- Левый баннер -->
+<!-- Левый столбец рекламы -->
 <div class="ad-side ad-left">
-  <ins class="mrg-tag" 
-      style="display:inline-block;width:240px;height:400px"
-      data-ad-client="ad-2064264" 
-      data-ad-slot="2064264">
-  </ins>
+  <div class="ad-slot">
+    <ins class="mrg-tag" 
+        style="display:inline-block;width:240px;height:400px"
+        data-ad-client="ad-2064264" 
+        data-ad-slot="2064264">
+    </ins>
+  </div>
+  <div class="ad-slot-sm">
+    <ins class="mrg-tag" 
+        style="display:inline-block;width:320px;height:50px"
+        data-ad-client="ad-2064565" 
+        data-ad-slot="2064565">
+    </ins>
+  </div>
 </div>
 
-<!-- Правый баннер -->
+<!-- Правый столбец рекламы -->
 <div class="ad-side ad-right">
-  <ins class="mrg-tag" 
-      style="display:inline-block;width:240px;height:400px"
-      data-ad-client="ad-2064264" 
-      data-ad-slot="2064264">
-  </ins>
+  <div class="ad-slot">
+    <ins class="mrg-tag" 
+        style="display:inline-block;width:240px;height:400px"
+        data-ad-client="ad-2064264" 
+        data-ad-slot="2064264">
+    </ins>
+  </div>
+  <div class="ad-slot-sm">
+    <ins class="mrg-tag" 
+        style="display:inline-block;width:320px;height:50px"
+        data-ad-client="ad-2064565" 
+        data-ad-slot="2064565">
+    </ins>
+  </div>
 </div>
 
 <script>
