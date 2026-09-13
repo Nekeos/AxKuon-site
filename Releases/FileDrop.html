@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="ru">
 <head>
 
@@ -29,7 +29,6 @@
 
   <style>
 
-      /* бурмалда */
     * {
       -webkit-user-select: none;
       -moz-user-select: none;
@@ -37,7 +36,6 @@
       user-select: none;
     }
 
-    /* прогрев гоев */
     img {
       -webkit-user-drag: none;
       -khtml-user-drag: none;
@@ -66,7 +64,6 @@
       padding: 0 24px;
     }
 
-    /* Навигация */
     header {
       position: sticky;
       top: 0;
@@ -139,7 +136,6 @@
       background: rgba(167,139,250,0.1);
     }
 
-    /* Хлебные крошки */
     .breadcrumb {
       padding: 24px 0 0;
       font-size: 0.85rem;
@@ -160,7 +156,6 @@
       color: #555;
     }
 
-    /* Шапка релиза */
     .release-hero {
       padding: 32px 0;
     }
@@ -245,7 +240,6 @@
       color: #a78bfa;
     }
 
-    /* Основная карточка */
     .main-card {
       background: rgba(255, 255, 255, 0.03);
       border: 1px solid rgba(255, 255, 255, 0.06);
@@ -261,7 +255,6 @@
       line-height: 1.7;
     }
 
-    /* Секция "Что нового" */
     .changelog {
       margin-bottom: 32px;
     }
@@ -303,7 +296,6 @@
       border-radius: 50%;
     }
 
-    /* Скриншоты */
     .screenshots {
       display: flex;
       gap: 16px;
@@ -325,7 +317,6 @@
       border: 1px dashed rgba(255,255,255,0.1);
     }
 
-    /* Секция скачивания */
     .download-section {
       margin-bottom: 24px;
     }
@@ -418,8 +409,6 @@
       background: rgba(167,139,250,0.15);
     }
 
-    /* магазинчики */
-
     .store-grid {
       display: flex;
       flex-direction: column;
@@ -473,7 +462,6 @@
       color: #a78bfa;
     }
 
-    /* Системные требования */
     .requirements {
       margin-bottom: 32px;
     }
@@ -518,15 +506,17 @@
       font-weight: 500;
     }
 
-    /* Боковая реклама */
+    /* ============================================ */
+    /* БОКОВАЯ РЕКЛАМА (ПК) — два одинаковых 240x400 */
+    /* ============================================ */
     .ad-side {
       position: fixed;
       top: 100px;
       z-index: 50;
-      width: 320px;
+      width: 240px;
       display: flex;
       flex-direction: column;
-      gap: 16px;
+      gap: 20px;
     }
 
     .ad-left {
@@ -537,52 +527,51 @@
       right: 30px;
     }
 
-    /* Контейнер под вертикальный баннер 240x400 */
-    .ad-slot {
-      width: 320px;
+    /* Каждый баннер — отдельный блок 240x400 */
+    .ad-block {
+      width: 240px;
       height: 400px;
-      position: relative;
+      min-height: 400px;
+      flex-shrink: 0;
       overflow: hidden;
-      display: flex;
-      justify-content: center;
-      align-items: flex-start;
+      position: relative;
     }
 
-    /* Контейнер под горизонтальный баннер 320x50 */
-    .ad-slot-sm {
-      width: 320px;
-      height: 50px;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .ad-slot ins,
-    .ad-slot-sm ins {
+    .ad-block ins {
       display: block !important;
-      position: absolute !important;
-      top: 0 !important;
-      left: 0 !important;
+      width: 240px !important;
+      height: 400px !important;
       margin: 0 !important;
     }
 
-    .ad-slot ins {
-      left: 50% !important;
-      transform: translateX(-50%) !important;
+    /* Мобильная реклама (скрыта по умолчанию) */
+    .mobile-ad-top,
+    .mobile-ad-bottom {
+      display: none;
     }
 
-    .ad-slot iframe,
-    .ad-slot-sm iframe {
-      position: absolute !important;
-      top: 0 !important;
-      left: 0 !important;
-      width: 100% !important;
-      height: 100% !important;
-    }
-
-    /* Скрыть на узких экранах, чтобы не мешали */
     @media (max-width: 1500px) {
       .ad-side {
         display: none;
+      }
+
+      .mobile-ad-top,
+      .mobile-ad-bottom {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 12px 0;
+        width: 100%;
+      }
+
+      .mobile-ad-top {
+        background: rgba(255,255,255,0.02);
+        border-bottom: 1px solid rgba(255,255,255,0.05);
+      }
+
+      .mobile-ad-bottom {
+        margin: 32px auto 24px;
+        max-width: 320px;
       }
     }
 
@@ -611,7 +600,6 @@
       }
     }
 
-    /* Мобильная адаптация */
     @media (max-width: 768px) {
       body {
         overflow-x: hidden;
@@ -623,7 +611,6 @@
         max-width: 100%;
       }
 
-      /* Навигация */
       header { padding: 12px 0; }
       .nav-container {
         flex-direction: column;
@@ -637,7 +624,6 @@
       .logo { font-size: 1.5rem; }
       .btn-back { padding: 6px 14px; font-size: 0.85rem; }
 
-      /* Шапка релиза */
       .release-header {
         flex-direction: column;
         align-items: flex-start;
@@ -650,14 +636,12 @@
       .release-title h1 { font-size: 1.6rem; }
       .version-badge { font-size: 0.85rem; padding: 4px 12px; }
 
-      /* Основная карточка */
       .main-card {
         padding: 20px 16px;
         border-radius: 16px;
       }
       .description { font-size: 1rem; }
 
-      /* Секции */
       .download-section h2,
       .stores-section h2,
       .requirements h2,
@@ -665,7 +649,6 @@
         font-size: 1.2rem;
       }
 
-      /* Строки скачивания */
       .download-row {
         flex-direction: column;
         align-items: stretch;
@@ -687,7 +670,6 @@
         font-size: 0.95rem;
       }
 
-      /* Магазины */
       .store-buttons {
         width: 100%;
       }
@@ -697,7 +679,6 @@
         justify-content: flex-start;
       }
 
-      /* Системные требования — 2 колонки на телефоне */
       .req-grid {
         grid-template-columns: 1fr 1fr;
       }
@@ -746,13 +727,20 @@
     </div>
   </header>
 
+  <!-- Мобильная реклама сверху (только на телефоне) -->
+  <div class="mobile-ad-top">
+    <ins class="mrg-tag" 
+        style="display:inline-block;width:320px;height:50px"
+        data-ad-client="ad-2064565" 
+        data-ad-slot="2064565">
+    </ins>
+  </div>
+
   <main class="container">
-    <!-- Хлебные крошки -->
     <div class="breadcrumb">
       <a href="../index.html">Главная</a><span>/</span><a href="../releases.html">Релизы</a><span>/</span>FileDrop
     </div>
 
-    <!-- Шапка -->
     <div class="release-hero">
       <div class="release-header">
         <div class="app-icon">
@@ -771,12 +759,10 @@
 
       <div class="platform-tags">
         <span class="platform-tag"><i class="fab fa-windows"></i> Windows</span>
-        <!--<span class="platform-tag"><i class="fab fa-linux"></i> Linux</span>-->
         <span class="platform-tag"><i class="fab fa-android"></i> Android</span>
       </div>
     </div>
 
-    <!-- Основная карточка -->
     <div class="main-card">
       <div class="description">
         <p><strong>FileDrop</strong> — передача файлов между ПК и Android по Wi-Fi.
@@ -795,12 +781,10 @@
         <p style="margin-top: 12px;">Самая первая версия</p>
       </div>
 
-      <!-- Скачать файлы -->
       <div class="download-section">
         <h2><i class="fas fa-download"></i> Прямые ссылки на скачивание</h2>
         <div class="download-grid">
 
-    <!-- Windows .exe -->
     <div class="download-row">
       <div class="download-info">
         <i class="fab fa-windows"></i>
@@ -810,7 +794,6 @@
         </div>
       </div>
   
-      <!-- Счётчик скачиваний -->
       <span class="download-count" data-file="FileDrop.exe" style="color: #9090a0; font-size: 0.85rem; margin-left: auto;">
         Скачиваний
       </span>
@@ -822,7 +805,6 @@
       </a>
     </div>
 
-    <!-- Android apk -->
     <div class="download-row">
       <div class="download-info">
         <i class="fab fa-android"></i>
@@ -832,7 +814,6 @@
         </div>
       </div>
   
-      <!-- Счётчик скачиваний -->
       <span class="download-count" data-file="app-release.apk" style="color: #9090a0; font-size: 0.85rem; margin-left: auto;" > 
         Скачиваний
       </span>
@@ -844,7 +825,6 @@
       </a>
     </div>
 
-      <!-- Внешние ресурсы -->
       <div class="stores-section">
         <h2><i class="fas fa-store"></i> Скачать из сторонних источников</h2>
         <div class="store-grid">
@@ -870,7 +850,6 @@
         </div>
       </div>
 
-      <!-- Системные требования -->
       <div class="requirements">
         <h2><i class="fas fa-microchip"></i> Системные требования</h2>
         <div class="req-grid">
@@ -898,7 +877,6 @@
       </div>
     </div>
 
-    <!-- Ссылки -->
     <div style="display: flex; gap: 24px; flex-wrap: wrap; margin-bottom: 40px; font-size: 0.9rem;">
       <a href="https://github.com/Nekeos/FileDrop" style="color: #a78bfa; text-decoration: none; display: flex; align-items: center; gap: 6px;">
         <i class="fab fa-github"></i> Исходный код на GitHub
@@ -906,44 +884,53 @@
     </div>
   </main>
 
+  <!-- Мобильная реклама снизу (только на телефоне) -->
+  <div class="mobile-ad-bottom">
+    <ins class="mrg-tag" 
+        style="display:inline-block;width:240px;height:400px"
+        data-ad-client="ad-2064264" 
+        data-ad-slot="2064264">
+    </ins>
+  </div>
+
   <footer>
     <div class="container">
       <p>© 2026 <a href="../index.html">AxKuon.ru</a> — приложения для Linux и Windows, open-source проекты.</p>
     </div>
   </footer>
 
-<!-- Левый столбец рекламы -->
+<!-- Левый столбец рекламы (ПК) — 2 яруса 240x400 -->
 <div class="ad-side ad-left">
-  <div class="ad-slot">
+  <div class="ad-block">
     <ins class="mrg-tag" 
         style="display:inline-block;width:240px;height:400px"
         data-ad-client="ad-2064264" 
         data-ad-slot="2064264">
     </ins>
   </div>
-  <div class="ad-slot-sm">
+  <div class="ad-block">
     <ins class="mrg-tag" 
-        style="display:inline-block;width:320px;height:50px"
-        data-ad-client="ad-2064565" 
-        data-ad-slot="2064565">
+        style="display:inline-block;width:240px;height:400px"
+        data-ad-client="ad-2064264" 
+        data-ad-slot="2064264">
     </ins>
   </div>
 </div>
 
-<!-- Правый столбец рекламы -->
+<!-- Правый столбец рекламы (ПК) — 2 яруса 240x400 -->
 <div class="ad-side ad-right">
-  <div class="ad-slot">
+  <div class="ad-block">
     <ins class="mrg-tag" 
         style="display:inline-block;width:240px;height:400px"
         data-ad-client="ad-2064264" 
         data-ad-slot="2064264">
     </ins>
   </div>
-  <div class="ad-slot-sm">
+  <div class="ad-block">
     <ins class="mrg-tag" 
-        style="display:inline-block;width:320px;height:50px"
-        data-ad-client="ad-2064565" 
-        data-ad-slot="2064565">
+        style="display:inline-block;width:240px;height:400px"
+        data-ad-client="ad-2064264" 
+        data-ad-slot="2064264">
     </ins>
   </div>
 </div>
