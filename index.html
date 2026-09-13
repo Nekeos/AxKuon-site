@@ -20,13 +20,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
   <title>AxKuon — Наша задача облегчить жизнь и улучшить игровую индустрию</title>
   <link rel="icon" type="image/png" href="favicon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <link rel="icon" type="image/png" href="/favicon.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-
-  <script async src="https://ad.mail.ru/static/ads-async.js"></script>
-
   <style>
         /* бурмалда */
     * {
@@ -62,49 +63,53 @@
     .text-links {
         display: flex;
         flex-wrap: wrap;
-        gap: 12px;
-        justify-content: center;
+        gap: 12px;           /* Отступы между кнопками */
+        justify-content: center; /* Выравнивание по центру (если нужно) */
         margin-top: 20px;
     }
 
+    /* Базовый стиль красивой текстовой кнопки */
     .social-text-link {
         font-family: inherit;
-        font-size: 0.95rem;
+        font-size: 0.95rem;   /* Приятный читаемый размер шрифта */
         font-weight: 500;
         letter-spacing: 0.5px;
         text-decoration: none;
-        padding: 10px 20px;
-        border-radius: 24px;
-        color: #a0a0b0;
-        background: rgba(255, 255, 255, 0.03);
-        border: 1px solid rgba(255, 255, 255, 0.1);
-        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        padding: 10px 20px;   /* Внутренние отступы (высота и ширина плашки) */
+        border-radius: 24px;  /* Мягкие скругленные углы */
+        color: #a0a0b0;       /* Красивый неяркий цвет текста по умолчанию */
+        background: rgba(255, 255, 255, 0.03); /* Едва заметный темный/светлый фон */
+        border: 1px solid rgba(255, 255, 255, 0.1); /* Тонкая аккуратная рамка */
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); /* Очень плавная анимация */
     }
 
+    /* Эффекты при наведении мышки для каждой сети индивидуально */
     .social-text-link:hover {
       transform: translateY(-4px);
       border-color: rgba(167, 139, 250, 0.3);
     }
 
+    /* Индивидуальная подсветка для Telegram */
     .tg-link:hover {
         color: #fff;
         background: #a78bfa;
         border-color: #a78bfa;
     }
 
+    /* Индивидуальная подсветка для MAX (фирменный сине-фиолетовый акцент) */
     .max-link:hover {
         color: #fff;
         background: #a78bfa;
         border-color: #a78bfa;
     }
 
+    /* Индивидуальная подсветка для RuStore (фирменный глубокий синий) */
     .rustore-link:hover {
         color: #fff;
         background: #a78bfa;
         border-color: #0052FF;
     }
-
-    * {
+    {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
@@ -124,6 +129,7 @@
       padding: 0 24px;
     }
 
+    /* Навигация */
     header {
       position: sticky;
       top: 0;
@@ -145,14 +151,15 @@
       font-weight: 700;
       font-size: 1.8rem;
       letter-spacing: -0.5px;
-      color: #ffffff;
+      color: #ffffff; /* Белый цвет для Ax и точки */
       text-decoration: none;
     }
 
     .logo span {
-      color: #a78bfa;
+      color: #a78bfa; /* Фиолетовый цвет для Kuon и ru */
     }
 
+    /* Делаем Kuon жирным (700), как и Ax */
     .logo span:first-of-type {
       font-weight: inherit; 
     }
@@ -209,6 +216,7 @@
       color: #e9d5ff;
     }
 
+    /* Hero секция */
     .hero {
       padding: 80px 0 60px;
       text-align: center;
@@ -257,6 +265,7 @@
       color: #a78bfa;
     }
 
+    /* Секции */
     section {
       padding: 70px 0;
     }
@@ -312,6 +321,7 @@
       font-size: 0.95rem;
     }
 
+    /* Стили для карточек-ссылок на разделы */
     .link-cards {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -411,74 +421,6 @@
       }
     }
 
-    /* ============================================ */
-    /* БОКОВАЯ РЕКЛАМА (ПК) — 2 яруса по 240x400 */
-    /* ============================================ */
-    .ad-side {
-      position: fixed;
-      top: 100px;
-      z-index: 50;
-      width: 240px;
-      display: flex;
-      flex-direction: column;
-      gap: 20px;
-    }
-
-    .ad-left {
-      left: 20px;
-    }
-
-    .ad-right {
-      right: 20px;
-    }
-
-    .ad-block {
-      width: 240px;
-      height: 400px;
-      min-height: 400px;
-      flex-shrink: 0;
-      overflow: hidden;
-      position: relative;
-    }
-
-    .ad-block ins {
-      display: block !important;
-      width: 240px !important;
-      height: 400px !important;
-      margin: 0 !important;
-    }
-
-    /* Мобильная реклама (скрыта по умолчанию) */
-    .mobile-ad-top,
-    .mobile-ad-bottom {
-      display: none;
-    }
-
-    @media (max-width: 1500px) {
-      .ad-side {
-        display: none;
-      }
-
-      .mobile-ad-top,
-      .mobile-ad-bottom {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        padding: 12px 0;
-        width: 100%;
-      }
-
-      .mobile-ad-top {
-        background: rgba(255,255,255,0.02);
-        border-bottom: 1px solid rgba(255,255,255,0.05);
-      }
-
-      .mobile-ad-bottom {
-        margin: 32px auto 24px;
-        max-width: 320px;
-      }
-    }
-
     /* Мобильная адаптация */
     @media (max-width: 768px) {
       body {
@@ -491,6 +433,7 @@
         max-width: 100%;
       }
 
+      /* Навигация */
       header { padding: 12px 0; }
       .nav-container {
         flex-direction: column;
@@ -502,20 +445,101 @@
         justify-content: center;
       }
       .logo { font-size: 1.5rem; }
+      .btn-back { padding: 6px 14px; font-size: 0.85rem; }
 
-      .hero {
-        padding: 40px 0 30px;
+      /* Шапка релиза */
+      .release-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
       }
-      .section-title { font-size: 1.6rem; }
-      .section-subtitle { font-size: 1rem; margin-bottom: 28px; }
-      .link-card { padding: 24px 20px; }
-      .link-card h3 { font-size: 1.4rem; }
-      .card { padding: 22px 18px; }
+      .app-icon {
+        width: 64px;
+        height: 64px;
+      }
+      .release-title h1 { font-size: 1.6rem; }
+      .version-badge { font-size: 0.85rem; padding: 4px 12px; }
+
+      /* Основная карточка */
+      .main-card {
+        padding: 20px 16px;
+        border-radius: 16px;
+      }
+      .description { font-size: 1rem; }
+
+      /* Секции */
+      .download-section h2,
+      .stores-section h2,
+      .requirements h2,
+      .changelog h2 {
+        font-size: 1.2rem;
+      }
+
+      /* Строки скачивания */
+      .download-row {
+        flex-direction: column;
+        align-items: stretch;
+        padding: 14px 16px;
+        gap: 12px;
+      }
+      .download-info {
+        width: 100%;
+      }
+      .download-count {
+        margin-left: 0 !important;
+        width: 100%;
+        text-align: left;
+      }
+      .btn-download {
+        width: 100%;
+        justify-content: center;
+        padding: 12px 18px;
+        font-size: 0.95rem;
+      }
+
+      /* Магазины */
+      .store-buttons {
+        width: 100%;
+      }
+      .btn-store {
+        width: 100%;
+        padding: 12px 18px;
+        justify-content: flex-start;
+      }
+
+      /* Системные требования — 2 колонки на телефоне */
+      .req-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+      .req-item {
+        padding: 12px;
+        font-size: 0.85rem;
+      }
+
+      /* Скриншоты */
+      .screenshots {
+        flex-direction: column;
+      }
+      .screenshot {
+        min-width: 100%;
+        height: 160px;
+      }
+
+      /* Ссылки внизу */
+      main > div:last-child {
+        flex-direction: column;
+        gap: 12px !important;
+      }
     }
 
+    /* Очень маленькие экраны (телефоны) */
     @media (max-width: 420px) {
+      .req-grid {
+        grid-template-columns: 1fr;
+      }
+      .release-title h1 { font-size: 1.4rem; }
+      .main-card { padding: 16px 12px; }
       .container { padding: 0 12px; }
-      .hero h1 { font-size: 1.8rem; }
     }
   </style>
 </head>
@@ -533,15 +557,6 @@
       </div>
     </div>
   </header>
-
-  <!-- Мобильная реклама сверху (только на телефоне) -->
-  <div class="mobile-ad-top">
-    <ins class="mrg-tag" 
-        style="display:inline-block;width:320px;height:50px"
-        data-ad-client="ad-2064565" 
-        data-ad-slot="2064565">
-    </ins>
-  </div>
 
   <main>
     <!-- Главная / Hero -->
@@ -590,6 +605,7 @@
         <p class="section-subtitle">Управляйте контентом сами — переходите в нужный раздел, чтобы добавить или просмотреть материалы.</p>
         
         <div class="link-cards">
+          <!-- Карточка "Релизы" -->
           <a href="releases.html" class="link-card">
             <div class="card-icon">
               <i class="fas fa-rocket"></i>
@@ -602,6 +618,7 @@
             </div>
           </a>
 
+          <!-- Карточка "Новости" -->
           <a href="news.html" class="link-card">
             <div class="card-icon">
               <i class="far fa-newspaper"></i>
@@ -623,12 +640,17 @@
         <h2 class="section-title">Социальные сети</h2>
         <p class="section-subtitle">Подписывайтесь, чтобы следить за новинками и релизами.</p>
         <div class="social-icons text-links">
+            <!-- Ссылка на Telegram -->
             <a href="https://t.me/AxKuon" aria-label="Telegram" class="social-text-link tg-link">
                 Telegram
             </a>
+
+            <!-- Ссылка на мессенджер Макс -->
             <a href="https://max.ru/channel_axkuon" target="_blank" rel="noopener noreferrer" aria-label="Мессенджер МАКС" class="social-text-link max-link">
                 MAX
             </a>
+
+            <!-- Ссылка на RuStore -->
             <a href="https://www.rustore.ru/catalog/developer/ch7shq" target="_blank" rel="noopener noreferrer" aria-label="RuStore" class="social-text-link rustore-link">
                 RuStore
             </a>
@@ -642,15 +664,6 @@
     </section>
   </main>
 
-  <!-- Мобильная реклама снизу (только на телефоне) -->
-  <div class="mobile-ad-bottom">
-    <ins class="mrg-tag" 
-        style="display:inline-block;width:240px;height:400px"
-        data-ad-client="ad-2064264" 
-        data-ad-slot="2064264">
-    </ins>
-  </div>
-
   <footer>
     <div class="container">
       <p>© 2026 AxKuon.ru — приложения для Android, Linux и Windows, open-source проекты.</p>
@@ -658,65 +671,27 @@
     </div>
   </footer>
 
-<!-- Левый столбец рекламы (ПК) — 2 яруса 240x400 -->
-<div class="ad-side ad-left">
-  <div class="ad-block">
-    <ins class="mrg-tag" 
-        style="display:inline-block;width:240px;height:400px"
-        data-ad-client="ad-2064264" 
-        data-ad-slot="2064264">
-    </ins>
-  </div>
-  <div class="ad-block">
-    <ins class="mrg-tag" 
-        style="display:inline-block;width:240px;height:400px"
-        data-ad-client="ad-2064264" 
-        data-ad-slot="2064264">
-    </ins>
-  </div>
-</div>
 
-<!-- Правый столбец рекламы (ПК) — 2 яруса 240x400 -->
-<div class="ad-side ad-right">
-  <div class="ad-block">
-    <ins class="mrg-tag" 
-        style="display:inline-block;width:240px;height:400px"
-        data-ad-client="ad-2064264" 
-        data-ad-slot="2064264">
-    </ins>
-  </div>
-  <div class="ad-block">
-    <ins class="mrg-tag" 
-        style="display:inline-block;width:240px;height:400px"
-        data-ad-client="ad-2064264" 
-        data-ad-slot="2064264">
-    </ins>
-  </div>
-</div>
 
-<script>
-  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function(e) {
-      const href = this.getAttribute('href');
-      if (href === "#" || href === "#contact") {
-        const target = document.querySelector(href);
-        if (target) {
-          e.preventDefault();
-          target.scrollIntoView({ behavior: 'smooth' });
+  <script>
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        const href = this.getAttribute('href');
+        if (href === "#" || href === "#contact") {
+          const target = document.querySelector(href);
+          if (target) {
+            e.preventDefault();
+            target.scrollIntoView({ behavior: 'smooth' });
+          }
+        } else if (href.startsWith("#")) {
+          const target = document.querySelector(href);
+          if (target) {
+            e.preventDefault();
+            target.scrollIntoView({ behavior: 'smooth' });
+          }
         }
-      } else if (href.startsWith("#")) {
-        const target = document.querySelector(href);
-        if (target) {
-          e.preventDefault();
-          target.scrollIntoView({ behavior: 'smooth' });
-        }
-      }
+      });
     });
-  });
-</script>
-
-<script>
-  (MRGtag = window.MRGtag || []).push({});
-</script>
+  </script>
 </body>
 </html>
