@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-  
+
     <!-- Yandex.Metrika counter -->
     <script type="text/javascript">
         (function(m,e,t,r,i,k,a){
@@ -322,15 +322,17 @@
       }
     }
 
-    /* Боковая реклама */
+    /* ============================================ */
+    /* БОКОВАЯ РЕКЛАМА (ПК) — 2 яруса по 240x400 */
+    /* ============================================ */
     .ad-side {
       position: fixed;
       top: 100px;
       z-index: 50;
+      width: 240px;
       display: flex;
       flex-direction: column;
-      gap: 16px;
-      width: 320px;
+      gap: 20px;
     }
 
     .ad-left {
@@ -341,50 +343,50 @@
       right: 20px;
     }
 
-    .ad-slot {
-      width: 320px;
+    .ad-block {
+      width: 240px;
       height: 400px;
-      position: relative;
+      min-height: 400px;
+      flex-shrink: 0;
       overflow: hidden;
-      display: flex;
-      justify-content: center;
-      align-items: flex-start;
+      position: relative;
     }
 
-    .ad-slot-sm {
-      width: 320px;
-      height: 50px;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .ad-slot ins,
-    .ad-slot-sm ins {
+    .ad-block ins {
       display: block !important;
-      position: absolute !important;
-      top: 0 !important;
-      left: 0 !important;
+      width: 240px !important;
+      height: 400px !important;
       margin: 0 !important;
     }
 
-    .ad-slot ins {
-      left: 50% !important;
-      transform: translateX(-50%) !important;
+    /* Мобильная реклама (скрыта по умолчанию) */
+    .mobile-ad-top,
+    .mobile-ad-bottom {
+      display: none;
     }
 
-    .ad-slot iframe,
-    .ad-slot-sm iframe {
-      position: absolute !important;
-      top: 0 !important;
-      left: 0 !important;
-      width: 100% !important;
-      height: 100% !important;
-    }
-
-    /* Скрыть на маленьких экранах, чтобы не мешали */
-    @media (max-width: 1400px) {
+    @media (max-width: 1500px) {
       .ad-side {
         display: none;
+      }
+
+      .mobile-ad-top,
+      .mobile-ad-bottom {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 12px 0;
+        width: 100%;
+      }
+
+      .mobile-ad-top {
+        background: rgba(255,255,255,0.02);
+        border-bottom: 1px solid rgba(255,255,255,0.05);
+      }
+
+      .mobile-ad-bottom {
+        margin: 32px auto 24px;
+        max-width: 320px;
       }
     }
 
@@ -505,6 +507,15 @@
     </div>
   </header>
 
+  <!-- Мобильная реклама сверху (только на телефоне) -->
+  <div class="mobile-ad-top">
+    <ins class="mrg-tag" 
+        style="display:inline-block;width:320px;height:50px"
+        data-ad-client="ad-2064565" 
+        data-ad-slot="2064565">
+    </ins>
+  </div>
+
   <main class="container">
     <div class="page-header">
       <h1>Новости</h1>
@@ -581,50 +592,59 @@
     </div>
   </main>
 
+  <!-- Мобильная реклама снизу (только на телефоне) -->
+  <div class="mobile-ad-bottom">
+    <ins class="mrg-tag" 
+        style="display:inline-block;width:240px;height:400px"
+        data-ad-client="ad-2064264" 
+        data-ad-slot="2064264">
+    </ins>
+  </div>
+
   <footer>
     <div class="container">
       <p>© 2026 AxKuon.ru — приложения для Android, Linux и Windows, open-source проекты.</p>
     </div>
   </footer>
 
-  <!-- Левый столбец рекламы -->
-  <div class="ad-side ad-left">
-    <div class="ad-slot">
-      <ins class="mrg-tag" 
-          style="display:inline-block;width:240px;height:400px"
-          data-ad-client="ad-2064264" 
-          data-ad-slot="2064264">
-      </ins>
-    </div>
-    <div class="ad-slot-sm">
-      <ins class="mrg-tag" 
-          style="display:inline-block;width:320px;height:50px"
-          data-ad-client="ad-2064565" 
-          data-ad-slot="2064565">
-      </ins>
-    </div>
+<!-- Левый столбец рекламы (ПК) — 2 яруса 240x400 -->
+<div class="ad-side ad-left">
+  <div class="ad-block">
+    <ins class="mrg-tag" 
+        style="display:inline-block;width:240px;height:400px"
+        data-ad-client="ad-2064264" 
+        data-ad-slot="2064264">
+    </ins>
   </div>
-
-  <!-- Правый столбец рекламы -->
-  <div class="ad-side ad-right">
-    <div class="ad-slot">
-      <ins class="mrg-tag" 
-          style="display:inline-block;width:240px;height:400px"
-          data-ad-client="ad-2064264" 
-          data-ad-slot="2064264">
-      </ins>
-    </div>
-    <div class="ad-slot-sm">
-      <ins class="mrg-tag" 
-          style="display:inline-block;width:320px;height:50px"
-          data-ad-client="ad-2064565" 
-          data-ad-slot="2064565">
-      </ins>
-    </div>
+  <div class="ad-block">
+    <ins class="mrg-tag" 
+        style="display:inline-block;width:240px;height:400px"
+        data-ad-client="ad-2064264" 
+        data-ad-slot="2064264">
+    </ins>
   </div>
+</div>
 
-  <script>
-    (MRGtag = window.MRGtag || []).push({});
-  </script>
+<!-- Правый столбец рекламы (ПК) — 2 яруса 240x400 -->
+<div class="ad-side ad-right">
+  <div class="ad-block">
+    <ins class="mrg-tag" 
+        style="display:inline-block;width:240px;height:400px"
+        data-ad-client="ad-2064264" 
+        data-ad-slot="2064264">
+    </ins>
+  </div>
+  <div class="ad-block">
+    <ins class="mrg-tag" 
+        style="display:inline-block;width:240px;height:400px"
+        data-ad-client="ad-2064264" 
+        data-ad-slot="2064264">
+    </ins>
+  </div>
+</div>
+
+<script>
+  (MRGtag = window.MRGtag || []).push({});
+</script>
 </body>
 </html>
