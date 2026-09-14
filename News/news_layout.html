@@ -271,6 +271,10 @@
       color: #fff;
     }
 
+    .hamburger i {
+      pointer-events: none;
+    }
+
     /* МОБИЛЬНОЕ МЕНЮ (выезжает сверху) */
     .mobile-menu {
       display: none;
@@ -280,13 +284,15 @@
       right: 0;
       bottom: 0;
       background: rgba(0, 0, 0, 0.7);
-      z-index: 999;
+      z-index: 9999;
       opacity: 0;
       transition: opacity 0.3s ease;
+      pointer-events: none;
     }
 
     .mobile-menu.open {
       opacity: 1;
+      pointer-events: auto;
     }
 
     .mobile-menu-content {
@@ -1034,7 +1040,7 @@
         <a href="../index.html" class="logo">
           Ax<span>Kuon</span>
         </a>
-        <button class="hamburger" onclick="openMobileMenu()" aria-label="Меню">
+        <button class="hamburger" id="hamburgerBtn" aria-label="Меню" type="button">
           <i class="fas fa-bars"></i>
         </button>
       </div>
@@ -1047,19 +1053,19 @@
   </header>
 
   <!-- МОБИЛЬНОЕ МЕНЮ -->
-  <div class="mobile-menu" id="mobileMenu" onclick="closeMobileMenuIfOutside(event)">
-    <div class="mobile-menu-content" onclick="event.stopPropagation()">
-      <button class="mobile-menu-close" onclick="closeMobileMenu()" aria-label="Закрыть">
+  <div class="mobile-menu" id="mobileMenu">
+    <div class="mobile-menu-content" id="mobileMenuContent">
+      <button class="mobile-menu-close" id="mobileMenuClose" aria-label="Закрыть" type="button">
         <i class="fas fa-times"></i>
       </button>
 
       <div class="sidebar-block" style="margin-top: 30px;">
         <div class="sidebar-title"><i class="fas fa-list"></i> Содержание</div>
         <ul class="toc-list">
-          <li><a href="#section-1" onclick="closeMobileMenu()">Как это работает</a></li>
-          <li><a href="#section-2" onclick="closeMobileMenu()">Безопасность</a></li>
-          <li><a href="#section-3" onclick="closeMobileMenu()">Технические детали</a></li>
-          <li><a href="#section-4" onclick="closeMobileMenu()">Итог</a></li>
+          <li><a href="#section-1" class="mobile-toc-link">Как это работает</a></li>
+          <li><a href="#section-2" class="mobile-toc-link">Безопасность</a></li>
+          <li><a href="#section-3" class="mobile-toc-link">Технические детали</a></li>
+          <li><a href="#section-4" class="mobile-toc-link">Итог</a></li>
         </ul>
       </div>
 
@@ -1075,7 +1081,7 @@
         </div>
       </div>
 
-      <button class="btn-up" onclick="closeMobileMenu(); scrollToTop();">
+      <button class="btn-up" id="mobileBtnUp" type="button">
         <i class="fas fa-arrow-up"></i> Наверх
       </button>
     </div>
@@ -1115,7 +1121,7 @@
         </div>
       </div>
 
-      <button class="btn-up" onclick="scrollToTop()">
+      <button class="btn-up" id="desktopBtnUp" type="button">
         <i class="fas fa-arrow-up"></i> Наверх
       </button>
     </aside>
@@ -1164,10 +1170,10 @@
           </div>
         </div>
 
-        <button class="carousel-btn prev" onclick="slidePrev()" aria-label="Назад">
+        <button class="carousel-btn prev" id="carouselPrev" aria-label="Назад" type="button">
           <i class="fas fa-chevron-left"></i>
         </button>
-        <button class="carousel-btn next" onclick="slideNext()" aria-label="Вперёд">
+        <button class="carousel-btn next" id="carouselNext" aria-label="Вперёд" type="button">
           <i class="fas fa-chevron-right"></i>
         </button>
       </div>
@@ -1269,11 +1275,11 @@
         <p>Скачать FileDrop можно на странице релиза на нашем сайте, в RuStore для Android или напрямую с GitHub. Мы будем рады обратной связи — пишите нам в Telegram.</p>
       </article>
 
-      <!-- ПОДЕЛИТЬСЯ (без MAX) -->
+      <!-- ПОДЕЛИТЬСЯ -->
       <div class="article-share">
         <span class="article-share-label">Поделиться:</span>
-        <a href="#" class="share-btn" onclick="shareTelegram(); return false;"><i class="fab fa-telegram"></i> Telegram</a>
-        <button class="share-btn" onclick="copyLink()"><i class="fas fa-link"></i> Копировать ссылку</button>
+        <a href="#" class="share-btn" id="shareTgBtn"><i class="fab fa-telegram"></i> Telegram</a>
+        <button class="share-btn" id="copyLinkBtn" type="button"><i class="fas fa-link"></i> Копировать ссылку</button>
       </div>
 
       <!-- ДРУГИЕ НОВОСТИ -->
@@ -1349,36 +1355,48 @@
 </div>
 
 <script>
+(function() {
+  'use strict';
+
   // ============================================
   // КАРУСЕЛЬ
   // ============================================
-  let currentSlide = 0;
-  const track = document.getElementById('carouselTrack');
-  const slides = document.querySelectorAll('.carousel-slide');
-  const dotsContainer = document.getElementById('carouselDots');
-  const totalSlides = slides.length;
+  var currentSlide = 0;
+  var track = document.getElementById('carouselTrack');
+  var slides = document.querySelectorAll('.carousel-slide');
+  var dotsContainer = document.getElementById('carouselDots');
+  var totalSlides = slides.length;
 
-  for (let i = 0; i < totalSlides; i++) {
-    const dot = document.createElement('button');
-    dot.className = 'carousel-dot' + (i === 0 ? ' active' : '');
-    dot.setAttribute('aria-label', 'Слайд ' + (i + 1));
-    dot.onclick = () => goToSlide(i);
-    dotsContainer.appendChild(dot);
+  if (track && dotsContainer && totalSlides > 0) {
+    for (var i = 0; i < totalSlides; i++) {
+      (function(index) {
+        var dot = document.createElement('button');
+        dot.className = 'carousel-dot' + (index === 0 ? ' active' : '');
+        dot.setAttribute('aria-label', 'Слайд ' + (index + 1));
+        dot.setAttribute('type', 'button');
+        dot.addEventListener('click', function() { goToSlide(index); });
+        dotsContainer.appendChild(dot);
+      })(i);
+    }
   }
 
   function updateCarousel() {
+    if (!track) return;
     track.style.transform = 'translateX(-' + (currentSlide * 100) + '%)';
-    document.querySelectorAll('.carousel-dot').forEach((dot, i) => {
-      dot.classList.toggle('active', i === currentSlide);
-    });
+    var dots = document.querySelectorAll('.carousel-dot');
+    for (var i = 0; i < dots.length; i++) {
+      dots[i].classList.toggle('active', i === currentSlide);
+    }
   }
 
   function slideNext() {
+    if (totalSlides === 0) return;
     currentSlide = (currentSlide + 1) % totalSlides;
     updateCarousel();
   }
 
   function slidePrev() {
+    if (totalSlides === 0) return;
     currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
     updateCarousel();
   }
@@ -1388,62 +1406,136 @@
     updateCarousel();
   }
 
-  let touchStartX = 0;
-  let touchEndX = 0;
-  const carousel = document.getElementById('carousel');
+  var prevBtn = document.getElementById('carouselPrev');
+  var nextBtn = document.getElementById('carouselNext');
+  if (prevBtn) prevBtn.addEventListener('click', slidePrev);
+  if (nextBtn) nextBtn.addEventListener('click', slideNext);
 
-  carousel.addEventListener('touchstart', (e) => {
-    touchStartX = e.changedTouches[0].screenX;
-  }, {passive: true});
+  var carousel = document.getElementById('carousel');
+  if (carousel) {
+    var touchStartX = 0;
+    carousel.addEventListener('touchstart', function(e) {
+      touchStartX = e.changedTouches[0].screenX;
+    }, {passive: true});
 
-  carousel.addEventListener('touchend', (e) => {
-    touchEndX = e.changedTouches[0].screenX;
-    const diff = touchStartX - touchEndX;
-    if (Math.abs(diff) > 50) {
-      if (diff > 0) slideNext();
-      else slidePrev();
-    }
-  }, {passive: true});
+    carousel.addEventListener('touchend', function(e) {
+      var touchEndX = e.changedTouches[0].screenX;
+      var diff = touchStartX - touchEndX;
+      if (Math.abs(diff) > 50) {
+        if (diff > 0) slideNext();
+        else slidePrev();
+      }
+    }, {passive: true});
 
-  setInterval(() => { slideNext(); }, 6000);
-
-
+    setInterval(slideNext, 6000);
+  }
 
   // ============================================
-  // МОБИЛЬНОЕ МЕНЮ
+  // МОБИЛЬНОЕ МЕНЮ — САМЫЙ НАДЁЖНЫЙ СПОСОБ
   // ============================================
-  function openMobileMenu() {
-    document.getElementById('mobileMenu').classList.add('open');
+  var hamburgerBtn = document.getElementById('hamburgerBtn');
+  var mobileMenu = document.getElementById('mobileMenu');
+  var mobileMenuContent = document.getElementById('mobileMenuContent');
+  var mobileMenuClose = document.getElementById('mobileMenuClose');
+
+  function openMobileMenu(e) {
+    if (e) { e.preventDefault(); e.stopPropagation(); }
+    if (!mobileMenu) return;
+    mobileMenu.classList.add('open');
     document.body.style.overflow = 'hidden';
   }
 
-  function closeMobileMenu() {
-    document.getElementById('mobileMenu').classList.remove('open');
+  function closeMobileMenu(e) {
+    if (e) { e.preventDefault(); e.stopPropagation(); }
+    if (!mobileMenu) return;
+    mobileMenu.classList.remove('open');
     document.body.style.overflow = '';
   }
 
-  function closeMobileMenuIfOutside(event) {
-    if (event.target.id === 'mobileMenu') {
-      closeMobileMenu();
-    }
+  // Открыть — по кнопке
+  if (hamburgerBtn) {
+    hamburgerBtn.addEventListener('click', openMobileMenu);
+    hamburgerBtn.addEventListener('touchstart', openMobileMenu, {passive: false});
   }
+
+  // Закрыть — по крестику
+  if (mobileMenuClose) {
+    mobileMenuClose.addEventListener('click', closeMobileMenu);
+    mobileMenuClose.addEventListener('touchstart', closeMobileMenu, {passive: false});
+  }
+
+  // Закрыть — по клику на фон
+  if (mobileMenu) {
+    mobileMenu.addEventListener('click', function(e) {
+      if (e.target === mobileMenu) closeMobileMenu(e);
+    });
+  }
+
+  // Закрыть — по клику на ссылки содержания
+  var mobileTocLinks = document.querySelectorAll('.mobile-toc-link');
+  for (var j = 0; j < mobileTocLinks.length; j++) {
+    mobileTocLinks[j].addEventListener('click', function() {
+      closeMobileMenu();
+    });
+  }
+
+  // Кнопка «Наверх» в мобильном меню
+  var mobileBtnUp = document.getElementById('mobileBtnUp');
+  if (mobileBtnUp) {
+    mobileBtnUp.addEventListener('click', function() {
+      closeMobileMenu();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  }
+
+  // Кнопка «Наверх» на ПК
+  var desktopBtnUp = document.getElementById('desktopBtnUp');
+  if (desktopBtnUp) {
+    desktopBtnUp.addEventListener('click', function() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  }
+
+  // Закрыть меню по Esc
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') closeMobileMenu();
+  });
 
   // ============================================
   // ПОДЕЛИТЬСЯ
   // ============================================
+  var copyLinkBtn = document.getElementById('copyLinkBtn');
+  var shareTgBtn = document.getElementById('shareTgBtn');
+
+  if (copyLinkBtn) {
+    copyLinkBtn.addEventListener('click', function(e) {
+      e.preventDefault();
+      copyLink();
+    });
+  }
+
+  if (shareTgBtn) {
+    shareTgBtn.addEventListener('click', function(e) {
+      e.preventDefault();
+      shareTelegram();
+    });
+  }
+
   function copyLink() {
-    const url = window.location.href;
+    var url = window.location.href;
     if (navigator.clipboard && navigator.clipboard.writeText) {
-      navigator.clipboard.writeText(url).then(() => {
+      navigator.clipboard.writeText(url).then(function() {
         showToast('Ссылка скопирована');
-      }).catch(() => { fallbackCopy(url); });
+      }).catch(function() {
+        fallbackCopy(url);
+      });
     } else {
       fallbackCopy(url);
     }
   }
 
   function fallbackCopy(text) {
-    const ta = document.createElement('textarea');
+    var ta = document.createElement('textarea');
     ta.value = text;
     ta.style.position = 'fixed';
     ta.style.opacity = '0';
@@ -1459,47 +1551,45 @@
   }
 
   function shareTelegram() {
-    const url = encodeURIComponent(window.location.href);
-    const title = encodeURIComponent(document.title);
+    var url = encodeURIComponent(window.location.href);
+    var title = encodeURIComponent(document.title);
     window.open('https://t.me/share/url?url=' + url + '&text=' + title, '_blank');
   }
 
   function showToast(text) {
-    const toast = document.createElement('div');
+    var toast = document.createElement('div');
     toast.textContent = text;
-    toast.style.cssText = 'position:fixed;bottom:30px;left:50%;transform:translateX(-50%) translateY(100px);background:#a78bfa;color:#0c0c0f;padding:12px 24px;border-radius:30px;font-weight:600;font-size:0.9rem;z-index:9999;transition:transform 0.3s ease;pointer-events:none;';
+    toast.style.cssText = 'position:fixed;bottom:30px;left:50%;transform:translateX(-50%) translateY(100px);background:#a78bfa;color:#0c0c0f;padding:12px 24px;border-radius:30px;font-weight:600;font-size:0.9rem;z-index:99999;transition:transform 0.3s ease;pointer-events:none;';
     document.body.appendChild(toast);
-    requestAnimationFrame(() => {
+    requestAnimationFrame(function() {
       toast.style.transform = 'translateX(-50%) translateY(0)';
     });
-    setTimeout(() => {
+    setTimeout(function() {
       toast.style.transform = 'translateX(-50%) translateY(100px)';
-      setTimeout(() => toast.remove(), 300);
+      setTimeout(function() { toast.remove(); }, 300);
     }, 2000);
-  }
-
-  function scrollToTop() {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 
   // ============================================
   // АКТИВНЫЙ РАЗДЕЛ В САЙДБАРЕ (ПК)
   // ============================================
-  const tocLinks = document.querySelectorAll('.toc-list a[data-target]');
-  const sections = document.querySelectorAll('.article-body h2, .article-body h3, .article-summary');
+  var tocLinks = document.querySelectorAll('.toc-list a[data-target]');
+  var sections = document.querySelectorAll('.article-body h2, .article-body h3, .article-summary');
 
-  window.addEventListener('scroll', () => {
-    let current = '';
-    sections.forEach(section => {
-      const rect = section.getBoundingClientRect();
+  window.addEventListener('scroll', function() {
+    var current = '';
+    sections.forEach(function(section) {
+      var rect = section.getBoundingClientRect();
       if (rect.top <= 150) {
         current = section.id;
       }
     });
-    tocLinks.forEach(link => {
+    tocLinks.forEach(function(link) {
       link.classList.toggle('active', link.dataset.target === current);
     });
   });
+
+})();
 </script>
 
 <script>
