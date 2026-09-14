@@ -28,7 +28,6 @@
   <script async src="https://ad.mail.ru/static/ads-async.js"></script>
 
   <style>
-    /* бурмалда */
     * {
       -webkit-user-select: none;
       -moz-user-select: none;
@@ -36,7 +35,6 @@
       user-select: none;
     }
 
-    /* прогрев гоев */
     img {
       -webkit-user-drag: none;
       -khtml-user-drag: none;
@@ -46,7 +44,6 @@
       pointer-events: none;
     }
 
-    /* ссылки не трогать */
     a {
       -webkit-user-select: none;
       -moz-user-select: none;
@@ -79,7 +76,152 @@
       padding: 0 24px;
     }
 
-    /* Навигация */
+    .article-layout {
+      display: flex;
+      gap: 32px;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 24px;
+      align-items: flex-start;
+    }
+
+    .article-main {
+      flex: 1;
+      min-width: 0;
+      max-width: 800px;
+    }
+
+    .sidebar {
+      width: 240px;
+      flex-shrink: 0;
+      position: sticky;
+      top: 100px;
+      max-height: calc(100vh - 120px);
+      overflow-y: auto;
+      padding-right: 8px;
+    }
+
+    .sidebar::-webkit-scrollbar { width: 4px; }
+    .sidebar::-webkit-scrollbar-track { background: transparent; }
+    .sidebar::-webkit-scrollbar-thumb {
+      background: rgba(167, 139, 250, 0.2);
+      border-radius: 4px;
+    }
+    .sidebar::-webkit-scrollbar-thumb:hover {
+      background: rgba(167, 139, 250, 0.4);
+    }
+
+    .sidebar-block {
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      border-radius: 16px;
+      padding: 20px;
+      margin-bottom: 16px;
+    }
+
+    .sidebar-title {
+      font-size: 0.75rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      color: #a78bfa;
+      margin-bottom: 14px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .sidebar-title i { font-size: 0.9rem; }
+
+    .toc-list {
+      list-style: none;
+      padding: 0;
+    }
+
+    .toc-list li { margin-bottom: 6px; }
+
+    .toc-list a {
+      color: #b0b0c0;
+      text-decoration: none;
+      font-size: 0.85rem;
+      line-height: 1.4;
+      display: block;
+      padding: 6px 10px;
+      border-radius: 8px;
+      border-left: 2px solid transparent;
+      transition: all 0.2s;
+    }
+
+    .toc-list a:hover {
+      color: #fff;
+      background: rgba(167, 139, 250, 0.08);
+    }
+
+    .toc-list a.active {
+      color: #c4b5fd;
+      background: rgba(167, 139, 250, 0.12);
+      border-left-color: #a78bfa;
+    }
+
+    .sidebar-social {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .sidebar-social-btn {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 12px;
+      border-radius: 10px;
+      text-decoration: none;
+      color: #b0b0c0;
+      font-size: 0.85rem;
+      font-weight: 500;
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.06);
+      transition: all 0.2s;
+    }
+
+    .sidebar-social-btn:hover {
+      color: #fff;
+      background: rgba(167, 139, 250, 0.12);
+      border-color: rgba(167, 139, 250, 0.3);
+      transform: translateX(3px);
+    }
+
+    .sidebar-social-btn i {
+      font-size: 1.1rem;
+      color: #a78bfa;
+      width: 20px;
+      text-align: center;
+    }
+
+    .btn-up {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      width: 100%;
+      padding: 12px;
+      border-radius: 10px;
+      background: rgba(167, 139, 250, 0.1);
+      border: 1px solid rgba(167, 139, 250, 0.3);
+      color: #c4b5fd;
+      font-weight: 500;
+      font-size: 0.85rem;
+      cursor: pointer;
+      transition: all 0.2s;
+      font-family: inherit;
+    }
+
+    .btn-up:hover {
+      background: rgba(167, 139, 250, 0.2);
+      color: #fff;
+      border-color: #a78bfa;
+    }
+
     header {
       position: sticky;
       top: 0;
@@ -108,9 +250,7 @@
       text-decoration: none;
     }
 
-    .logo span {
-      color: #a78bfa;
-    }
+    .logo span { color: #a78bfa; }
 
     .nav-links {
       display: flex;
@@ -126,9 +266,7 @@
       transition: color 0.2s;
     }
 
-    .nav-links a:hover {
-      color: #ffffff;
-    }
+    .nav-links a:hover { color: #ffffff; }
 
     .btn-back {
       background: transparent;
@@ -151,7 +289,6 @@
       background: rgba(167,139,250,0.1);
     }
 
-    /* Хлебные крошки */
     .breadcrumb {
       padding: 24px 0 0;
       font-size: 0.85rem;
@@ -163,19 +300,10 @@
       text-decoration: none;
     }
 
-    .breadcrumb a:hover {
-      text-decoration: underline;
-    }
+    .breadcrumb a:hover { text-decoration: underline; }
+    .breadcrumb span { margin: 0 6px; color: #555; }
 
-    .breadcrumb span {
-      margin: 0 6px;
-      color: #555;
-    }
-
-    /* Шапка статьи */
-    .article-hero {
-      padding: 32px 0 16px;
-    }
+    .article-hero { padding: 32px 0 16px; }
 
     .article-category {
       display: inline-block;
@@ -209,15 +337,8 @@
       align-items: center;
     }
 
-    .article-meta span {
-      display: flex;
-      align-items: center;
-      gap: 6px;
-    }
-
-    .article-meta i {
-      color: #a78bfa;
-    }
+    .article-meta span { display: flex; align-items: center; gap: 6px; }
+    .article-meta i { color: #a78bfa; }
 
     .article-authors {
       display: flex;
@@ -256,9 +377,6 @@
       font-size: 0.75rem;
     }
 
-    /* ============================================ */
-    /* КАРУСЕЛЬ */
-    /* ============================================ */
     .carousel {
       position: relative;
       width: 100%;
@@ -352,7 +470,6 @@
       border-radius: 4px;
     }
 
-    /* Подпись под каруселью */
     .figure-caption {
       text-align: center;
       color: #7c7c8a;
@@ -361,9 +478,6 @@
       margin-bottom: 32px;
     }
 
-    /* ============================================ */
-    /* ОДИНОЧНАЯ КАРТИНКА */
-    /* ============================================ */
     .article-image {
       margin: 32px 0;
       border-radius: 20px;
@@ -389,31 +503,16 @@
       border-top: 1px solid rgba(255,255,255,0.05);
     }
 
-    /* ============================================ */
-    /* КОЛЛАЖ КАРТИНОК */
-    /* ============================================ */
     .article-collage {
       display: grid;
       gap: 12px;
       margin: 32px 0;
     }
 
-    .article-collage.cols-2 {
-      grid-template-columns: 1fr 1fr;
-    }
-
-    .article-collage.cols-3 {
-      grid-template-columns: 1fr 1fr;
-      grid-template-rows: auto auto;
-    }
-
-    .article-collage.cols-3 .collage-item:first-child {
-      grid-column: 1 / -1;
-    }
-
-    .article-collage.cols-4 {
-      grid-template-columns: 1fr 1fr;
-    }
+    .article-collage.cols-2 { grid-template-columns: 1fr 1fr; }
+    .article-collage.cols-3 { grid-template-columns: 1fr 1fr; }
+    .article-collage.cols-3 .collage-item:first-child { grid-column: 1 / -1; }
+    .article-collage.cols-4 { grid-template-columns: 1fr 1fr; }
 
     .collage-item {
       position: relative;
@@ -443,9 +542,6 @@
       line-height: 1.3;
     }
 
-    /* ============================================ */
-    /* ТЕКСТ СТАТЬИ */
-    /* ============================================ */
     .article-body {
       font-size: 1.1rem;
       color: #c0c0d0;
@@ -453,9 +549,7 @@
       margin-bottom: 40px;
     }
 
-    .article-body p {
-      margin-bottom: 20px;
-    }
+    .article-body p { margin-bottom: 20px; }
 
     .article-body h2 {
       font-size: 1.8rem;
@@ -463,6 +557,7 @@
       margin: 36px 0 16px;
       font-weight: 600;
       letter-spacing: -0.3px;
+      scroll-margin-top: 100px;
     }
 
     .article-body h3 {
@@ -470,6 +565,7 @@
       color: #fff;
       margin: 28px 0 12px;
       font-weight: 600;
+      scroll-margin-top: 100px;
     }
 
     .article-body ul,
@@ -478,18 +574,10 @@
       margin-bottom: 20px;
     }
 
-    .article-body li {
-      margin-bottom: 8px;
-    }
+    .article-body li { margin-bottom: 8px; }
+    .article-body li::marker { color: #a78bfa; }
 
-    .article-body li::marker {
-      color: #a78bfa;
-    }
-
-    .article-body strong {
-      color: #fff;
-      font-weight: 600;
-    }
+    .article-body strong { color: #fff; font-weight: 600; }
 
     .article-body a {
       color: #a78bfa;
@@ -508,7 +596,6 @@
       font-style: italic;
     }
 
-    /* Блок "Итог" */
     .article-summary {
       background: rgba(167, 139, 250, 0.06);
       border: 1px solid rgba(167, 139, 250, 0.2);
@@ -524,7 +611,6 @@
       margin-top: 0;
     }
 
-    /* Поделиться */
     .article-share {
       display: flex;
       gap: 12px;
@@ -564,10 +650,56 @@
       color: #0c0c0f;
     }
 
-    /* Ссылки на другие новости */
-    .related-news {
+    .social-section {
       margin-bottom: 60px;
+      padding: 32px;
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      border-radius: 20px;
+      text-align: center;
     }
+
+    .social-section h2 {
+      font-size: 1.4rem;
+      color: #fff;
+      margin-bottom: 8px;
+    }
+
+    .social-section p {
+      color: #9090a0;
+      font-size: 0.95rem;
+      margin-bottom: 24px;
+    }
+
+    .text-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      justify-content: center;
+    }
+
+    .social-text-link {
+      font-family: inherit;
+      font-size: 0.95rem;
+      font-weight: 500;
+      letter-spacing: 0.5px;
+      text-decoration: none;
+      padding: 10px 20px;
+      border-radius: 24px;
+      color: #a0a0b0;
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .social-text-link:hover {
+      transform: translateY(-4px);
+      color: #fff;
+      background: #a78bfa;
+      border-color: #a78bfa;
+    }
+
+    .related-news { margin-bottom: 60px; }
 
     .related-news h2 {
       font-size: 1.5rem;
@@ -610,9 +742,6 @@
       line-height: 1.4;
     }
 
-    /* ============================================ */
-    /* БОКОВАЯ РЕКЛАМА (ПК) — 2 яруса по 240x400 */
-    /* ============================================ */
     .ad-side {
       position: fixed;
       top: 100px;
@@ -642,11 +771,8 @@
       margin: 0 !important;
     }
 
-    /* Мобильная реклама (скрыта по умолчанию) */
     .mobile-ad-top,
-    .mobile-ad-bottom {
-      display: none;
-    }
+    .mobile-ad-bottom { display: none; }
 
     @media (max-width: 1500px) {
       .ad-side { display: none; }
@@ -671,9 +797,6 @@
       }
     }
 
-    /* ============================================ */
-    /* ПОДВАЛ */
-    /* ============================================ */
     footer {
       border-top: 1px solid rgba(255,255,255,0.05);
       padding: 32px 0;
@@ -688,28 +811,29 @@
       text-decoration: none;
     }
 
-    /* ============================================ */
-    /* ПЛАНШЕТ ГОРИЗОНТАЛЬНО */
-    /* ============================================ */
     @media (min-width: 768px) and (max-width: 1500px) and (orientation: landscape) {
-      .container { max-width: 900px; }
       .article-title { font-size: 2.4rem; }
       .article-body { font-size: 1.05rem; }
     }
 
-    /* ============================================ */
-    /* ТЕЛЕФОН И ПЛАНШЕТ ВЕРТИКАЛЬНО */
-    /* ============================================ */
+    @media (max-width: 1100px) {
+      .sidebar { display: none; }
+      .article-layout { padding: 0 24px; }
+      .article-main { max-width: 800px; margin: 0 auto; }
+    }
+
     @media (max-width: 768px) {
       body {
         overflow-x: hidden;
         -webkit-text-size-adjust: 100%;
       }
 
-      .container {
+      .article-layout {
         padding: 0 18px;
-        max-width: 100%;
+        gap: 0;
       }
+
+      .article-main { max-width: 100%; }
 
       .nav-container {
         flex-direction: column;
@@ -758,6 +882,10 @@
       .article-share { padding: 18px 0; gap: 8px; }
       .share-btn { font-size: 0.8rem; padding: 7px 14px; }
 
+      .social-section { padding: 24px 18px; }
+      .social-section h2 { font-size: 1.2rem; }
+      .social-text-link { font-size: 0.9rem; padding: 9px 18px; }
+
       .related-news h2 { font-size: 1.25rem; }
       .related-title { font-size: 0.95rem; }
     }
@@ -768,7 +896,7 @@
     }
 
     @media (max-width: 420px) {
-      .container { padding: 0 14px; }
+      .article-layout { padding: 0 14px; }
       .article-title { font-size: 1.55rem; }
       .article-body { font-size: 1.1rem; }
 
@@ -807,186 +935,211 @@
     </ins>
   </div>
 
-  <main class="container">
-    <!-- Хлебные крошки -->
-    <div class="breadcrumb">
-      <a href="../index.html">Главная</a><span>/</span><a href="../news.html">Новости</a><span>/</span>Релиз FileDrop
-    </div>
+  <div class="article-layout">
+    <!-- САЙДБАР -->
+    <aside class="sidebar">
+      <div class="sidebar-block">
+        <div class="sidebar-title"><i class="fas fa-list"></i> Содержание</div>
+        <ul class="toc-list" id="tocList">
+          <li><a href="#section-1" data-target="section-1">Как это работает</a></li>
+          <li><a href="#section-2" data-target="section-2">Безопасность</a></li>
+          <li><a href="#section-3" data-target="section-3">Технические детали</a></li>
+          <li><a href="#section-4" data-target="section-4">Итог</a></li>
+        </ul>
+      </div>
 
-    <!-- Шапка статьи -->
-    <div class="article-hero">
-      <span class="article-category">Релиз</span>
-      <h1 class="article-title">Релиз FileDrop — передача файлов без интернета</h1>
+      <div class="sidebar-block">
+        <div class="sidebar-title"><i class="fas fa-share-alt"></i> Мы в соцсетях</div>
+        <div class="sidebar-social">
+          <a href="https://t.me/AxKuon" class="sidebar-social-btn" target="_blank" rel="noopener">
+            <i class="fab fa-telegram"></i> Telegram
+          </a>
+          <a href="https://max.ru/channel_axkuon" class="sidebar-social-btn" target="_blank" rel="noopener">
+            <i class="fas fa-comment-dots"></i> MAX
+          </a>
+        </div>
+      </div>
 
-      <div class="article-meta">
-        <span><i class="far fa-calendar-alt"></i> 10 августа 2026</span>
-        <span><i class="far fa-clock"></i> 5 мин чтения</span>
-        <div class="article-authors">
-          <div class="author-avatar">А</div>
-          <div class="author-info">
-            <span class="author-name">Алексей Морозов</span>
-            <span class="author-role">Разработчик</span>
+      <button class="btn-up" onclick="scrollToTop()">
+        <i class="fas fa-arrow-up"></i> Наверх
+      </button>
+    </aside>
+
+    <!-- ОСНОВНОЙ КОНТЕНТ -->
+    <main class="article-main">
+      <div class="breadcrumb">
+        <a href="../index.html">Главная</a><span>/</span><a href="../news.html">Новости</a><span>/</span>Релиз FileDrop
+      </div>
+
+      <div class="article-hero">
+        <span class="article-category">Релиз</span>
+        <h1 class="article-title">Релиз FileDrop — передача файлов без интернета</h1>
+
+        <div class="article-meta">
+          <span><i class="far fa-calendar-alt"></i> 10 августа 2026</span>
+          <span><i class="far fa-clock"></i> 5 мин чтения</span>
+          <div class="article-authors">
+            <div class="author-avatar">А</div>
+            <div class="author-info">
+              <span class="author-name">Алексей Морозов</span>
+              <span class="author-role">Разработчик</span>
+            </div>
           </div>
         </div>
       </div>
-    </div>
 
-    <!-- ============================================ -->
-    <!-- КАРУСЕЛЬ -->
-    <!-- ============================================ -->
-    <div class="carousel" id="carousel">
-      <div class="carousel-track" id="carouselTrack">
-        <div class="carousel-slide">
-          <img src="../images/FileDrop-icon.png" alt="FileDrop — главный экран">
-          <div class="carousel-caption">Главный экран FileDrop на Windows</div>
+      <!-- КАРУСЕЛЬ -->
+      <div class="carousel" id="carousel">
+        <div class="carousel-track" id="carouselTrack">
+          <div class="carousel-slide">
+            <img src="../images/FileDrop-icon.png" alt="FileDrop — главный экран">
+            <div class="carousel-caption">Главный экран FileDrop на Windows</div>
+          </div>
+          <div class="carousel-slide">
+            <img src="../images/FileDrop-icon.png" alt="FileDrop — подключение по QR">
+            <div class="carousel-caption">Подключение устройств по QR-коду</div>
+          </div>
+          <div class="carousel-slide">
+            <img src="../images/FileDrop-icon.png" alt="FileDrop — передача файлов">
+            <div class="carousel-caption">Процесс передачи файлов</div>
+          </div>
+          <div class="carousel-slide">
+            <img src="../images/FileDrop-icon.png" alt="FileDrop — Android версия">
+            <div class="carousel-caption">FileDrop на Android</div>
+          </div>
         </div>
-        <div class="carousel-slide">
-          <img src="../images/FileDrop-icon.png" alt="FileDrop — подключение по QR">
-          <div class="carousel-caption">Подключение устройств по QR-коду</div>
-        </div>
-        <div class="carousel-slide">
-          <img src="../images/FileDrop-icon.png" alt="FileDrop — передача файлов">
-          <div class="carousel-caption">Процесс передачи файлов</div>
-        </div>
-        <div class="carousel-slide">
-          <img src="../images/FileDrop-icon.png" alt="FileDrop — Android версия">
-          <div class="carousel-caption">FileDrop на Android</div>
-        </div>
+
+        <button class="carousel-btn prev" onclick="slidePrev()" aria-label="Назад">
+          <i class="fas fa-chevron-left"></i>
+        </button>
+        <button class="carousel-btn next" onclick="slideNext()" aria-label="Вперёд">
+          <i class="fas fa-chevron-right"></i>
+        </button>
       </div>
 
-      <button class="carousel-btn prev" onclick="slidePrev()" aria-label="Назад">
-        <i class="fas fa-chevron-left"></i>
-      </button>
-      <button class="carousel-btn next" onclick="slideNext()" aria-label="Вперёд">
-        <i class="fas fa-chevron-right"></i>
-      </button>
-    </div>
+      <div class="carousel-dots" id="carouselDots"></div>
+      <p class="figure-caption">Скриншоты FileDrop v1.0.0 — Windows и Android версии</p>
 
-    <div class="carousel-dots" id="carouselDots"></div>
-    <p class="figure-caption">Скриншоты FileDrop v1.0.0 — Windows и Android версии</p>
+      <!-- ТЕЛО СТАТЬИ -->
+      <article class="article-body">
+        <p><strong>FileDrop</strong> — это наш новый проект, который позволяет передавать файлы между устройствами по локальной сети, без проводов, без интернета и без облачных сервисов. Просто подключите оба устройства к одной Wi-Fi сети — и отправляйте файлы в любую сторону.</p>
 
-    <!-- ============================================ -->
-    <!-- ТЕЛО СТАТЬИ -->
-    <!-- ============================================ -->
-    <article class="article-body">
-      <p><strong>FileDrop</strong> — это наш новый проект, который позволяет передавать файлы между устройствами по локальной сети, без проводов, без интернета и без облачных сервисов. Просто подключите оба устройства к одной Wi-Fi сети — и отправляйте файлы в любую сторону.</p>
+        <p>Мы работали над FileDrop несколько месяцев. Главная цель была простой: сделать максимально удобный инструмент для быстрой передачи файлов, который не требует регистрации, не отправляет данные на серверы и работает молниеносно.</p>
 
-      <p>Мы работали над FileDrop несколько месяцев. Главная цель была простой: сделать максимально удобный инструмент для быстрой передачи файлов, который не требует регистрации, не отправляет данные на серверы и работает молниеносно.</p>
+        <!-- Одиночная картинка -->
+        <figure class="article-image">
+          <img src="../images/FileDrop-icon.png" alt="Главный экран FileDrop">
+          <figcaption class="article-image-caption">Главный экран FileDrop на Windows</figcaption>
+        </figure>
 
-      <!-- ПРИМЕР: одиночная картинка (раскомментируй) -->
-      <figure class="article-image">
-        <img src="../images/FileDrop-icon.png" alt="Описание картинки">
-        <figcaption class="article-image-caption">Подпись под картинкой</figcaption>
-      </figure>
+        <h2 id="section-1">Как это работает</h2>
 
-      <h2>Как это работает</h2>
+        <p>Открываете FileDrop на ПК или телефоне, сканируете QR-код — и устройства находят друг друга в локальной сети. Дальше можно передавать файлы в обе стороны: с ПК на телефон, с телефона на ПК, а также между двумя ПК.</p>
 
-      <p>Открываете FileDrop на ПК или телефоне, сканируете QR-код — и устройства находят друг друга в локальной сети. Дальше можно передавать файлы в обе стороны: с ПК на телефон, с телефона на ПК, а также между двумя ПК.</p>
-
-      <!-- ПРИМЕР: коллаж 2 картинки (раскомментируй) -->
-      <div class="article-collage cols-2">
-        <div class="collage-item">
-          <img src="../images/FileDrop-icon.png" alt="FileDrop на ПК">
-          <div class="collage-caption">Windows-версия</div>
+        <!-- Коллаж 2 картинки -->
+        <div class="article-collage cols-2">
+          <div class="collage-item">
+            <img src="../images/FileDrop-icon.png" alt="FileDrop на ПК">
+            <div class="collage-caption">Windows-версия</div>
+          </div>
+          <div class="collage-item">
+            <img src="../images/FileDrop-icon.png" alt="FileDrop на Android">
+            <div class="collage-caption">Android-версия</div>
+          </div>
         </div>
-        <div class="collage-item">
-          <img src="../images/FileDrop-icon.png" alt="FileDrop на Android">
-          <div class="collage-caption">Android-версия</div>
+
+        <!-- Коллаж 3 картинки -->
+        <div class="article-collage cols-3">
+          <div class="collage-item">
+            <img src="../images/FileDrop-icon.png" alt="Главный экран">
+            <div class="collage-caption">Главный экран FileDrop</div>
+          </div>
+          <div class="collage-item">
+            <img src="../images/FileDrop-icon.png" alt="Настройки">
+            <div class="collage-caption">Настройки</div>
+          </div>
+          <div class="collage-item">
+            <img src="../images/FileDrop-icon.png" alt="Передача">
+            <div class="collage-caption">Передача файлов</div>
+          </div>
         </div>
+
+        <!-- Коллаж 4 картинки -->
+        <div class="article-collage cols-4">
+          <div class="collage-item">
+            <img src="../images/FileDrop-icon.png" alt="Отправка">
+            <div class="collage-caption">Отправка</div>
+          </div>
+          <div class="collage-item">
+            <img src="../images/FileDrop-icon.png" alt="Приём">
+            <div class="collage-caption">Приём</div>
+          </div>
+          <div class="collage-item">
+            <img src="../images/FileDrop-icon.png" alt="QR-код">
+            <div class="collage-caption">QR-код</div>
+          </div>
+          <div class="collage-item">
+            <img src="../images/FileDrop-icon.png" alt="Настройки">
+            <div class="collage-caption">Настройки</div>
+          </div>
+        </div>
+
+        <ul>
+          <li>Передача файлов любого размера</li>
+          <li>Подключение по QR-коду</li>
+          <li>Выбор папки сохранения на принимающем устройстве</li>
+          <li>Русский и английский интерфейс</li>
+          <li>Светлая и тёмная тема</li>
+          <li>Поддержка Windows и Android</li>
+        </ul>
+
+        <blockquote>
+          «Мы хотели сделать передачу файлов такой же простой, как отправить сообщение в мессенджере. Без регистрации, без облаков, без ограничений по размеру. FileDrop — это именно то, что получилось».
+        </blockquote>
+
+        <h2 id="section-2">Безопасность</h2>
+
+        <p>Все файлы передаются напрямую между устройствами, минуя сторонние серверы. Никакие данные не покидают вашу локальную сеть. Это значит, что FileDrop можно использовать даже в закрытых корпоративных сетях без риска утечки данных.</p>
+
+        <h3 id="section-3">Технические детали</h3>
+
+        <p>FileDrop написан на современных технологиях, работает быстро и не нагружает систему. Приложение занимает всего 52 МБ на Windows и 12 МБ на Android, поддерживает Windows 7+ и Android 8.0+.</p>
+
+        <div class="article-summary" id="section-4">
+          <h3>📌 Итог</h3>
+          <p>FileDrop — это простой и надёжный способ передавать файлы по локальной сети. Скачайте для Windows или Android, откройте на двух устройствах и начните передавать файлы за секунды.</p>
+        </div>
+
+        <p>Скачать FileDrop можно на странице релиза на нашем сайте, в RuStore для Android или напрямую с GitHub. Мы будем рады обратной связи — пишите нам в Telegram или на почту.</p>
+      </article>
+
+      <!-- ПОДЕЛИТЬСЯ (без MAX) -->
+      <div class="article-share">
+        <span class="article-share-label">Поделиться:</span>
+        <a href="#" class="share-btn" onclick="shareTelegram(); return false;"><i class="fab fa-telegram"></i> Telegram</a>
+        <button class="share-btn" onclick="copyLink()"><i class="fas fa-link"></i> Копировать ссылку</button>
       </div>
 
-      <!-- ПРИМЕР: коллаж 3 картинки (раскомментируй) -->
-      <div class="article-collage cols-3">
-        <div class="collage-item">
-          <img src="../images/FileDrop-icon.png" alt="Главный экран">
-          <div class="collage-caption">Главный экран FileDrop</div>
+      <!-- ДРУГИЕ НОВОСТИ -->
+      <section class="related-news">
+        <h2>Другие новости</h2>
+        <div class="related-grid">
+          <a href="../news.html" class="related-card">
+            <div class="related-date">20 августа 2026</div>
+            <div class="related-title">Новый дизайн English 120</div>
+          </a>
+          <a href="../news.html" class="related-card">
+            <div class="related-date">30 июля 2026</div>
+            <div class="related-title">Анонс FileDrop</div>
+          </a>
+          <a href="../news.html" class="related-card">
+            <div class="related-date">28 июля 2026</div>
+            <div class="related-title">Вышла программа Code-Analyzer</div>
+          </a>
         </div>
-        <div class="collage-item">
-          <img src="../images/FileDrop-icon.png" alt="Настройки">
-          <div class="collage-caption">Настройки</div>
-        </div>
-        <div class="collage-item">
-          <img src="../images/FileDrop-icon.png" alt="Передача">
-          <div class="collage-caption">Передача файлов</div>
-        </div>
-      </div>
-
-      <!-- ПРИМЕР: коллаж 4 картинки (раскомментируй) -->
-      <div class="article-collage cols-4">
-        <div class="collage-item">
-          <img src="../images/FileDrop-icon.png" alt="Скриншот 1">
-          <div class="collage-caption">Отправка</div>
-        </div>
-        <div class="collage-item">
-          <img src="../images/FileDrop-icon.png" alt="Скриншот 2">
-          <div class="collage-caption">Приём</div>
-        </div>
-        <div class="collage-item">
-          <img src="../images/FileDrop-icon.png" alt="Скриншот 3">
-          <div class="collage-caption">QR-код</div>
-        </div>
-        <div class="collage-item">
-          <img src="../images/FileDrop-icon.png" alt="Скриншот 4">
-          <div class="collage-caption">Настройки</div>
-        </div>
-      </div>
-
-      <ul>
-        <li>Передача файлов любого размера</li>
-        <li>Подключение по QR-коду</li>
-        <li>Выбор папки сохранения на принимающем устройстве</li>
-        <li>Русский и английский интерфейс</li>
-        <li>Светлая и тёмная тема</li>
-        <li>Поддержка Windows и Android</li>
-      </ul>
-
-      <blockquote>
-        «Мы хотели сделать передачу файлов такой же простой, как отправить сообщение в мессенджере. Без регистрации, без облаков, без ограничений по размеру. FileDrop — это именно то, что получилось».
-      </blockquote>
-
-      <h2>Безопасность</h2>
-
-      <p>Все файлы передаются напрямую между устройствами, минуя сторонние серверы. Никакие данные не покидают вашу локальную сеть. Это значит, что FileDrop можно использовать даже в закрытых корпоративных сетях без риска утечки данных.</p>
-
-      <h3>Технические детали</h3>
-
-      <p>FileDrop написан на современных технологиях, работает быстро и не нагружает систему. Приложение занимает всего 52 МБ на Windows и 12 МБ на Android, поддерживает Windows 7+ и Android 8.0+.</p>
-
-      <div class="article-summary">
-        <h3>📌 Итог</h3>
-        <p>FileDrop — это простой и надёжный способ передавать файлы по локальной сети. Скачайте для Windows или Android, откройте на двух устройствах и начните передавать файлы за секунды.</p>
-      </div>
-
-      <p>Скачать FileDrop можно на странице релиза на нашем сайте, в RuStore для Android или напрямую с GitHub. Мы будем рады обратной связи — пишите нам в Telegram или на почту.</p>
-    </article>
-
-    <!-- Поделиться -->
-    <div class="article-share">
-      <span class="article-share-label">Поделиться:</span>
-      <a href="#" class="share-btn" onclick="shareTelegram(); return false;"><i class="fab fa-telegram"></i> Telegram</a>
-      <a href="#" class="share-btn" onclick="shareMax(); return false;"><i class="fas fa-comment-dots"></i> MAX</a>
-      <button class="share-btn" onclick="copyLink()"><i class="fas fa-link"></i> Копировать ссылку</button>
-    </div>
-
-    <!-- Другие новости -->
-    <section class="related-news">
-      <h2>Другие новости</h2>
-      <div class="related-grid">
-        <a href="../news.html" class="related-card">
-          <div class="related-date">20 августа 2026</div>
-          <div class="related-title">Новый дизайн English 120</div>
-        </a>
-        <a href="../news.html" class="related-card">
-          <div class="related-date">30 июля 2026</div>
-          <div class="related-title">Анонс FileDrop</div>
-        </a>
-        <a href="../news.html" class="related-card">
-          <div class="related-date">28 июля 2026</div>
-          <div class="related-title">Вышла программа Code-Analyzer</div>
-        </a>
-      </div>
-    </section>
-  </main>
+      </section>
+    </main>
+  </div>
 
   <!-- Мобильная реклама снизу -->
   <div class="mobile-ad-bottom">
@@ -1003,7 +1156,7 @@
     </div>
   </footer>
 
-<!-- Левый столбец рекламы (ПК) — 2 яруса 240x400 -->
+<!-- Левый столбец рекламы (ПК) -->
 <div class="ad-side ad-left">
   <div class="ad-block">
     <ins class="mrg-tag" 
@@ -1021,7 +1174,7 @@
   </div>
 </div>
 
-<!-- Правый столбец рекламы (ПК) — 2 яруса 240x400 -->
+<!-- Правый столбец рекламы (ПК) -->
 <div class="ad-side ad-right">
   <div class="ad-block">
     <ins class="mrg-tag" 
@@ -1040,16 +1193,12 @@
 </div>
 
 <script>
-  // ============================================
-  // КАРУСЕЛЬ
-  // ============================================
   let currentSlide = 0;
   const track = document.getElementById('carouselTrack');
   const slides = document.querySelectorAll('.carousel-slide');
   const dotsContainer = document.getElementById('carouselDots');
   const totalSlides = slides.length;
 
-  // Создаём точки
   for (let i = 0; i < totalSlides; i++) {
     const dot = document.createElement('button');
     dot.className = 'carousel-dot' + (i === 0 ? ' active' : '');
@@ -1080,7 +1229,6 @@
     updateCarousel();
   }
 
-  // Свайпы на телефоне
   let touchStartX = 0;
   let touchEndX = 0;
   const carousel = document.getElementById('carousel');
@@ -1098,24 +1246,14 @@
     }
   }, {passive: true});
 
-  // Автопрокрутка каждые 6 секунд
-  setInterval(() => {
-    slideNext();
-  }, 6000);
+  setInterval(() => { slideNext(); }, 6000);
 
-  // ============================================
-  // ПОДЕЛИТЬСЯ
-  // ============================================
-
-  // Копировать ссылку
   function copyLink() {
     const url = window.location.href;
     if (navigator.clipboard && navigator.clipboard.writeText) {
       navigator.clipboard.writeText(url).then(() => {
         showToast('Ссылка скопирована');
-      }).catch(() => {
-        fallbackCopy(url);
-      });
+      }).catch(() => { fallbackCopy(url); });
     } else {
       fallbackCopy(url);
     }
@@ -1137,40 +1275,16 @@
     document.body.removeChild(ta);
   }
 
-  // Telegram
   function shareTelegram() {
     const url = encodeURIComponent(window.location.href);
     const title = encodeURIComponent(document.title);
     window.open('https://t.me/share/url?url=' + url + '&text=' + title, '_blank');
   }
 
-  // MAX
-  function shareMax() {
-    const url = encodeURIComponent(window.location.href);
-    const title = encodeURIComponent(document.title);
-    // Официальная ссылка на мессенджер MAX
-    window.open('https://max.ru/share?url=' + url + '&text=' + title, '_blank');
-  }
-
-  // Простое всплывающее уведомление
   function showToast(text) {
     const toast = document.createElement('div');
     toast.textContent = text;
-    toast.style.cssText = `
-      position: fixed;
-      bottom: 30px;
-      left: 50%;
-      transform: translateX(-50%) translateY(100px);
-      background: #a78bfa;
-      color: #0c0c0f;
-      padding: 12px 24px;
-      border-radius: 30px;
-      font-weight: 600;
-      font-size: 0.9rem;
-      z-index: 9999;
-      transition: transform 0.3s ease;
-      pointer-events: none;
-    `;
+    toast.style.cssText = 'position:fixed;bottom:30px;left:50%;transform:translateX(-50%) translateY(100px);background:#a78bfa;color:#0c0c0f;padding:12px 24px;border-radius:30px;font-weight:600;font-size:0.9rem;z-index:9999;transition:transform 0.3s ease;pointer-events:none;';
     document.body.appendChild(toast);
     requestAnimationFrame(() => {
       toast.style.transform = 'translateX(-50%) translateY(0)';
@@ -1180,6 +1294,27 @@
       setTimeout(() => toast.remove(), 300);
     }, 2000);
   }
+
+  function scrollToTop() {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  // Подсветка активного раздела в сайдбаре
+  const tocLinks = document.querySelectorAll('.toc-list a');
+  const sections = document.querySelectorAll('.article-body h2, .article-body h3, .article-summary');
+
+  window.addEventListener('scroll', () => {
+    let current = '';
+    sections.forEach(section => {
+      const rect = section.getBoundingClientRect();
+      if (rect.top <= 150) {
+        current = section.id;
+      }
+    });
+    tocLinks.forEach(link => {
+      link.classList.toggle('active', link.dataset.target === current);
+    });
+  });
 </script>
 
 <script>
