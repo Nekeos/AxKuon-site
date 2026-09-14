@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="ru">
 <head>
 
@@ -18,7 +18,7 @@
 
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
-  <title>Название статьи — Новости | AxKuon</title>
+  <title>Релиз FileDrop — Новости | AxKuon</title>
   <link rel="icon" type="image/png" href="../favicon.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -362,6 +362,88 @@
     }
 
     /* ============================================ */
+    /* ОДИНОЧНАЯ КАРТИНКА */
+    /* ============================================ */
+    .article-image {
+      margin: 32px 0;
+      border-radius: 20px;
+      overflow: hidden;
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.06);
+    }
+
+    .article-image img {
+      width: 100%;
+      height: auto;
+      display: block;
+      aspect-ratio: 16 / 9;
+      object-fit: cover;
+    }
+
+    .article-image-caption {
+      padding: 12px 20px;
+      font-size: 0.85rem;
+      color: #7c7c8a;
+      font-style: italic;
+      text-align: center;
+      border-top: 1px solid rgba(255,255,255,0.05);
+    }
+
+    /* ============================================ */
+    /* КОЛЛАЖ КАРТИНОК */
+    /* ============================================ */
+    .article-collage {
+      display: grid;
+      gap: 12px;
+      margin: 32px 0;
+    }
+
+    .article-collage.cols-2 {
+      grid-template-columns: 1fr 1fr;
+    }
+
+    .article-collage.cols-3 {
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: auto auto;
+    }
+
+    .article-collage.cols-3 .collage-item:first-child {
+      grid-column: 1 / -1;
+    }
+
+    .article-collage.cols-4 {
+      grid-template-columns: 1fr 1fr;
+    }
+
+    .collage-item {
+      position: relative;
+      border-radius: 16px;
+      overflow: hidden;
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.06);
+      aspect-ratio: 16 / 10;
+    }
+
+    .collage-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .collage-caption {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: linear-gradient(to top, rgba(0,0,0,0.85), transparent);
+      padding: 16px 14px 10px;
+      color: #fff;
+      font-size: 0.8rem;
+      line-height: 1.3;
+    }
+
+    /* ============================================ */
     /* ТЕКСТ СТАТЬИ */
     /* ============================================ */
     .article-body {
@@ -424,12 +506,6 @@
       border-radius: 0 12px 12px 0;
       color: #d0d0e0;
       font-style: italic;
-    }
-
-    .article-body img {
-      width: 100%;
-      border-radius: 16px;
-      margin: 24px 0;
     }
 
     /* Блок "Итог" */
@@ -595,6 +671,9 @@
       }
     }
 
+    /* ============================================ */
+    /* ПОДВАЛ */
+    /* ============================================ */
     footer {
       border-top: 1px solid rgba(255,255,255,0.05);
       padding: 32px 0;
@@ -610,7 +689,7 @@
     }
 
     /* ============================================ */
-    /* ПЛАНШЕТ ГОРИЗОНТАЛЬНО — как ПК, но контент шире */
+    /* ПЛАНШЕТ ГОРИЗОНТАЛЬНО */
     /* ============================================ */
     @media (min-width: 768px) and (max-width: 1500px) and (orientation: landscape) {
       .container { max-width: 900px; }
@@ -619,7 +698,7 @@
     }
 
     /* ============================================ */
-    /* ТЕЛЕФОН И ПЛАНШЕТ ВЕРТИКАЛЬНО — крупный текст */
+    /* ТЕЛЕФОН И ПЛАНШЕТ ВЕРТИКАЛЬНО */
     /* ============================================ */
     @media (max-width: 768px) {
       body {
@@ -661,7 +740,12 @@
       .carousel-btn.next { right: 8px; }
       .carousel-caption { padding: 16px 16px 12px; font-size: 0.85rem; }
 
-      /* Крупный текст для чтения на телефоне */
+      .article-image { border-radius: 14px; margin: 24px 0; }
+      .article-image img { aspect-ratio: 4 / 3; }
+      .article-collage { gap: 8px; margin: 24px 0; }
+      .collage-item { border-radius: 12px; aspect-ratio: 4 / 3; }
+      .collage-caption { padding: 12px 10px 8px; font-size: 0.75rem; }
+
       .article-body { font-size: 1.15rem; line-height: 1.85; }
       .article-body h2 { font-size: 1.5rem; margin: 28px 0 14px; }
       .article-body h3 { font-size: 1.25rem; margin: 22px 0 10px; }
@@ -678,17 +762,24 @@
       .related-title { font-size: 0.95rem; }
     }
 
-    /* Планшет вертикально — текст ещё крупнее */
     @media (min-width: 600px) and (max-width: 900px) and (orientation: portrait) {
       .article-body { font-size: 1.2rem; line-height: 1.9; }
       .article-title { font-size: 2rem; }
     }
 
-    /* Очень маленькие экраны */
     @media (max-width: 420px) {
       .container { padding: 0 14px; }
       .article-title { font-size: 1.55rem; }
       .article-body { font-size: 1.1rem; }
+
+      .article-collage.cols-2,
+      .article-collage.cols-3,
+      .article-collage.cols-4 {
+        grid-template-columns: 1fr;
+      }
+      .article-collage.cols-3 .collage-item:first-child {
+        grid-column: auto;
+      }
     }
   </style>
 </head>
@@ -719,7 +810,7 @@
   <main class="container">
     <!-- Хлебные крошки -->
     <div class="breadcrumb">
-      <a href="../index.html">Главная</a><span>/</span><a href="../news.html">Новости</a><span>/</span>Название статьи
+      <a href="../index.html">Главная</a><span>/</span><a href="../news.html">Новости</a><span>/</span>Релиз FileDrop
     </div>
 
     <!-- Шапка статьи -->
@@ -740,7 +831,9 @@
       </div>
     </div>
 
-    <!-- Карусель -->
+    <!-- ============================================ -->
+    <!-- КАРУСЕЛЬ -->
+    <!-- ============================================ -->
     <div class="carousel" id="carousel">
       <div class="carousel-track" id="carouselTrack">
         <div class="carousel-slide">
@@ -769,21 +862,74 @@
       </button>
     </div>
 
-    <!-- Точки под каруселью -->
     <div class="carousel-dots" id="carouselDots"></div>
-
-    <!-- Подпись под каруселью -->
     <p class="figure-caption">Скриншоты FileDrop v1.0.0 — Windows и Android версии</p>
 
-    <!-- Тело статьи -->
+    <!-- ============================================ -->
+    <!-- ТЕЛО СТАТЬИ -->
+    <!-- ============================================ -->
     <article class="article-body">
       <p><strong>FileDrop</strong> — это наш новый проект, который позволяет передавать файлы между устройствами по локальной сети, без проводов, без интернета и без облачных сервисов. Просто подключите оба устройства к одной Wi-Fi сети — и отправляйте файлы в любую сторону.</p>
 
       <p>Мы работали над FileDrop несколько месяцев. Главная цель была простой: сделать максимально удобный инструмент для быстрой передачи файлов, который не требует регистрации, не отправляет данные на серверы и работает молниеносно.</p>
 
+      <!-- ПРИМЕР: одиночная картинка (раскомментируй) -->
+      <figure class="article-image">
+        <img src="../images/FileDrop-icon.png" alt="Описание картинки">
+        <figcaption class="article-image-caption">Подпись под картинкой</figcaption>
+      </figure>
+
       <h2>Как это работает</h2>
 
-      <p>Всё просто. Открываете FileDrop на ПК или телефоне, сканируете QR-код — и устройства находят друг друга в локальной сети. Дальше можно передавать файлы в обе стороны: с ПК на телефон, с телефона на ПК, а также между двумя ПК.</p>
+      <p>Открываете FileDrop на ПК или телефоне, сканируете QR-код — и устройства находят друг друга в локальной сети. Дальше можно передавать файлы в обе стороны: с ПК на телефон, с телефона на ПК, а также между двумя ПК.</p>
+
+      <!-- ПРИМЕР: коллаж 2 картинки (раскомментируй) -->
+      <div class="article-collage cols-2">
+        <div class="collage-item">
+          <img src="../images/FileDrop-icon.png" alt="FileDrop на ПК">
+          <div class="collage-caption">Windows-версия</div>
+        </div>
+        <div class="collage-item">
+          <img src="../images/FileDrop-icon.png" alt="FileDrop на Android">
+          <div class="collage-caption">Android-версия</div>
+        </div>
+      </div>
+
+      <!-- ПРИМЕР: коллаж 3 картинки (раскомментируй) -->
+      <div class="article-collage cols-3">
+        <div class="collage-item">
+          <img src="../images/FileDrop-icon.png" alt="Главный экран">
+          <div class="collage-caption">Главный экран FileDrop</div>
+        </div>
+        <div class="collage-item">
+          <img src="../images/FileDrop-icon.png" alt="Настройки">
+          <div class="collage-caption">Настройки</div>
+        </div>
+        <div class="collage-item">
+          <img src="../images/FileDrop-icon.png" alt="Передача">
+          <div class="collage-caption">Передача файлов</div>
+        </div>
+      </div>
+
+      <!-- ПРИМЕР: коллаж 4 картинки (раскомментируй) -->
+      <div class="article-collage cols-4">
+        <div class="collage-item">
+          <img src="../images/FileDrop-icon.png" alt="Скриншот 1">
+          <div class="collage-caption">Отправка</div>
+        </div>
+        <div class="collage-item">
+          <img src="../images/FileDrop-icon.png" alt="Скриншот 2">
+          <div class="collage-caption">Приём</div>
+        </div>
+        <div class="collage-item">
+          <img src="../images/FileDrop-icon.png" alt="Скриншот 3">
+          <div class="collage-caption">QR-код</div>
+        </div>
+        <div class="collage-item">
+          <img src="../images/FileDrop-icon.png" alt="Скриншот 4">
+          <div class="collage-caption">Настройки</div>
+        </div>
+      </div>
 
       <ul>
         <li>Передача файлов любого размера</li>
@@ -817,24 +963,24 @@
     <!-- Поделиться -->
     <div class="article-share">
       <span class="article-share-label">Поделиться:</span>
-      <a href="#" class="share-btn"><i class="fab fa-telegram"></i> Telegram</a>
-      <a href="#" class="share-btn"><i class="fas fa-comment-dots"></i> MAX</a>
-      <a href="#" class="share-btn" onclick="copyLink(); return false;"><i class="fas fa-link"></i> Копировать ссылку</a>
+      <a href="#" class="share-btn" onclick="shareTelegram(); return false;"><i class="fab fa-telegram"></i> Telegram</a>
+      <a href="#" class="share-btn" onclick="shareMax(); return false;"><i class="fas fa-comment-dots"></i> MAX</a>
+      <button class="share-btn" onclick="copyLink()"><i class="fas fa-link"></i> Копировать ссылку</button>
     </div>
 
     <!-- Другие новости -->
     <section class="related-news">
       <h2>Другие новости</h2>
       <div class="related-grid">
-        <a href="news.html" class="related-card">
+        <a href="../news.html" class="related-card">
           <div class="related-date">20 августа 2026</div>
           <div class="related-title">Новый дизайн English 120</div>
         </a>
-        <a href="news.html" class="related-card">
+        <a href="../news.html" class="related-card">
           <div class="related-date">30 июля 2026</div>
           <div class="related-title">Анонс FileDrop</div>
         </a>
-        <a href="news.html" class="related-card">
+        <a href="../news.html" class="related-card">
           <div class="related-date">28 июля 2026</div>
           <div class="related-title">Вышла программа Code-Analyzer</div>
         </a>
@@ -952,11 +1098,92 @@
     }
   }, {passive: true});
 
-  // Автопрокрутка (каждые 6 секунд)
+  // Автопрокрутка каждые 6 секунд
   setInterval(() => {
     slideNext();
   }, 6000);
 
   // ============================================
-  // КОПИРОВАНИЕ ССЫЛКИ
-  // =================================
+  // ПОДЕЛИТЬСЯ
+  // ============================================
+
+  // Копировать ссылку
+  function copyLink() {
+    const url = window.location.href;
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(url).then(() => {
+        showToast('Ссылка скопирована');
+      }).catch(() => {
+        fallbackCopy(url);
+      });
+    } else {
+      fallbackCopy(url);
+    }
+  }
+
+  function fallbackCopy(text) {
+    const ta = document.createElement('textarea');
+    ta.value = text;
+    ta.style.position = 'fixed';
+    ta.style.opacity = '0';
+    document.body.appendChild(ta);
+    ta.select();
+    try {
+      document.execCommand('copy');
+      showToast('Ссылка скопирована');
+    } catch (e) {
+      showToast('Не удалось скопировать');
+    }
+    document.body.removeChild(ta);
+  }
+
+  // Telegram
+  function shareTelegram() {
+    const url = encodeURIComponent(window.location.href);
+    const title = encodeURIComponent(document.title);
+    window.open('https://t.me/share/url?url=' + url + '&text=' + title, '_blank');
+  }
+
+  // MAX
+  function shareMax() {
+    const url = encodeURIComponent(window.location.href);
+    const title = encodeURIComponent(document.title);
+    // Официальная ссылка на мессенджер MAX
+    window.open('https://max.ru/share?url=' + url + '&text=' + title, '_blank');
+  }
+
+  // Простое всплывающее уведомление
+  function showToast(text) {
+    const toast = document.createElement('div');
+    toast.textContent = text;
+    toast.style.cssText = `
+      position: fixed;
+      bottom: 30px;
+      left: 50%;
+      transform: translateX(-50%) translateY(100px);
+      background: #a78bfa;
+      color: #0c0c0f;
+      padding: 12px 24px;
+      border-radius: 30px;
+      font-weight: 600;
+      font-size: 0.9rem;
+      z-index: 9999;
+      transition: transform 0.3s ease;
+      pointer-events: none;
+    `;
+    document.body.appendChild(toast);
+    requestAnimationFrame(() => {
+      toast.style.transform = 'translateX(-50%) translateY(0)';
+    });
+    setTimeout(() => {
+      toast.style.transform = 'translateX(-50%) translateY(100px)';
+      setTimeout(() => toast.remove(), 300);
+    }, 2000);
+  }
+</script>
+
+<script>
+  (MRGtag = window.MRGtag || []).push({});
+</script>
+</body>
+</html>
