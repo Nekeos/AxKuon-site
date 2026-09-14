@@ -28,6 +28,31 @@
   <script async src="https://ad.mail.ru/static/ads-async.js"></script>
 
   <style>
+
+  /* Стилизация скроллбара браузера */
+    ::-webkit-scrollbar {
+      width: 10px;
+    }
+
+    ::-webkit-scrollbar-track {
+      background: #0c0c0f;
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: rgba(167, 139, 250, 0.3);
+      border-radius: 5px;
+      border: 2px solid #0c0c0f;
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+      background: rgba(167, 139, 250, 0.5);
+    }
+
+    /* Для Firefox */
+    html {
+      scrollbar-width: thin;
+      scrollbar-color: rgba(167, 139, 250, 0.3) #0c0c0f;
+    }
     * {
       -webkit-user-select: none;
       -moz-user-select: none;
@@ -76,6 +101,7 @@
       padding: 0 24px;
     }
 
+    /* LAYOUT С САЙДБАРОМ */
     .article-layout {
       display: flex;
       gap: 32px;
@@ -91,6 +117,7 @@
       max-width: 800px;
     }
 
+    /* САЙДБАР (ПК) */
     .sidebar {
       width: 240px;
       flex-shrink: 0;
@@ -222,6 +249,90 @@
       border-color: #a78bfa;
     }
 
+    /* ГАМБУРГЕР (мобильный) */
+    .hamburger {
+      display: none;
+      background: rgba(167, 139, 250, 0.1);
+      border: 1px solid rgba(167, 139, 250, 0.3);
+      color: #c4b5fd;
+      width: 42px;
+      height: 42px;
+      border-radius: 10px;
+      cursor: pointer;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.1rem;
+      transition: all 0.2s;
+      font-family: inherit;
+    }
+
+    .hamburger:hover {
+      background: rgba(167, 139, 250, 0.2);
+      color: #fff;
+    }
+
+    /* МОБИЛЬНОЕ МЕНЮ (выезжает сверху) */
+    .mobile-menu {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.7);
+      z-index: 999;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .mobile-menu.open {
+      opacity: 1;
+    }
+
+    .mobile-menu-content {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      background: #13131a;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+      padding: 20px;
+      transform: translateY(-100%);
+      transition: transform 0.3s ease;
+      max-height: 85vh;
+      overflow-y: auto;
+    }
+
+    .mobile-menu.open .mobile-menu-content {
+      transform: translateY(0);
+    }
+
+    .mobile-menu-close {
+      position: absolute;
+      top: 16px;
+      right: 16px;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.1);
+      color: #ccc;
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.9rem;
+      transition: all 0.2s;
+      font-family: inherit;
+    }
+
+    .mobile-menu-close:hover {
+      background: rgba(255, 77, 77, 0.15);
+      color: #ff6666;
+      border-color: rgba(255, 77, 77, 0.3);
+    }
+
+    /* НАВИГАЦИЯ */
     header {
       position: sticky;
       top: 0;
@@ -240,6 +351,12 @@
       max-width: 1200px;
       margin: 0 auto;
       padding: 0 24px;
+    }
+
+    .nav-left {
+      display: flex;
+      align-items: center;
+      gap: 12px;
     }
 
     .logo {
@@ -377,6 +494,7 @@
       font-size: 0.75rem;
     }
 
+    /* КАРУСЕЛЬ */
     .carousel {
       position: relative;
       width: 100%;
@@ -611,6 +729,42 @@
       margin-top: 0;
     }
 
+    /* КНОПКА "К РЕЛИЗУ" */
+    .btn-release-demo {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      padding: 14px 28px;
+      background: #a78bfa;
+      color: #0c0c0f !important;
+      font-weight: 700;
+      font-size: 1rem;
+      text-decoration: none;
+      border-radius: 30px;
+      transition: all 0.2s;
+      margin: 8px 0 32px;
+      box-shadow: 0 8px 20px rgba(167, 139, 250, 0.25);
+      border: none;
+      cursor: pointer;
+    }
+
+    .btn-release-demo i {
+      font-size: 1.1rem;
+      color: #0c0c0f !important;
+    }
+
+    .btn-release-demo:hover {
+      background: #c4b5fd;
+      transform: translateY(-2px);
+      box-shadow: 0 12px 28px rgba(167, 139, 250, 0.5);
+    }
+
+    .btn-release-demo:hover,
+    .btn-release-demo:focus {
+      color: #0c0c0f !important;
+    }
+
     .article-share {
       display: flex;
       gap: 12px;
@@ -648,55 +802,6 @@
       background: #a78bfa;
       border-color: #a78bfa;
       color: #0c0c0f;
-    }
-
-    .social-section {
-      margin-bottom: 60px;
-      padding: 32px;
-      background: rgba(255, 255, 255, 0.02);
-      border: 1px solid rgba(255, 255, 255, 0.06);
-      border-radius: 20px;
-      text-align: center;
-    }
-
-    .social-section h2 {
-      font-size: 1.4rem;
-      color: #fff;
-      margin-bottom: 8px;
-    }
-
-    .social-section p {
-      color: #9090a0;
-      font-size: 0.95rem;
-      margin-bottom: 24px;
-    }
-
-    .text-links {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 12px;
-      justify-content: center;
-    }
-
-    .social-text-link {
-      font-family: inherit;
-      font-size: 0.95rem;
-      font-weight: 500;
-      letter-spacing: 0.5px;
-      text-decoration: none;
-      padding: 10px 20px;
-      border-radius: 24px;
-      color: #a0a0b0;
-      background: rgba(255, 255, 255, 0.03);
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    }
-
-    .social-text-link:hover {
-      transform: translateY(-4px);
-      color: #fff;
-      background: #a78bfa;
-      border-color: #a78bfa;
     }
 
     .related-news { margin-bottom: 60px; }
@@ -742,6 +847,7 @@
       line-height: 1.4;
     }
 
+    /* РЕКЛАМА */
     .ad-side {
       position: fixed;
       top: 100px;
@@ -816,10 +922,14 @@
       .article-body { font-size: 1.05rem; }
     }
 
+    /* ПЛАНШЕТ / ТЕЛЕФОН — гамбургер и мобильное меню */
     @media (max-width: 1100px) {
       .sidebar { display: none; }
-      .article-layout { padding: 0 24px; }
+      .article-layout { padding: 0 24px; gap: 0; }
       .article-main { max-width: 800px; margin: 0 auto; }
+
+      .hamburger { display: flex; }
+      .mobile-menu { display: block; }
     }
 
     @media (max-width: 768px) {
@@ -828,11 +938,7 @@
         -webkit-text-size-adjust: 100%;
       }
 
-      .article-layout {
-        padding: 0 18px;
-        gap: 0;
-      }
-
+      .article-layout { padding: 0 18px; }
       .article-main { max-width: 100%; }
 
       .nav-container {
@@ -845,6 +951,11 @@
         gap: 12px;
         flex-wrap: wrap;
         justify-content: center;
+      }
+
+      .nav-left {
+        width: 100%;
+        justify-content: space-between;
       }
 
       .logo { font-size: 1.5rem; }
@@ -879,12 +990,15 @@
       .article-summary { padding: 18px; }
       .article-summary h3 { font-size: 1.05rem; }
 
+      .btn-release-demo {
+        padding: 12px 22px;
+        font-size: 0.95rem;
+        width: 100%;
+        justify-content: center;
+      }
+
       .article-share { padding: 18px 0; gap: 8px; }
       .share-btn { font-size: 0.8rem; padding: 7px 14px; }
-
-      .social-section { padding: 24px 18px; }
-      .social-section h2 { font-size: 1.2rem; }
-      .social-text-link { font-size: 0.9rem; padding: 9px 18px; }
 
       .related-news h2 { font-size: 1.25rem; }
       .related-title { font-size: 0.95rem; }
@@ -913,11 +1027,17 @@
 </head>
 
 <body>
+
   <header>
     <div class="nav-container">
-      <a href="../index.html" class="logo">
-        Ax<span>Kuon</span>
-      </a>
+      <div class="nav-left">
+        <a href="../index.html" class="logo">
+          Ax<span>Kuon</span>
+        </a>
+        <button class="hamburger" onclick="openMobileMenu()" aria-label="Меню">
+          <i class="fas fa-bars"></i>
+        </button>
+      </div>
       <div class="nav-links">
         <a href="../index.html">Главная</a>
         <a href="../releases.html">Релизы</a>
@@ -925,6 +1045,41 @@
       </div>
     </div>
   </header>
+
+  <!-- МОБИЛЬНОЕ МЕНЮ -->
+  <div class="mobile-menu" id="mobileMenu" onclick="closeMobileMenuIfOutside(event)">
+    <div class="mobile-menu-content" onclick="event.stopPropagation()">
+      <button class="mobile-menu-close" onclick="closeMobileMenu()" aria-label="Закрыть">
+        <i class="fas fa-times"></i>
+      </button>
+
+      <div class="sidebar-block" style="margin-top: 30px;">
+        <div class="sidebar-title"><i class="fas fa-list"></i> Содержание</div>
+        <ul class="toc-list">
+          <li><a href="#section-1" onclick="closeMobileMenu()">Как это работает</a></li>
+          <li><a href="#section-2" onclick="closeMobileMenu()">Безопасность</a></li>
+          <li><a href="#section-3" onclick="closeMobileMenu()">Технические детали</a></li>
+          <li><a href="#section-4" onclick="closeMobileMenu()">Итог</a></li>
+        </ul>
+      </div>
+
+      <div class="sidebar-block">
+        <div class="sidebar-title"><i class="fas fa-share-alt"></i> Мы в соцсетях</div>
+        <div class="sidebar-social">
+          <a href="https://t.me/AxKuon" class="sidebar-social-btn" target="_blank" rel="noopener">
+            <i class="fab fa-telegram"></i> Telegram
+          </a>
+          <a href="https://max.ru/channel_axkuon" class="sidebar-social-btn" target="_blank" rel="noopener">
+            <i class="fas fa-comment-dots"></i> MAX
+          </a>
+        </div>
+      </div>
+
+      <button class="btn-up" onclick="closeMobileMenu(); scrollToTop();">
+        <i class="fas fa-arrow-up"></i> Наверх
+      </button>
+    </div>
+  </div>
 
   <!-- Мобильная реклама сверху -->
   <div class="mobile-ad-top">
@@ -936,7 +1091,7 @@
   </div>
 
   <div class="article-layout">
-    <!-- САЙДБАР -->
+    <!-- САЙДБАР (ПК) -->
     <aside class="sidebar">
       <div class="sidebar-block">
         <div class="sidebar-title"><i class="fas fa-list"></i> Содержание</div>
@@ -1026,7 +1181,6 @@
 
         <p>Мы работали над FileDrop несколько месяцев. Главная цель была простой: сделать максимально удобный инструмент для быстрой передачи файлов, который не требует регистрации, не отправляет данные на серверы и работает молниеносно.</p>
 
-        <!-- Одиночная картинка -->
         <figure class="article-image">
           <img src="../images/FileDrop-icon.png" alt="Главный экран FileDrop">
           <figcaption class="article-image-caption">Главный экран FileDrop на Windows</figcaption>
@@ -1036,7 +1190,6 @@
 
         <p>Открываете FileDrop на ПК или телефоне, сканируете QR-код — и устройства находят друг друга в локальной сети. Дальше можно передавать файлы в обе стороны: с ПК на телефон, с телефона на ПК, а также между двумя ПК.</p>
 
-        <!-- Коллаж 2 картинки -->
         <div class="article-collage cols-2">
           <div class="collage-item">
             <img src="../images/FileDrop-icon.png" alt="FileDrop на ПК">
@@ -1048,7 +1201,6 @@
           </div>
         </div>
 
-        <!-- Коллаж 3 картинки -->
         <div class="article-collage cols-3">
           <div class="collage-item">
             <img src="../images/FileDrop-icon.png" alt="Главный экран">
@@ -1064,7 +1216,6 @@
           </div>
         </div>
 
-        <!-- Коллаж 4 картинки -->
         <div class="article-collage cols-4">
           <div class="collage-item">
             <img src="../images/FileDrop-icon.png" alt="Отправка">
@@ -1110,7 +1261,12 @@
           <p>FileDrop — это простой и надёжный способ передавать файлы по локальной сети. Скачайте для Windows или Android, откройте на двух устройствах и начните передавать файлы за секунды.</p>
         </div>
 
-        <p>Скачать FileDrop можно на странице релиза на нашем сайте, в RuStore для Android или напрямую с GitHub. Мы будем рады обратной связи — пишите нам в Telegram или на почту.</p>
+        <!-- КНОПКА "К РЕЛИЗУ" -->
+        <a href="../Releases/FileDrop.html" class="btn-release-demo">
+          <i class="fas fa-download"></i> Перейти к релизу FileDrop
+        </a>
+
+        <p>Скачать FileDrop можно на странице релиза на нашем сайте, в RuStore для Android или напрямую с GitHub. Мы будем рады обратной связи — пишите нам в Telegram.</p>
       </article>
 
       <!-- ПОДЕЛИТЬСЯ (без MAX) -->
@@ -1193,6 +1349,9 @@
 </div>
 
 <script>
+  // ============================================
+  // КАРУСЕЛЬ
+  // ============================================
   let currentSlide = 0;
   const track = document.getElementById('carouselTrack');
   const slides = document.querySelectorAll('.carousel-slide');
@@ -1248,6 +1407,30 @@
 
   setInterval(() => { slideNext(); }, 6000);
 
+
+
+  // ============================================
+  // МОБИЛЬНОЕ МЕНЮ
+  // ============================================
+  function openMobileMenu() {
+    document.getElementById('mobileMenu').classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeMobileMenu() {
+    document.getElementById('mobileMenu').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  function closeMobileMenuIfOutside(event) {
+    if (event.target.id === 'mobileMenu') {
+      closeMobileMenu();
+    }
+  }
+
+  // ============================================
+  // ПОДЕЛИТЬСЯ
+  // ============================================
   function copyLink() {
     const url = window.location.href;
     if (navigator.clipboard && navigator.clipboard.writeText) {
@@ -1299,8 +1482,10 @@
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 
-  // Подсветка активного раздела в сайдбаре
-  const tocLinks = document.querySelectorAll('.toc-list a');
+  // ============================================
+  // АКТИВНЫЙ РАЗДЕЛ В САЙДБАРЕ (ПК)
+  // ============================================
+  const tocLinks = document.querySelectorAll('.toc-list a[data-target]');
   const sections = document.querySelectorAll('.article-body h2, .article-body h3, .article-summary');
 
   window.addEventListener('scroll', () => {
