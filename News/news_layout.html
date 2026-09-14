@@ -1,0 +1,962 @@
+﻿<!DOCTYPE html>
+<html lang="ru">
+<head>
+
+    <!-- Yandex.Metrika counter -->
+    <script type="text/javascript">
+        (function(m,e,t,r,i,k,a){
+            m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+            m[i].l=1*new Date();
+            for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+            k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
+        })(window, document,'script','https://mc.yandex.ru/metrika/tag.js?id=112506059', 'ym');
+
+        ym(112506059, 'init', {ssr:true, webvisor:true, clickmap:true, ecommerce:"dataLayer", referrer: document.referrer, url: location.href, accurateTrackBounce:true, trackLinks:true});
+    </script>
+    <noscript><div><img src="https://mc.yandex.ru/watch/112506059" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+    <!-- /Yandex.Metrika counter -->
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+  <title>Название статьи — Новости | AxKuon</title>
+  <link rel="icon" type="image/png" href="../favicon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+  <script async src="https://ad.mail.ru/static/ads-async.js"></script>
+
+  <style>
+    /* бурмалда */
+    * {
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
+    }
+
+    /* прогрев гоев */
+    img {
+      -webkit-user-drag: none;
+      -khtml-user-drag: none;
+      -moz-user-drag: none;
+      -o-user-drag: none;
+      user-drag: none;
+      pointer-events: none;
+    }
+
+    /* ссылки не трогать */
+    a {
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
+      -webkit-user-drag: none;
+      -khtml-user-drag: none;
+      -moz-user-drag: none;
+      -o-user-drag: none;
+      user-drag: none;
+      -webkit-touch-callout: none;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: #0c0c0f;
+      color: #e0e0e0;
+      line-height: 1.6;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* Навигация */
+    header {
+      position: sticky;
+      top: 0;
+      background-color: rgba(12, 12, 15, 0.85);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+      z-index: 100;
+      padding: 16px 0;
+    }
+
+    .nav-container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    .logo {
+      font-weight: 700;
+      font-size: 1.8rem;
+      letter-spacing: -0.5px;
+      color: #ffffff;
+      text-decoration: none;
+    }
+
+    .logo span {
+      color: #a78bfa;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 20px;
+      align-items: center;
+    }
+
+    .nav-links a {
+      color: #b0b0b0;
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 0.95rem;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover {
+      color: #ffffff;
+    }
+
+    .btn-back {
+      background: transparent;
+      border: 1px solid rgba(255,255,255,0.2);
+      color: #ccc;
+      padding: 8px 18px;
+      border-radius: 30px;
+      font-weight: 500;
+      text-decoration: none;
+      transition: all 0.2s;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.9rem;
+    }
+
+    .btn-back:hover {
+      border-color: #a78bfa;
+      color: #fff;
+      background: rgba(167,139,250,0.1);
+    }
+
+    /* Хлебные крошки */
+    .breadcrumb {
+      padding: 24px 0 0;
+      font-size: 0.85rem;
+      color: #7c7c8a;
+    }
+
+    .breadcrumb a {
+      color: #a78bfa;
+      text-decoration: none;
+    }
+
+    .breadcrumb a:hover {
+      text-decoration: underline;
+    }
+
+    .breadcrumb span {
+      margin: 0 6px;
+      color: #555;
+    }
+
+    /* Шапка статьи */
+    .article-hero {
+      padding: 32px 0 16px;
+    }
+
+    .article-category {
+      display: inline-block;
+      font-size: 0.75rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      color: #a78bfa;
+      background: rgba(167, 139, 250, 0.15);
+      padding: 6px 14px;
+      border-radius: 20px;
+      margin-bottom: 16px;
+    }
+
+    .article-title {
+      font-size: 2.6rem;
+      font-weight: 700;
+      color: #fff;
+      line-height: 1.2;
+      margin-bottom: 20px;
+      letter-spacing: -0.5px;
+    }
+
+    .article-meta {
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+      font-size: 0.9rem;
+      color: #9090a0;
+      margin-bottom: 28px;
+      align-items: center;
+    }
+
+    .article-meta span {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .article-meta i {
+      color: #a78bfa;
+    }
+
+    .article-authors {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .author-avatar {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: rgba(167, 139, 250, 0.2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #c4b5fd;
+      font-weight: 700;
+      font-size: 0.9rem;
+      flex-shrink: 0;
+    }
+
+    .author-info {
+      display: flex;
+      flex-direction: column;
+      line-height: 1.3;
+    }
+
+    .author-name {
+      color: #e0e0e0;
+      font-weight: 500;
+      font-size: 0.9rem;
+    }
+
+    .author-role {
+      color: #7c7c8a;
+      font-size: 0.75rem;
+    }
+
+    /* ============================================ */
+    /* КАРУСЕЛЬ */
+    /* ============================================ */
+    .carousel {
+      position: relative;
+      width: 100%;
+      border-radius: 24px;
+      overflow: hidden;
+      margin-bottom: 16px;
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.06);
+    }
+
+    .carousel-track {
+      display: flex;
+      transition: transform 0.4s ease;
+      will-change: transform;
+    }
+
+    .carousel-slide {
+      min-width: 100%;
+      position: relative;
+    }
+
+    .carousel-slide img {
+      width: 100%;
+      height: auto;
+      display: block;
+      aspect-ratio: 16 / 9;
+      object-fit: cover;
+    }
+
+    .carousel-caption {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: linear-gradient(to top, rgba(0,0,0,0.85), transparent);
+      padding: 24px 24px 16px;
+      color: #fff;
+      font-size: 0.9rem;
+    }
+
+    .carousel-btn {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(12, 12, 15, 0.7);
+      border: 1px solid rgba(255,255,255,0.15);
+      color: #fff;
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.2s;
+      backdrop-filter: blur(8px);
+      font-size: 1rem;
+      z-index: 2;
+    }
+
+    .carousel-btn:hover {
+      background: #a78bfa;
+      border-color: #a78bfa;
+      color: #0c0c0f;
+    }
+
+    .carousel-btn.prev { left: 16px; }
+    .carousel-btn.next { right: 16px; }
+
+    .carousel-dots {
+      display: flex;
+      justify-content: center;
+      gap: 8px;
+      padding: 12px 0 4px;
+    }
+
+    .carousel-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.2);
+      border: none;
+      cursor: pointer;
+      transition: all 0.2s;
+      padding: 0;
+    }
+
+    .carousel-dot.active {
+      background: #a78bfa;
+      width: 24px;
+      border-radius: 4px;
+    }
+
+    /* Подпись под каруселью */
+    .figure-caption {
+      text-align: center;
+      color: #7c7c8a;
+      font-size: 0.85rem;
+      font-style: italic;
+      margin-bottom: 32px;
+    }
+
+    /* ============================================ */
+    /* ТЕКСТ СТАТЬИ */
+    /* ============================================ */
+    .article-body {
+      font-size: 1.1rem;
+      color: #c0c0d0;
+      line-height: 1.8;
+      margin-bottom: 40px;
+    }
+
+    .article-body p {
+      margin-bottom: 20px;
+    }
+
+    .article-body h2 {
+      font-size: 1.8rem;
+      color: #fff;
+      margin: 36px 0 16px;
+      font-weight: 600;
+      letter-spacing: -0.3px;
+    }
+
+    .article-body h3 {
+      font-size: 1.4rem;
+      color: #fff;
+      margin: 28px 0 12px;
+      font-weight: 600;
+    }
+
+    .article-body ul,
+    .article-body ol {
+      padding-left: 24px;
+      margin-bottom: 20px;
+    }
+
+    .article-body li {
+      margin-bottom: 8px;
+    }
+
+    .article-body li::marker {
+      color: #a78bfa;
+    }
+
+    .article-body strong {
+      color: #fff;
+      font-weight: 600;
+    }
+
+    .article-body a {
+      color: #a78bfa;
+      text-decoration: underline;
+      text-decoration-color: rgba(167,139,250,0.3);
+      text-underline-offset: 3px;
+    }
+
+    .article-body blockquote {
+      border-left: 3px solid #a78bfa;
+      padding: 16px 24px;
+      margin: 24px 0;
+      background: rgba(167, 139, 250, 0.05);
+      border-radius: 0 12px 12px 0;
+      color: #d0d0e0;
+      font-style: italic;
+    }
+
+    .article-body img {
+      width: 100%;
+      border-radius: 16px;
+      margin: 24px 0;
+    }
+
+    /* Блок "Итог" */
+    .article-summary {
+      background: rgba(167, 139, 250, 0.06);
+      border: 1px solid rgba(167, 139, 250, 0.2);
+      border-radius: 16px;
+      padding: 24px;
+      margin: 32px 0;
+    }
+
+    .article-summary h3 {
+      color: #a78bfa;
+      font-size: 1.2rem;
+      margin-bottom: 12px;
+      margin-top: 0;
+    }
+
+    /* Поделиться */
+    .article-share {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      align-items: center;
+      padding: 24px 0;
+      border-top: 1px solid rgba(255,255,255,0.06);
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+      margin-bottom: 32px;
+    }
+
+    .article-share-label {
+      color: #9090a0;
+      font-size: 0.9rem;
+      margin-right: 8px;
+    }
+
+    .share-btn {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.1);
+      color: #e0e0e0;
+      padding: 8px 16px;
+      border-radius: 20px;
+      text-decoration: none;
+      font-size: 0.85rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.2s;
+      cursor: pointer;
+      font-family: inherit;
+    }
+
+    .share-btn:hover {
+      background: #a78bfa;
+      border-color: #a78bfa;
+      color: #0c0c0f;
+    }
+
+    /* Ссылки на другие новости */
+    .related-news {
+      margin-bottom: 60px;
+    }
+
+    .related-news h2 {
+      font-size: 1.5rem;
+      color: #fff;
+      margin-bottom: 20px;
+    }
+
+    .related-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 16px;
+    }
+
+    .related-card {
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      border-radius: 16px;
+      padding: 20px;
+      text-decoration: none;
+      color: #e0e0e0;
+      transition: all 0.2s;
+    }
+
+    .related-card:hover {
+      border-color: rgba(167, 139, 250, 0.4);
+      background: rgba(167, 139, 250, 0.05);
+      transform: translateY(-3px);
+    }
+
+    .related-date {
+      color: #7c7c8a;
+      font-size: 0.8rem;
+      margin-bottom: 6px;
+    }
+
+    .related-title {
+      color: #fff;
+      font-size: 1rem;
+      font-weight: 600;
+      line-height: 1.4;
+    }
+
+    /* ============================================ */
+    /* БОКОВАЯ РЕКЛАМА (ПК) — 2 яруса по 240x400 */
+    /* ============================================ */
+    .ad-side {
+      position: fixed;
+      top: 100px;
+      z-index: 50;
+      width: 240px;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .ad-left { left: 20px; }
+    .ad-right { right: 20px; }
+
+    .ad-block {
+      width: 240px;
+      height: 400px;
+      min-height: 400px;
+      flex-shrink: 0;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .ad-block ins {
+      display: block !important;
+      width: 240px !important;
+      height: 400px !important;
+      margin: 0 !important;
+    }
+
+    /* Мобильная реклама (скрыта по умолчанию) */
+    .mobile-ad-top,
+    .mobile-ad-bottom {
+      display: none;
+    }
+
+    @media (max-width: 1500px) {
+      .ad-side { display: none; }
+
+      .mobile-ad-top,
+      .mobile-ad-bottom {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 12px 0;
+        width: 100%;
+      }
+
+      .mobile-ad-top {
+        background: rgba(255,255,255,0.02);
+        border-bottom: 1px solid rgba(255,255,255,0.05);
+      }
+
+      .mobile-ad-bottom {
+        margin: 32px auto 24px;
+        max-width: 320px;
+      }
+    }
+
+    footer {
+      border-top: 1px solid rgba(255,255,255,0.05);
+      padding: 32px 0;
+      text-align: center;
+      color: #6b6b7a;
+      font-size: 0.9rem;
+      margin-top: 40px;
+    }
+
+    footer a {
+      color: #a78bfa;
+      text-decoration: none;
+    }
+
+    /* ============================================ */
+    /* ПЛАНШЕТ ГОРИЗОНТАЛЬНО — как ПК, но контент шире */
+    /* ============================================ */
+    @media (min-width: 768px) and (max-width: 1500px) and (orientation: landscape) {
+      .container { max-width: 900px; }
+      .article-title { font-size: 2.4rem; }
+      .article-body { font-size: 1.05rem; }
+    }
+
+    /* ============================================ */
+    /* ТЕЛЕФОН И ПЛАНШЕТ ВЕРТИКАЛЬНО — крупный текст */
+    /* ============================================ */
+    @media (max-width: 768px) {
+      body {
+        overflow-x: hidden;
+        -webkit-text-size-adjust: 100%;
+      }
+
+      .container {
+        padding: 0 18px;
+        max-width: 100%;
+      }
+
+      .nav-container {
+        flex-direction: column;
+        gap: 12px;
+        padding: 0 18px;
+      }
+
+      .nav-links {
+        gap: 12px;
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+
+      .logo { font-size: 1.5rem; }
+      .btn-back { padding: 6px 14px; font-size: 0.85rem; }
+
+      header { padding: 12px 0; }
+
+      .article-title { font-size: 1.8rem; line-height: 1.25; }
+      .article-meta { font-size: 0.85rem; gap: 14px; }
+      .article-authors { gap: 10px; }
+      .author-avatar { width: 32px; height: 32px; font-size: 0.8rem; }
+
+      .carousel { border-radius: 16px; }
+      .carousel-slide img { aspect-ratio: 4 / 3; }
+      .carousel-btn { width: 36px; height: 36px; font-size: 0.85rem; }
+      .carousel-btn.prev { left: 8px; }
+      .carousel-btn.next { right: 8px; }
+      .carousel-caption { padding: 16px 16px 12px; font-size: 0.85rem; }
+
+      /* Крупный текст для чтения на телефоне */
+      .article-body { font-size: 1.15rem; line-height: 1.85; }
+      .article-body h2 { font-size: 1.5rem; margin: 28px 0 14px; }
+      .article-body h3 { font-size: 1.25rem; margin: 22px 0 10px; }
+      .article-body ul, .article-body ol { padding-left: 20px; }
+      .article-body blockquote { padding: 14px 18px; }
+
+      .article-summary { padding: 18px; }
+      .article-summary h3 { font-size: 1.05rem; }
+
+      .article-share { padding: 18px 0; gap: 8px; }
+      .share-btn { font-size: 0.8rem; padding: 7px 14px; }
+
+      .related-news h2 { font-size: 1.25rem; }
+      .related-title { font-size: 0.95rem; }
+    }
+
+    /* Планшет вертикально — текст ещё крупнее */
+    @media (min-width: 600px) and (max-width: 900px) and (orientation: portrait) {
+      .article-body { font-size: 1.2rem; line-height: 1.9; }
+      .article-title { font-size: 2rem; }
+    }
+
+    /* Очень маленькие экраны */
+    @media (max-width: 420px) {
+      .container { padding: 0 14px; }
+      .article-title { font-size: 1.55rem; }
+      .article-body { font-size: 1.1rem; }
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <div class="nav-container">
+      <a href="../index.html" class="logo">
+        Ax<span>Kuon</span>
+      </a>
+      <div class="nav-links">
+        <a href="../index.html">Главная</a>
+        <a href="../releases.html">Релизы</a>
+        <a href="../news.html" class="btn-back"><i class="fas fa-arrow-left"></i> Все новости</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Мобильная реклама сверху -->
+  <div class="mobile-ad-top">
+    <ins class="mrg-tag" 
+        style="display:inline-block;width:320px;height:50px"
+        data-ad-client="ad-2064565" 
+        data-ad-slot="2064565">
+    </ins>
+  </div>
+
+  <main class="container">
+    <!-- Хлебные крошки -->
+    <div class="breadcrumb">
+      <a href="../index.html">Главная</a><span>/</span><a href="../news.html">Новости</a><span>/</span>Название статьи
+    </div>
+
+    <!-- Шапка статьи -->
+    <div class="article-hero">
+      <span class="article-category">Релиз</span>
+      <h1 class="article-title">Релиз FileDrop — передача файлов без интернета</h1>
+
+      <div class="article-meta">
+        <span><i class="far fa-calendar-alt"></i> 10 августа 2026</span>
+        <span><i class="far fa-clock"></i> 5 мин чтения</span>
+        <div class="article-authors">
+          <div class="author-avatar">А</div>
+          <div class="author-info">
+            <span class="author-name">Алексей Морозов</span>
+            <span class="author-role">Разработчик</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Карусель -->
+    <div class="carousel" id="carousel">
+      <div class="carousel-track" id="carouselTrack">
+        <div class="carousel-slide">
+          <img src="../images/FileDrop-icon.png" alt="FileDrop — главный экран">
+          <div class="carousel-caption">Главный экран FileDrop на Windows</div>
+        </div>
+        <div class="carousel-slide">
+          <img src="../images/FileDrop-icon.png" alt="FileDrop — подключение по QR">
+          <div class="carousel-caption">Подключение устройств по QR-коду</div>
+        </div>
+        <div class="carousel-slide">
+          <img src="../images/FileDrop-icon.png" alt="FileDrop — передача файлов">
+          <div class="carousel-caption">Процесс передачи файлов</div>
+        </div>
+        <div class="carousel-slide">
+          <img src="../images/FileDrop-icon.png" alt="FileDrop — Android версия">
+          <div class="carousel-caption">FileDrop на Android</div>
+        </div>
+      </div>
+
+      <button class="carousel-btn prev" onclick="slidePrev()" aria-label="Назад">
+        <i class="fas fa-chevron-left"></i>
+      </button>
+      <button class="carousel-btn next" onclick="slideNext()" aria-label="Вперёд">
+        <i class="fas fa-chevron-right"></i>
+      </button>
+    </div>
+
+    <!-- Точки под каруселью -->
+    <div class="carousel-dots" id="carouselDots"></div>
+
+    <!-- Подпись под каруселью -->
+    <p class="figure-caption">Скриншоты FileDrop v1.0.0 — Windows и Android версии</p>
+
+    <!-- Тело статьи -->
+    <article class="article-body">
+      <p><strong>FileDrop</strong> — это наш новый проект, который позволяет передавать файлы между устройствами по локальной сети, без проводов, без интернета и без облачных сервисов. Просто подключите оба устройства к одной Wi-Fi сети — и отправляйте файлы в любую сторону.</p>
+
+      <p>Мы работали над FileDrop несколько месяцев. Главная цель была простой: сделать максимально удобный инструмент для быстрой передачи файлов, который не требует регистрации, не отправляет данные на серверы и работает молниеносно.</p>
+
+      <h2>Как это работает</h2>
+
+      <p>Всё просто. Открываете FileDrop на ПК или телефоне, сканируете QR-код — и устройства находят друг друга в локальной сети. Дальше можно передавать файлы в обе стороны: с ПК на телефон, с телефона на ПК, а также между двумя ПК.</p>
+
+      <ul>
+        <li>Передача файлов любого размера</li>
+        <li>Подключение по QR-коду</li>
+        <li>Выбор папки сохранения на принимающем устройстве</li>
+        <li>Русский и английский интерфейс</li>
+        <li>Светлая и тёмная тема</li>
+        <li>Поддержка Windows и Android</li>
+      </ul>
+
+      <blockquote>
+        «Мы хотели сделать передачу файлов такой же простой, как отправить сообщение в мессенджере. Без регистрации, без облаков, без ограничений по размеру. FileDrop — это именно то, что получилось».
+      </blockquote>
+
+      <h2>Безопасность</h2>
+
+      <p>Все файлы передаются напрямую между устройствами, минуя сторонние серверы. Никакие данные не покидают вашу локальную сеть. Это значит, что FileDrop можно использовать даже в закрытых корпоративных сетях без риска утечки данных.</p>
+
+      <h3>Технические детали</h3>
+
+      <p>FileDrop написан на современных технологиях, работает быстро и не нагружает систему. Приложение занимает всего 52 МБ на Windows и 12 МБ на Android, поддерживает Windows 7+ и Android 8.0+.</p>
+
+      <div class="article-summary">
+        <h3>📌 Итог</h3>
+        <p>FileDrop — это простой и надёжный способ передавать файлы по локальной сети. Скачайте для Windows или Android, откройте на двух устройствах и начните передавать файлы за секунды.</p>
+      </div>
+
+      <p>Скачать FileDrop можно на странице релиза на нашем сайте, в RuStore для Android или напрямую с GitHub. Мы будем рады обратной связи — пишите нам в Telegram или на почту.</p>
+    </article>
+
+    <!-- Поделиться -->
+    <div class="article-share">
+      <span class="article-share-label">Поделиться:</span>
+      <a href="#" class="share-btn"><i class="fab fa-telegram"></i> Telegram</a>
+      <a href="#" class="share-btn"><i class="fas fa-comment-dots"></i> MAX</a>
+      <a href="#" class="share-btn" onclick="copyLink(); return false;"><i class="fas fa-link"></i> Копировать ссылку</a>
+    </div>
+
+    <!-- Другие новости -->
+    <section class="related-news">
+      <h2>Другие новости</h2>
+      <div class="related-grid">
+        <a href="news.html" class="related-card">
+          <div class="related-date">20 августа 2026</div>
+          <div class="related-title">Новый дизайн English 120</div>
+        </a>
+        <a href="news.html" class="related-card">
+          <div class="related-date">30 июля 2026</div>
+          <div class="related-title">Анонс FileDrop</div>
+        </a>
+        <a href="news.html" class="related-card">
+          <div class="related-date">28 июля 2026</div>
+          <div class="related-title">Вышла программа Code-Analyzer</div>
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <!-- Мобильная реклама снизу -->
+  <div class="mobile-ad-bottom">
+    <ins class="mrg-tag" 
+        style="display:inline-block;width:240px;height:400px"
+        data-ad-client="ad-2064264" 
+        data-ad-slot="2064264">
+    </ins>
+  </div>
+
+  <footer>
+    <div class="container">
+      <p>© 2026 <a href="../index.html">AxKuon.ru</a> — приложения для Android, Linux и Windows, open-source проекты.</p>
+    </div>
+  </footer>
+
+<!-- Левый столбец рекламы (ПК) — 2 яруса 240x400 -->
+<div class="ad-side ad-left">
+  <div class="ad-block">
+    <ins class="mrg-tag" 
+        style="display:inline-block;width:240px;height:400px"
+        data-ad-client="ad-2064264" 
+        data-ad-slot="2064264">
+    </ins>
+  </div>
+  <div class="ad-block">
+    <ins class="mrg-tag" 
+        style="display:inline-block;width:240px;height:400px"
+        data-ad-client="ad-2064264" 
+        data-ad-slot="2064264">
+    </ins>
+  </div>
+</div>
+
+<!-- Правый столбец рекламы (ПК) — 2 яруса 240x400 -->
+<div class="ad-side ad-right">
+  <div class="ad-block">
+    <ins class="mrg-tag" 
+        style="display:inline-block;width:240px;height:400px"
+        data-ad-client="ad-2064264" 
+        data-ad-slot="2064264">
+    </ins>
+  </div>
+  <div class="ad-block">
+    <ins class="mrg-tag" 
+        style="display:inline-block;width:240px;height:400px"
+        data-ad-client="ad-2064264" 
+        data-ad-slot="2064264">
+    </ins>
+  </div>
+</div>
+
+<script>
+  // ============================================
+  // КАРУСЕЛЬ
+  // ============================================
+  let currentSlide = 0;
+  const track = document.getElementById('carouselTrack');
+  const slides = document.querySelectorAll('.carousel-slide');
+  const dotsContainer = document.getElementById('carouselDots');
+  const totalSlides = slides.length;
+
+  // Создаём точки
+  for (let i = 0; i < totalSlides; i++) {
+    const dot = document.createElement('button');
+    dot.className = 'carousel-dot' + (i === 0 ? ' active' : '');
+    dot.setAttribute('aria-label', 'Слайд ' + (i + 1));
+    dot.onclick = () => goToSlide(i);
+    dotsContainer.appendChild(dot);
+  }
+
+  function updateCarousel() {
+    track.style.transform = 'translateX(-' + (currentSlide * 100) + '%)';
+    document.querySelectorAll('.carousel-dot').forEach((dot, i) => {
+      dot.classList.toggle('active', i === currentSlide);
+    });
+  }
+
+  function slideNext() {
+    currentSlide = (currentSlide + 1) % totalSlides;
+    updateCarousel();
+  }
+
+  function slidePrev() {
+    currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
+    updateCarousel();
+  }
+
+  function goToSlide(index) {
+    currentSlide = index;
+    updateCarousel();
+  }
+
+  // Свайпы на телефоне
+  let touchStartX = 0;
+  let touchEndX = 0;
+  const carousel = document.getElementById('carousel');
+
+  carousel.addEventListener('touchstart', (e) => {
+    touchStartX = e.changedTouches[0].screenX;
+  }, {passive: true});
+
+  carousel.addEventListener('touchend', (e) => {
+    touchEndX = e.changedTouches[0].screenX;
+    const diff = touchStartX - touchEndX;
+    if (Math.abs(diff) > 50) {
+      if (diff > 0) slideNext();
+      else slidePrev();
+    }
+  }, {passive: true});
+
+  // Автопрокрутка (каждые 6 секунд)
+  setInterval(() => {
+    slideNext();
+  }, 6000);
+
+  // ============================================
+  // КОПИРОВАНИЕ ССЫЛКИ
+  // =================================
