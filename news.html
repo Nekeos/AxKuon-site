@@ -294,6 +294,12 @@
       vertical-align: middle;
     }
 
+    .news-loading {
+      text-align: center;
+      padding: 40px 0;
+      color: #7c7c8a;
+    }
+
     footer {
       border-top: 1px solid rgba(255,255,255,0.05);
       padding: 32px 0;
@@ -414,80 +420,9 @@
       }
       .logo { font-size: 1.5rem; }
       .btn-back { padding: 6px 14px; font-size: 0.85rem; }
-
-      .release-header {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 12px;
-      }
-      .release-title h1 { font-size: 1.6rem; }
-      .version-badge { font-size: 0.85rem; padding: 4px 12px; }
-
-      .download-section h2,
-      .stores-section h2,
-      .requirements h2,
-      .changelog h2 {
-        font-size: 1.2rem;
-      }
-
-      .download-row {
-        flex-direction: column;
-        align-items: stretch;
-        padding: 14px 16px;
-        gap: 12px;
-      }
-      .download-info {
-        width: 100%;
-      }
-      .download-count {
-        margin-left: 0 !important;
-        width: 100%;
-        text-align: left;
-      }
-      .btn-download {
-        width: 100%;
-        justify-content: center;
-        padding: 12px 18px;
-        font-size: 0.95rem;
-      }
-
-      .store-buttons {
-        width: 100%;
-      }
-      .btn-store {
-        width: 100%;
-        padding: 12px 18px;
-        justify-content: flex-start;
-      }
-
-      .req-grid {
-        grid-template-columns: 1fr 1fr;
-      }
-      .req-item {
-        padding: 12px;
-        font-size: 0.85rem;
-      }
-
-      .screenshots {
-        flex-direction: column;
-      }
-      .screenshot {
-        min-width: 100%;
-        height: 160px;
-      }
-
-      main > div:last-child {
-        flex-direction: column;
-        gap: 12px !important;
-      }
     }
 
     @media (max-width: 420px) {
-      .req-grid {
-        grid-template-columns: 1fr;
-      }
-      .release-title h1 { font-size: 1.4rem; }
-      .main-card { padding: 16px 12px; }
       .container { padding: 0 12px; }
     }
   </style>
@@ -497,7 +432,7 @@
   <header>
     <div class="container nav-container">
       <a href="index.html" class="logo">
-        Ax<span>Kuon</span> <!--<span>ru</span>-->
+        Ax<span>Kuon</span>
       </a>
       <div class="nav-links">
         <a href="index.html">Главная</a>
@@ -522,74 +457,60 @@
       <p>Анонсы, обновления, статьи и события из жизни AxKuon. Будьте в курсе всего.</p>
     </div>
 
-    <div class="news-list">
-      <!-- Закреплённая новость -->
-      <div class="news-card pinned">
-        <div class="news-date-badge">
-          <div class="day">20</div>
-          <div class="month">Августа</div>
-        </div>
-        <div class="news-content">
-          <span class="news-category">Редизайн</span>
-          <h2>Новый дизайн English 120<span class="pinned-badge">Закреплено</span></h2>
-          <p>Готовится редизайн приложения для изучения иностранных языков English, все подробности позже.</p>
-          <!-- <a href="Releases/FileDrop.html" class="news-link">К релизу <i class="fas fa-arrow-right"></i></a> -->
-        </div>
-        <div class="news-image">
-          <i class="fas fa-paint-brush"></i>
-        </div>
-      </div>
-
-      <!-- Новость -->
-      <div class="news-card">
-        <div class="news-date-badge">
-          <div class="day">10</div>
-          <div class="month">Августа</div>
-        </div>
-        <div class="news-content">
-          <span class="news-category">Релиз</span>
-          <h2>Релиз FileDrop</h2>
-          <p>Релиз Windows и Android версии FileDrop на нашем сайте, GitHub и RuStore</p>
-          <a href="Releases/FileDrop.html" class="news-link">К релизу <i class="fas fa-arrow-right"></i></a>
-        </div>
-        <div class="news-image">
-          <img src="../images/FileDrop-icon.png" alt="FileDrop" style="width: 100%; height: 100%; object-fit: cover; border-radius: 20px;">
-        </div>
-      </div>
-
-      <!-- Новость -->
-      <div class="news-card">
-        <div class="news-date-badge">
-          <div class="day">30</div>
-          <div class="month">Июля</div>
-        </div>
-        <div class="news-content">
-          <span class="news-category">Анонс</span>
-          <h2>Анонс новой кроссплатформенной программы FileDrop</h2>
-          <p>FileDrop - передавайте файлы между устройствами без интернета</p>
-        </div>
-        <div class="news-image">
-          <i class="fas fa-exclamation"></i>
-        </div>
-      </div>
-
-      <!-- Новость -->
-      <div class="news-card">
-        <div class="news-date-badge">
-          <div class="day">28</div>
-          <div class="month">Июль</div>
-        </div>
-        <div class="news-content">
-          <span class="news-category">Релиз</span>
-          <h2>Вышла программа Code-Analyzer</h2>
-          <p>Вышла ранняя бета новой программы для анализа кода, пока что работает только в консоли</p>
-          <a href="releases.html" class="news-link">К релизу <i class="fas fa-arrow-right"></i></a>
-        </div>
-        <div class="news-image">
-          <i class="fas fa-check-circle"></i>
-        </div>
-      </div>
+    <div class="news-list" id="newsList">
+      <div class="news-loading"><i class="fas fa-spinner fa-spin"></i> Загрузка новостей...</div>
     </div>
+
+    <script>
+    fetch('news.json')
+      .then(r => {
+        if (!r.ok) throw new Error('news.json не найден (ошибка ' + r.status + ')');
+        return r.json();
+      })
+      .then(news => {
+        // Сортируем: закреплённые первыми, потом по дате
+        news.sort((a, b) => {
+          if (a.pinned && !b.pinned) return -1;
+          if (!a.pinned && b.pinned) return 1;
+          return new Date(b.date) - new Date(a.date);
+        });
+
+        // Строим карточки
+        document.getElementById('newsList').innerHTML = news.map(n => {
+          const date = new Date(n.date);
+          const months = ['Января','Февраля','Марта','Апреля','Мая','Июня','Июля','Августа','Сентября','Октября','Ноября','Декабря'];
+
+          // Кнопка: если url пустой или не задан — не показываем
+          // Подпись: если задан button — используем его, иначе «Читать»
+          const buttonHtml = n.url
+            ? `<a href="${n.url}" class="news-link">${n.button || 'Читать'} <i class="fas fa-arrow-right"></i></a>`
+            : '';
+
+          return `
+            <div class="news-card ${n.pinned ? 'pinned' : ''}">
+              <div class="news-date-badge">
+                <div class="day">${date.getDate()}</div>
+                <div class="month">${months[date.getMonth()]}</div>
+              </div>
+              <div class="news-content">
+                <span class="news-category">${n.category}</span>
+                <h2>${n.title}${n.pinned ? '<span class="pinned-badge">Закреплено</span>' : ''}</h2>
+                <p>${n.description}</p>
+                ${buttonHtml}
+              </div>
+              <div class="news-image">
+                <i class="fas fa-${n.icon}"></i>
+              </div>
+            </div>
+          `;
+        }).join('');
+      })
+      .catch(e => {
+        console.error('Ошибка загрузки новостей:', e);
+        document.getElementById('newsList').innerHTML = 
+          '<div class="news-loading">Не удалось загрузить новости: ' + e.message + '</div>';
+      });
+    </script>
   </main>
 
   <!-- Мобильная реклама снизу (только на телефоне) -->
