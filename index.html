@@ -20,40 +20,25 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
   <title>AxKuon — Наша задача облегчить жизнь и улучшить игровую индустрию</title>
   <link rel="icon" type="image/png" href="favicon.png">
-  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
-  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
-  <link rel="icon" type="image/png" href="/favicon.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
   <style>
   /* Стилизация скроллбара браузера */
-    ::-webkit-scrollbar {
-      width: 10px;
-    }
-
-    ::-webkit-scrollbar-track {
-      background: #0c0c0f;
-    }
-
+    ::-webkit-scrollbar { width: 10px; }
+    ::-webkit-scrollbar-track { background: #0c0c0f; }
     ::-webkit-scrollbar-thumb {
       background: rgba(167, 139, 250, 0.3);
       border-radius: 5px;
       border: 2px solid #0c0c0f;
     }
-
-    ::-webkit-scrollbar-thumb:hover {
-      background: rgba(167, 139, 250, 0.5);
-    }
-
-    /* Для Firefox */
+    ::-webkit-scrollbar-thumb:hover { background: rgba(167, 139, 250, 0.5); }
     html {
       scrollbar-width: thin;
       scrollbar-color: rgba(167, 139, 250, 0.3) #0c0c0f;
     }
-        /* бурмалда */
+
     * {
       -webkit-user-select: none;
       -moz-user-select: none;
@@ -61,7 +46,6 @@
       user-select: none;
     }
 
-    /* прогрев гоев */
     img {
       -webkit-user-drag: none;
       -khtml-user-drag: none;
@@ -70,7 +54,7 @@
       user-drag: none;
       pointer-events: none;
     }
-    /* ссылки не трогать */
+
     a {
       -webkit-user-select: none;
       -moz-user-select: none;
@@ -83,57 +67,47 @@
       user-drag: none;
       -webkit-touch-callout: none;
     }
-    /* Общие стили для контейнера ссылок */
+
     .text-links {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 12px;           /* Отступы между кнопками */
-        justify-content: center; /* Выравнивание по центру (если нужно) */
-        margin-top: 20px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      justify-content: center;
+      margin-top: 20px;
     }
 
-    /* Базовый стиль красивой текстовой кнопки */
     .social-text-link {
-        font-family: inherit;
-        font-size: 0.95rem;   /* Приятный читаемый размер шрифта */
-        font-weight: 500;
-        letter-spacing: 0.5px;
-        text-decoration: none;
-        padding: 10px 20px;   /* Внутренние отступы (высота и ширина плашки) */
-        border-radius: 24px;  /* Мягкие скругленные углы */
-        color: #a0a0b0;       /* Красивый неяркий цвет текста по умолчанию */
-        background: rgba(255, 255, 255, 0.03); /* Едва заметный темный/светлый фон */
-        border: 1px solid rgba(255, 255, 255, 0.1); /* Тонкая аккуратная рамка */
-        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); /* Очень плавная анимация */
+      font-family: inherit;
+      font-size: 0.95rem;
+      font-weight: 500;
+      letter-spacing: 0.5px;
+      text-decoration: none;
+      padding: 10px 20px;
+      border-radius: 24px;
+      color: #a0a0b0;
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     }
 
-    /* Эффекты при наведении мышки для каждой сети индивидуально */
     .social-text-link:hover {
       transform: translateY(-4px);
       border-color: rgba(167, 139, 250, 0.3);
+      color: #fff;
+      background: #a78bfa;
+      border-color: #a78bfa;
     }
 
-    /* Индивидуальная подсветка для Telegram */
-    .tg-link:hover {
-        color: #fff;
-        background: #a78bfa;
-        border-color: #a78bfa;
-    }
-
-    /* Индивидуальная подсветка для MAX (фирменный сине-фиолетовый акцент) */
-    .max-link:hover {
-        color: #fff;
-        background: #a78bfa;
-        border-color: #a78bfa;
-    }
-
-    /* Индивидуальная подсветка для RuStore (фирменный глубокий синий) */
+    .tg-link:hover,
+    .max-link:hover,
+    .vk-link:hover,
     .rustore-link:hover {
-        color: #fff;
-        background: #a78bfa;
-        border-color: #0052FF;
+      color: #fff;
+      background: #a78bfa;
+      border-color: #a78bfa;
     }
-    {
+
+    * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
@@ -147,10 +121,25 @@
       scroll-behavior: smooth;
     }
 
+    body::before {
+      content: '';
+      position: fixed;
+      top: -50%;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 800px;
+      height: 800px;
+      background: radial-gradient(circle, rgba(167, 139, 250, 0.06) 0%, transparent 60%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
     .container {
       max-width: 1200px;
       margin: 0 auto;
       padding: 0 24px;
+      position: relative;
+      z-index: 1;
     }
 
     /* Навигация */
@@ -175,18 +164,11 @@
       font-weight: 700;
       font-size: 1.8rem;
       letter-spacing: -0.5px;
-      color: #ffffff; /* Белый цвет для Ax и точки */
+      color: #ffffff;
       text-decoration: none;
     }
 
-    .logo span {
-      color: #a78bfa; /* Фиолетовый цвет для Kuon и ru */
-    }
-
-    /* Делаем Kuon жирным (700), как и Ax */
-    .logo span:first-of-type {
-      font-weight: inherit; 
-    }
+    .logo span { color: #a78bfa; }
 
     .nav-links {
       display: flex;
@@ -204,9 +186,7 @@
       position: relative;
     }
 
-    .nav-links a:hover {
-      color: #ffffff;
-    }
+    .nav-links a:hover { color: #ffffff; }
 
     .nav-links a::after {
       content: '';
@@ -219,9 +199,7 @@
       transition: width 0.2s ease;
     }
 
-    .nav-links a:hover::after {
-      width: 100%;
-    }
+    .nav-links a:hover::after { width: 100%; }
 
     .btn-outline {
       border: 1px solid rgba(167, 139, 250, 0.5);
@@ -240,7 +218,7 @@
       color: #e9d5ff;
     }
 
-    /* Hero секция */
+    /* Hero */
     .hero {
       padding: 80px 0 60px;
       text-align: center;
@@ -248,13 +226,14 @@
 
     .hero h1 {
       font-size: clamp(2.5rem, 7vw, 4rem);
-      font-weight: 700;
+      font-weight: 800;
       line-height: 1.2;
       margin-bottom: 20px;
       background: linear-gradient(to right, #ffffff, #c4b5fd);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
+      letter-spacing: -1px;
     }
 
     .hero p {
@@ -283,20 +262,27 @@
       align-items: center;
       gap: 8px;
       backdrop-filter: blur(4px);
+      transition: all 0.3s;
     }
 
-    .badge i {
-      color: #a78bfa;
+    .badge:hover {
+      transform: translateY(-2px);
+      border-color: rgba(167, 139, 250, 0.3);
+      background: rgba(167, 139, 250, 0.05);
     }
+
+    .badge i { color: #a78bfa; }
 
     /* Секции */
     section {
       padding: 70px 0;
+      position: relative;
+      z-index: 1;
     }
 
     .section-title {
       font-size: 2.2rem;
-      font-weight: 600;
+      font-weight: 700;
       margin-bottom: 16px;
       color: #f1f1f3;
       letter-spacing: -0.5px;
@@ -314,38 +300,85 @@
       gap: 28px;
     }
 
+    /* Анимация появления */
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .card, .link-card {
+      animation: fadeInUp 0.6s cubic-bezier(0.4, 0, 0.2, 1) both;
+    }
+
+    .card:nth-child(1) { animation-delay: 0.05s; }
+    .card:nth-child(2) { animation-delay: 0.1s; }
+    .card:nth-child(3) { animation-delay: 0.15s; }
+    .link-card:nth-child(1) { animation-delay: 0.05s; }
+    .link-card:nth-child(2) { animation-delay: 0.1s; }
+
     .card {
-      background: rgba(255, 255, 255, 0.03);
-      border: 1px solid rgba(255, 255, 255, 0.05);
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.04) 0%, rgba(255, 255, 255, 0.02) 100%);
+      border: 1px solid rgba(255, 255, 255, 0.06);
       border-radius: 24px;
       padding: 28px;
-      transition: transform 0.2s, border-color 0.2s;
-      backdrop-filter: blur(4px);
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(167, 139, 250, 0.4), transparent);
+      opacity: 0;
+      transition: opacity 0.4s;
     }
 
     .card:hover {
-      transform: translateY(-4px);
-      border-color: rgba(167, 139, 250, 0.3);
+      transform: translateY(-6px);
+      border-color: rgba(167, 139, 250, 0.35);
+      box-shadow:
+        0 20px 40px -12px rgba(0, 0, 0, 0.5),
+        0 0 0 1px rgba(167, 139, 250, 0.1),
+        0 0 40px -10px rgba(167, 139, 250, 0.2);
     }
+
+    .card:hover::before { opacity: 1; }
 
     .card i {
       font-size: 2rem;
       color: #a78bfa;
       margin-bottom: 20px;
+      display: block;
+      filter: drop-shadow(0 0 12px rgba(167, 139, 250, 0.4));
     }
 
     .card h3 {
       font-size: 1.4rem;
       margin-bottom: 12px;
       color: #fff;
+      font-weight: 700;
     }
 
     .card p {
       color: #b0b0c0;
       font-size: 0.95rem;
+      line-height: 1.6;
     }
 
-    /* Стили для карточек-ссылок на разделы */
+    /* Ссылки-карточки */
     .link-cards {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -354,42 +387,59 @@
     }
 
     .link-card {
-      background: rgba(255, 255, 255, 0.03);
-      border: 1px solid rgba(255, 255, 255, 0.08);
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.04) 0%, rgba(255, 255, 255, 0.02) 100%);
+      border: 1px solid rgba(255, 255, 255, 0.06);
       border-radius: 24px;
       padding: 36px 28px;
       text-decoration: none;
       color: #e0e0e0;
-      transition: all 0.25s ease;
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
       display: flex;
       flex-direction: column;
       align-items: flex-start;
-      backdrop-filter: blur(4px);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
       position: relative;
       overflow: hidden;
     }
 
+    .link-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(167, 139, 250, 0.4), transparent);
+      opacity: 0;
+      transition: opacity 0.4s;
+    }
+
     .link-card:hover {
       border-color: rgba(167, 139, 250, 0.5);
-      background: rgba(167, 139, 250, 0.05);
-      transform: translateY(-5px);
-      box-shadow: 0 16px 32px rgba(0, 0, 0, 0.3);
+      background: linear-gradient(135deg, rgba(167, 139, 250, 0.08) 0%, rgba(167, 139, 250, 0.02) 100%);
+      transform: translateY(-6px);
+      box-shadow:
+        0 20px 40px -12px rgba(0, 0, 0, 0.5),
+        0 0 0 1px rgba(167, 139, 250, 0.15),
+        0 0 40px -10px rgba(167, 139, 250, 0.25);
     }
+
+    .link-card:hover::before { opacity: 1; }
 
     .link-card .card-icon {
       font-size: 2.8rem;
       color: #a78bfa;
       margin-bottom: 20px;
-      transition: transform 0.2s;
+      transition: transform 0.4s;
+      filter: drop-shadow(0 0 16px rgba(167, 139, 250, 0.5));
     }
 
-    .link-card:hover .card-icon {
-      transform: scale(1.1);
-    }
+    .link-card:hover .card-icon { transform: scale(1.1); }
 
     .link-card h3 {
       font-size: 1.8rem;
-      font-weight: 600;
+      font-weight: 700;
       margin-bottom: 12px;
       color: #fff;
     }
@@ -398,54 +448,220 @@
       color: #a0a0b0;
       font-size: 1rem;
       margin-bottom: 24px;
+      line-height: 1.6;
     }
 
     .card-arrow {
       margin-top: auto;
       color: #a78bfa;
-      font-size: 1.2rem;
+      font-size: 1.1rem;
       display: flex;
       align-items: center;
       gap: 8px;
-      font-weight: 500;
+      font-weight: 600;
+      transition: gap 0.3s;
     }
 
-    .social-links {
+    .link-card:hover .card-arrow { gap: 14px; }
+
+    /* Кнопка "Наверх" */
+    .scroll-top-btn {
+      position: fixed;
+      bottom: 32px;
+      right: 32px;
+      width: 52px;
+      height: 52px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #a78bfa 0%, #8b5cf6 100%);
+      border: none;
+      color: #0c0c0f;
+      font-size: 1.2rem;
+      cursor: pointer;
       display: flex;
-      gap: 24px;
-      flex-wrap: wrap;
-      margin-top: 24px;
+      align-items: center;
+      justify-content: center;
+      box-shadow:
+        0 8px 24px -4px rgba(167, 139, 250, 0.5),
+        0 0 0 1px rgba(255, 255, 255, 0.1) inset;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(20px) scale(0.8);
+      z-index: 90;
+      font-family: inherit;
     }
 
-    .social-icon {
-      font-size: 2rem;
+    .scroll-top-btn.visible {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0) scale(1);
+    }
+
+    .scroll-top-btn:hover {
+      transform: translateY(-4px) scale(1.05);
+      box-shadow:
+        0 12px 32px -4px rgba(167, 139, 250, 0.7),
+        0 0 0 1px rgba(255, 255, 255, 0.15) inset;
+    }
+
+    /* Футер */
+    .site-footer {
+      position: relative;
+      margin-top: 80px;
+      padding: 60px 0 0;
+      border-top: 1px solid rgba(255, 255, 255, 0.06);
+      background: linear-gradient(180deg, transparent 0%, rgba(167, 139, 250, 0.03) 100%);
+      z-index: 1;
+    }
+
+    .site-footer::before {
+      content: '';
+      position: absolute;
+      top: -1px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 200px;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, #a78bfa, transparent);
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1.5fr;
+      gap: 48px;
+      padding-bottom: 48px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    }
+
+    .footer-col h4 {
+      font-size: 0.8rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: #a78bfa;
+      margin-bottom: 20px;
+    }
+
+    .footer-logo {
+      font-weight: 700;
+      font-size: 1.8rem;
+      letter-spacing: -0.5px;
+      color: #ffffff;
+      text-decoration: none;
+      display: inline-block;
+      margin-bottom: 12px;
+    }
+
+    .footer-logo span { color: #a78bfa; }
+
+    .footer-tagline {
       color: #9090a0;
-      transition: color 0.2s, transform 0.2s;
-    }
-
-    .social-icon:hover {
-      color: #c4b5fd;
-      transform: scale(1.1);
-    }
-
-    footer {
-      border-top: 1px solid rgba(255, 255, 255, 0.05);
-      padding: 32px 0;
-      text-align: center;
-      color: #6b6b7a;
       font-size: 0.9rem;
+      line-height: 1.6;
+      max-width: 320px;
     }
 
-    @media (max-width: 640px) {
-      .nav-links {
-        gap: 18px;
-      }
-      .hero {
-        padding: 50px 0 40px;
-      }
+    .footer-links {
+      list-style: none;
+      padding: 0;
+    }
+
+    .footer-links li { margin-bottom: 10px; }
+
+    .footer-links a {
+      color: #b0b0c0;
+      text-decoration: none;
+      font-size: 0.9rem;
+      transition: all 0.2s;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .footer-links a:hover {
+      color: #c4b5fd;
+      transform: translateX(3px);
+    }
+
+    .footer-social {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+    }
+
+    .footer-social-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 8px 12px;
+      border-radius: 10px;
+      text-decoration: none;
+      color: #b0b0c0;
+      font-size: 0.8rem;
+      font-weight: 500;
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.06);
+      transition: all 0.2s;
+      white-space: nowrap;
+    }
+
+    .footer-social-btn:hover {
+      color: #fff;
+      background: rgba(167, 139, 250, 0.12);
+      border-color: rgba(167, 139, 250, 0.3);
+      transform: translateY(-2px);
+    }
+
+    .footer-social-btn i {
+      font-size: 0.95rem;
+      color: #a78bfa;
+    }
+
+    .footer-bottom {
+      padding: 24px 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .footer-copy {
+      color: #6b6b7a;
+      font-size: 0.85rem;
+    }
+
+    .footer-copy a {
+      color: #a78bfa;
+      text-decoration: none;
+    }
+
+    .footer-made {
+      color: #6b6b7a;
+      font-size: 0.8rem;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .footer-made i {
+      color: #a78bfa;
+      animation: heartBeat 1.5s ease-in-out infinite;
+    }
+
+    @keyframes heartBeat {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.15); }
     }
 
     /* Мобильная адаптация */
+    @media (max-width: 900px) {
+      .footer-grid {
+        grid-template-columns: 1fr;
+        gap: 32px;
+      }
+    }
+
     @media (max-width: 768px) {
       body {
         overflow-x: hidden;
@@ -457,7 +673,6 @@
         max-width: 100%;
       }
 
-      /* Навигация */
       header { padding: 12px 0; }
       .nav-container {
         flex-direction: column;
@@ -469,101 +684,50 @@
         justify-content: center;
       }
       .logo { font-size: 1.5rem; }
-      .btn-back { padding: 6px 14px; font-size: 0.85rem; }
 
-      /* Шапка релиза */
-      .release-header {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 12px;
-      }
-      .app-icon {
-        width: 64px;
-        height: 64px;
-      }
-      .release-title h1 { font-size: 1.6rem; }
-      .version-badge { font-size: 0.85rem; padding: 4px 12px; }
+      .hero { padding: 50px 0 40px; }
+      .hero h1 { font-size: 2rem; }
+      .hero p { font-size: 1rem; }
 
-      /* Основная карточка */
-      .main-card {
-        padding: 20px 16px;
-        border-radius: 16px;
-      }
-      .description { font-size: 1rem; }
+      .section-title { font-size: 1.7rem; }
+      .section-subtitle { font-size: 1rem; margin-bottom: 32px; }
 
-      /* Секции */
-      .download-section h2,
-      .stores-section h2,
-      .requirements h2,
-      .changelog h2 {
-        font-size: 1.2rem;
+      .card, .link-card { padding: 24px 20px; }
+      .link-card h3 { font-size: 1.5rem; }
+
+      .scroll-top-btn {
+        bottom: 20px;
+        right: 20px;
+        width: 46px;
+        height: 46px;
+        font-size: 1rem;
       }
 
-      /* Строки скачивания */
-      .download-row {
-        flex-direction: column;
-        align-items: stretch;
-        padding: 14px 16px;
-        gap: 12px;
-      }
-      .download-info {
-        width: 100%;
-      }
-      .download-count {
-        margin-left: 0 !important;
-        width: 100%;
-        text-align: left;
-      }
-      .btn-download {
-        width: 100%;
-        justify-content: center;
-        padding: 12px 18px;
-        font-size: 0.95rem;
+      .footer-grid {
+        grid-template-columns: 1fr;
+        gap: 32px;
+        padding-bottom: 32px;
       }
 
-      /* Магазины */
-      .store-buttons {
-        width: 100%;
-      }
-      .btn-store {
-        width: 100%;
-        padding: 12px 18px;
-        justify-content: flex-start;
-      }
-
-      /* Системные требования — 2 колонки на телефоне */
-      .req-grid {
+      .footer-social {
         grid-template-columns: 1fr 1fr;
       }
-      .req-item {
-        padding: 12px;
-        font-size: 0.85rem;
+
+      .footer-bottom {
+        flex-direction: column;
+        text-align: center;
       }
 
-      /* Скриншоты */
-      .screenshots {
-        flex-direction: column;
-      }
-      .screenshot {
-        min-width: 100%;
-        height: 160px;
-      }
-
-      /* Ссылки внизу */
-      main > div:last-child {
-        flex-direction: column;
-        gap: 12px !important;
-      }
+      .site-footer { padding: 40px 0 0; }
     }
 
-    /* Очень маленькие экраны (телефоны) */
     @media (max-width: 420px) {
-      .req-grid {
+      .container { padding: 0 12px; }
+      .hero h1 { font-size: 1.7rem; }
+
+      .footer-social {
         grid-template-columns: 1fr;
       }
-      .release-title h1 { font-size: 1.4rem; }
-      .main-card { padding: 16px 12px; }
-      .container { padding: 0 12px; }
     }
   </style>
 </head>
@@ -571,7 +735,7 @@
   <header>
     <div class="container nav-container">
       <a href="#" class="logo">
-        Ax<span>Kuon</span> <!--<span>ru</span>-->
+        Ax<span>Kuon</span>
       </a>
       <div class="nav-links">
         <a href="#about">О нас</a>
@@ -583,11 +747,11 @@
   </header>
 
   <main>
-    <!-- Главная / Hero -->
+    <!-- Hero -->
     <section class="hero">
       <div class="container">
         <h1>Создаём приложения<br>для Android, Linux и Windows</h1>
-        <p>AxKuon — команда разработчиков, которая делает полезные приложения для десктопных системи Android, поддерживая open-source проекты. Открытый код, надёжность и сообщество.</p>
+        <p>AxKuon — команда разработчиков, которая делает полезные приложения для десктопных систем и Android, поддерживая open-source проекты. Открытый код, надёжность и сообщество.</p>
         <div class="badge-group">
           <div class="badge"><i class="fab fa-android"></i> Android</div>
           <div class="badge"><i class="fab fa-linux"></i> Linux</div>
@@ -622,14 +786,13 @@
       </div>
     </section>
 
-    <!-- Ссылки на разделы с релизами и новостями -->
+    <!-- Релизы и новости -->
     <section id="content">
       <div class="container">
         <h2 class="section-title">Релизы и новости</h2>
         <p class="section-subtitle">Управляйте контентом сами — переходите в нужный раздел, чтобы добавить или просмотреть материалы.</p>
         
         <div class="link-cards">
-          <!-- Карточка "Релизы" -->
           <a href="releases.html" class="link-card">
             <div class="card-icon">
               <i class="fas fa-rocket"></i>
@@ -642,13 +805,12 @@
             </div>
           </a>
 
-          <!-- Карточка "Новости" -->
           <a href="news.html" class="link-card">
             <div class="card-icon">
               <i class="far fa-newspaper"></i>
             </div>
             <h3>Новости</h3>
-            <p>Лента новостей компании AxKuon. Анонсы, статьи, обновления и всё, что важно длясообщества.</p>
+            <p>Лента новостей компании AxKuon. Анонсы, статьи, обновления и всё, что важно для сообщества.</p>
             <div class="card-arrow">
               <span>Перейти к новостям</span>
               <i class="fas fa-arrow-right"></i>
@@ -664,17 +826,18 @@
         <h2 class="section-title">Социальные сети</h2>
         <p class="section-subtitle">Подписывайтесь, чтобы следить за новинками и релизами.</p>
         <div class="social-icons text-links">
-            <!-- Ссылка на Telegram -->
             <a href="https://t.me/AxKuon" aria-label="Telegram" class="social-text-link tg-link">
                 Telegram
             </a>
 
-            <!-- Ссылка на мессенджер Макс -->
             <a href="https://max.ru/channel_axkuon" target="_blank" rel="noopener noreferrer" aria-label="Мессенджер МАКС" class="social-text-link max-link">
                 MAX
             </a>
 
-            <!-- Ссылка на RuStore -->
+            <a href="https://vk.ru/axkuon" target="_blank" rel="noopener noreferrer" aria-label="ВКонтакте" class="social-text-link vk-link">
+                VK
+            </a>
+
             <a href="https://www.rustore.ru/catalog/developer/ch7shq" target="_blank" rel="noopener noreferrer" aria-label="RuStore" class="social-text-link rustore-link">
                 RuStore
             </a>
@@ -688,16 +851,62 @@
     </section>
   </main>
 
-  <footer>
+  <!-- ФУТЕР -->
+  <footer class="site-footer">
     <div class="container">
-      <p>© 2026 AxKuon.ru — приложения для Android, Linux и Windows, open-source проекты.</p>
-      <p style="margin-top: 8px; font-size: 0.8rem;">Made with <i class="fas fa-heart" style="color: #a78bfa;"></i> by AxKuon team</p>
+      <div class="footer-grid">
+        <div class="footer-col">
+          <a href="#" class="footer-logo">
+            Ax<span>Kuon</span>
+          </a>
+          <p class="footer-tagline">
+            Создаём приложения для Android, Linux и Windows. Поддерживаем open-source проекты и развиваем сообщество разработчиков.
+          </p>
+        </div>
+
+        <div class="footer-col">
+          <h4>Разделы</h4>
+          <ul class="footer-links">
+            <li><a href="#about"><i class="fas fa-info-circle"></i> О нас</a></li>
+            <li><a href="releases.html"><i class="fas fa-rocket"></i> Релизы</a></li>
+            <li><a href="news.html"><i class="far fa-newspaper"></i> Новости</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Мы в соцсетях</h4>
+          <div class="footer-social">
+            <a href="https://t.me/AxKuon" class="footer-social-btn" target="_blank" rel="noopener">
+              <i class="fab fa-telegram"></i> Telegram
+            </a>
+            <a href="https://max.ru/channel_axkuon" class="footer-social-btn" target="_blank" rel="noopener">
+              <i class="fas fa-comment-dots"></i> MAX
+            </a>
+            <a href="https://vk.ru/axkuon" class="footer-social-btn" target="_blank" rel="noopener">
+              <i class="fab fa-vk"></i> VK
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <div class="footer-copy">
+          © 2026 <a href="#">AxKuon.ru</a> — приложения для Android, Linux и Windows, open-source проекты.
+        </div>
+        <div class="footer-made">
+          Made with <i class="fas fa-heart"></i> by AxKuon team
+        </div>
+      </div>
     </div>
   </footer>
 
-
+  <!-- КНОПКА "НАВЕРХ" -->
+  <button class="scroll-top-btn" id="scrollTopBtn" aria-label="Наверх" type="button">
+    <i class="fas fa-arrow-up"></i>
+  </button>
 
   <script>
+    // Плавный скролл по якорям
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
       anchor.addEventListener('click', function(e) {
         const href = this.getAttribute('href');
@@ -715,6 +924,21 @@
           }
         }
       });
+    });
+
+    // Кнопка "Наверх"
+    const scrollTopBtn = document.getElementById('scrollTopBtn');
+
+    window.addEventListener('scroll', function() {
+      if (window.pageYOffset > 400) {
+        scrollTopBtn.classList.add('visible');
+      } else {
+        scrollTopBtn.classList.remove('visible');
+      }
+    });
+
+    scrollTopBtn.addEventListener('click', function() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     });
   </script>
 </body>
