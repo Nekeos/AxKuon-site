@@ -22,37 +22,27 @@
   <link rel="icon" type="image/png" href="favicon.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 
   <script async src="https://ad.mail.ru/static/ads-async.js"></script>
 
   <style>
-  /* Стилизация скроллбара браузера */
-    ::-webkit-scrollbar {
-      width: 10px;
-    }
 
-    ::-webkit-scrollbar-track {
-      background: #0c0c0f;
-    }
-
+  /* Скроллбар */
+    ::-webkit-scrollbar { width: 10px; }
+    ::-webkit-scrollbar-track { background: #0c0c0f; }
     ::-webkit-scrollbar-thumb {
       background: rgba(167, 139, 250, 0.3);
       border-radius: 5px;
       border: 2px solid #0c0c0f;
     }
-
-    ::-webkit-scrollbar-thumb:hover {
-      background: rgba(167, 139, 250, 0.5);
-    }
-
-    /* Для Firefox */
+    ::-webkit-scrollbar-thumb:hover { background: rgba(167, 139, 250, 0.5); }
     html {
       scrollbar-width: thin;
       scrollbar-color: rgba(167, 139, 250, 0.3) #0c0c0f;
     }
-    /* бурмалда */
+
     * {
       -webkit-user-select: none;
       -moz-user-select: none;
@@ -60,7 +50,6 @@
       user-select: none;
     }
 
-    /* прогрев гоев */
     img {
       -webkit-user-drag: none;
       -khtml-user-drag: none;
@@ -70,7 +59,6 @@
       pointer-events: none;
     }
 
-    /* ссылки не трогать */
     a {
       -webkit-user-select: none;
       -moz-user-select: none;
@@ -97,10 +85,25 @@
       line-height: 1.5;
     }
 
+    body::before {
+      content: '';
+      position: fixed;
+      top: -50%;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 800px;
+      height: 800px;
+      background: radial-gradient(circle, rgba(167, 139, 250, 0.06) 0%, transparent 60%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
     .container {
       max-width: 900px;
       margin: 0 auto;
       padding: 0 24px;
+      position: relative;
+      z-index: 1;
     }
 
     header {
@@ -128,13 +131,7 @@
       text-decoration: none;
     }
 
-    .logo span {
-      color: #a78bfa;
-    }
-
-    .logo span:first-of-type {
-      font-weight: inherit;
-    }
+    .logo span { color: #a78bfa; }
 
     .nav-links {
       display: flex;
@@ -150,9 +147,7 @@
       transition: color 0.2s;
     }
 
-    .nav-links a:hover {
-      color: #ffffff;
-    }
+    .nav-links a:hover { color: #ffffff; }
 
     .btn-back {
       background: transparent;
@@ -175,18 +170,19 @@
     }
 
     .page-header {
-      padding: 60px 0 40px;
+      padding: 60px 0 32px;
       text-align: center;
     }
 
     .page-header h1 {
       font-size: 3rem;
-      font-weight: 700;
+      font-weight: 800;
       margin-bottom: 12px;
       background: linear-gradient(to right, #ffffff, #c4b5fd);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
+      letter-spacing: -1px;
     }
 
     .page-header p {
@@ -196,165 +192,715 @@
       margin: 0 auto;
     }
 
+    /* ПОИСК И ФИЛЬТРЫ */
+    .controls {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      margin-bottom: 32px;
+    }
+
+    .search-wrap {
+      position: relative;
+      width: 100%;
+    }
+
+    .search-wrap > i.fa-search {
+      position: absolute;
+      left: 18px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: #7c7c8a;
+      font-size: 1rem;
+      pointer-events: none;
+      z-index: 2;
+    }
+
+    .search-input {
+      width: 100%;
+      padding: 14px 52px 14px 46px;
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 16px;
+      color: #e0e0e0;
+      font-size: 1rem;
+      font-family: inherit;
+      transition: all 0.2s;
+    }
+
+    .search-input::placeholder { color: #7c7c8a; }
+
+    .search-input:focus {
+      outline: none;
+      border-color: rgba(167, 139, 250, 0.5);
+      background: rgba(167, 139, 250, 0.04);
+      box-shadow: 0 0 0 3px rgba(167, 139, 250, 0.1);
+    }
+
+    .search-clear {
+      position: absolute;
+      right: 12px;
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(255,255,255,0.06);
+      border: none;
+      color: #9090a0;
+      width: 26px;
+      height: 26px;
+      border-radius: 50%;
+      cursor: pointer;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.75rem;
+      transition: all 0.2s;
+      font-family: inherit;
+      z-index: 2;
+      padding: 0;
+    }
+
+    .search-clear:hover {
+      background: rgba(255, 77, 77, 0.15);
+      color: #ff6666;
+    }
+
+    .search-clear.visible { display: flex; }
+
+    .filters {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .filter-btn {
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.08);
+      color: #b0b0c0;
+      padding: 8px 18px;
+      border-radius: 20px;
+      font-size: 0.85rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.2s;
+      font-family: inherit;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .filter-btn:hover {
+      background: rgba(167, 139, 250, 0.1);
+      border-color: rgba(167, 139, 250, 0.3);
+      color: #c4b5fd;
+    }
+
+    .filter-btn.active {
+      background: linear-gradient(135deg, rgba(167, 139, 250, 0.3) 0%, rgba(139, 92, 246, 0.2) 100%);
+      border-color: #a78bfa;
+      color: #fff;
+      box-shadow: 0 0 16px -4px rgba(167, 139, 250, 0.6);
+    }
+
+    .filter-btn .count {
+      background: rgba(255,255,255,0.08);
+      color: #9090a0;
+      padding: 1px 8px;
+      border-radius: 10px;
+      font-size: 0.75rem;
+      font-weight: 600;
+    }
+
+    .filter-btn.active .count {
+      background: rgba(255,255,255,0.2);
+      color: #fff;
+    }
+
+    .results-info {
+      color: #7c7c8a;
+      font-size: 0.85rem;
+      margin-bottom: 16px;
+      display: none;
+    }
+
+    .results-info.visible { display: block; }
+
+    /* СПИСОК НОВОСТЕЙ */
     .news-list {
       display: flex;
       flex-direction: column;
-      gap: 24px;
-      padding: 20px 0 60px;
+      gap: 20px;
+      padding: 0 0 60px;
     }
 
     .news-card {
-      background: rgba(255, 255, 255, 0.03);
-      border: 1px solid rgba(255, 255, 255, 0.06);
-      border-radius: 20px;
-      padding: 28px 32px;
-      transition: all 0.25s ease;
+      position: relative;
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.04) 0%, rgba(255, 255, 255, 0.02) 100%);
+      border: 1px solid rgba(255, 255, 255, 0.07);
+      border-radius: 24px;
+      padding: 32px 36px;
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
       display: flex;
-      gap: 24px;
+      gap: 28px;
       align-items: flex-start;
+      overflow: hidden;
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+    }
+
+    .news-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(167, 139, 250, 0.4), transparent);
+      opacity: 0;
+      transition: opacity 0.4s;
+    }
+
+    .news-card::after {
+      content: '';
+      position: absolute;
+      top: -50%;
+      right: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(167, 139, 250, 0.08) 0%, transparent 60%);
+      opacity: 0;
+      transition: opacity 0.4s;
+      pointer-events: none;
     }
 
     .news-card:hover {
-      border-color: rgba(167, 139, 250, 0.4);
-      background: rgba(167, 139, 250, 0.04);
-      transform: translateX(4px);
+      border-color: rgba(167, 139, 250, 0.35);
+      transform: translateY(-4px);
+      box-shadow:
+        0 20px 40px -12px rgba(0, 0, 0, 0.5),
+        0 0 0 1px rgba(167, 139, 250, 0.1),
+        0 0 40px -10px rgba(167, 139, 250, 0.2);
     }
 
+    .news-card:hover::before { opacity: 1; }
+    .news-card:hover::after { opacity: 1; }
+
+    .news-card.hidden { display: none; }
+
+    /* АНИМАЦИЯ ПОЯВЛЕНИЯ */
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(24px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .news-card {
+      animation: fadeInUp 0.6s cubic-bezier(0.4, 0, 0.2, 1) both;
+    }
+
+    .news-card:nth-child(1) { animation-delay: 0.05s; }
+    .news-card:nth-child(2) { animation-delay: 0.1s; }
+    .news-card:nth-child(3) { animation-delay: 0.15s; }
+    .news-card:nth-child(4) { animation-delay: 0.2s; }
+    .news-card:nth-child(5) { animation-delay: 0.25s; }
+    .news-card:nth-child(6) { animation-delay: 0.3s; }
+    .news-card:nth-child(7) { animation-delay: 0.35s; }
+    .news-card:nth-child(8) { animation-delay: 0.4s; }
+
     .news-date-badge {
-      background: rgba(167, 139, 250, 0.15);
-      border-radius: 16px;
-      padding: 12px 16px;
+      position: relative;
+      background: linear-gradient(135deg, rgba(167, 139, 250, 0.25) 0%, rgba(167, 139, 250, 0.1) 100%);
+      border: 1px solid rgba(167, 139, 250, 0.3);
+      border-radius: 18px;
+      padding: 16px 18px;
       text-align: center;
-      min-width: 70px;
+      min-width: 78px;
       flex-shrink: 0;
+      backdrop-filter: blur(10px);
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1);
     }
 
     .news-date-badge .day {
-      font-size: 1.8rem;
-      font-weight: 700;
-      color: #c4b5fd;
+      font-size: 2rem;
+      font-weight: 800;
+      background: linear-gradient(135deg, #ffffff, #c4b5fd);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
       line-height: 1;
+      letter-spacing: -1px;
     }
 
     .news-date-badge .month {
-      font-size: 0.85rem;
+      font-size: 0.75rem;
       color: #a78bfa;
       text-transform: uppercase;
-      margin-top: 4px;
+      margin-top: 6px;
+      letter-spacing: 1px;
+      font-weight: 600;
     }
 
     .news-content {
       flex-grow: 1;
+      min-width: 0;
+      position: relative;
+      z-index: 1;
     }
 
     .news-category {
-      display: inline-block;
-      font-size: 0.75rem;
-      font-weight: 600;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.7rem;
+      font-weight: 700;
       text-transform: uppercase;
-      letter-spacing: 0.5px;
-      color: #a78bfa;
-      margin-bottom: 8px;
+      letter-spacing: 1.2px;
+      color: #c4b5fd;
+      background: rgba(167, 139, 250, 0.12);
+      border: 1px solid rgba(167, 139, 250, 0.2);
+      padding: 5px 12px;
+      border-radius: 8px;
+      margin-bottom: 14px;
+    }
+
+    .news-category::before {
+      content: '';
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: #a78bfa;
+      box-shadow: 0 0 8px #a78bfa;
     }
 
     .news-card h2 {
-      font-size: 1.4rem;
-      font-weight: 600;
-      color: #fff;
-      margin-bottom: 8px;
+      font-size: 1.45rem;
+      font-weight: 700;
+      color: #ffffff;
+      margin-bottom: 10px;
       line-height: 1.3;
+      letter-spacing: -0.4px;
+      transition: color 0.2s;
+    }
+
+    .news-card:hover h2 { color: #e9d5ff; }
+
+    .news-card h2 mark {
+      background: rgba(167, 139, 250, 0.35);
+      color: #e9d5ff;
+      padding: 0 3px;
+      border-radius: 4px;
     }
 
     .news-card p {
       color: #a0a0b0;
       font-size: 0.95rem;
-      margin-bottom: 16px;
-      line-height: 1.6;
+      margin-bottom: 18px;
+      line-height: 1.65;
+    }
+
+    .news-card p mark {
+      background: rgba(167, 139, 250, 0.35);
+      color: #e9d5ff;
+      padding: 0 3px;
+      border-radius: 4px;
     }
 
     .news-link {
-      color: #a78bfa;
-      text-decoration: none;
-      font-weight: 500;
-      font-size: 0.9rem;
       display: inline-flex;
       align-items: center;
-      gap: 6px;
-      transition: gap 0.2s;
+      gap: 8px;
+      color: #c4b5fd;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.9rem;
+      padding: 8px 16px;
+      border-radius: 10px;
+      background: rgba(167, 139, 250, 0.08);
+      border: 1px solid rgba(167, 139, 250, 0.2);
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     }
 
     .news-link:hover {
-      gap: 10px;
+      background: rgba(167, 139, 250, 0.2);
+      border-color: rgba(167, 139, 250, 0.5);
+      color: #ffffff;
+      gap: 12px;
+      box-shadow: 0 4px 12px -2px rgba(167, 139, 250, 0.3);
     }
 
+    .news-link i { transition: transform 0.3s; }
+    .news-link:hover i { transform: translateX(2px); }
+
     .news-image {
-      width: 120px;
-      height: 120px;
-      border-radius: 16px;
-      background: rgba(167, 139, 250, 0.1);
+      width: 110px;
+      height: 110px;
+      border-radius: 20px;
+      background: linear-gradient(135deg, rgba(167, 139, 250, 0.15) 0%, rgba(167, 139, 250, 0.05) 100%);
+      border: 1px solid rgba(167, 139, 250, 0.15);
       display: flex;
       align-items: center;
       justify-content: center;
       flex-shrink: 0;
-      font-size: 2.5rem;
-      color: #a78bfa;
+      font-size: 2.4rem;
+      color: #c4b5fd;
+      position: relative;
+      overflow: hidden;
+      transition: all 0.4s;
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08);
+    }
+
+    .news-image::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at 30% 30%, rgba(167, 139, 250, 0.3) 0%, transparent 60%);
+      opacity: 0.5;
+      transition: opacity 0.4s;
+    }
+
+    .news-image i {
+      position: relative;
+      z-index: 1;
+      filter: drop-shadow(0 0 12px rgba(167, 139, 250, 0.5));
+      transition: transform 0.4s;
+    }
+
+    .news-card:hover .news-image {
+      border-color: rgba(167, 139, 250, 0.4);
+      box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.1),
+        0 0 24px -4px rgba(167, 139, 250, 0.4);
+    }
+
+    .news-card:hover .news-image::before { opacity: 1; }
+    .news-card:hover .news-image i { transform: scale(1.1); }
+
+    .news-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 20px;
+      position: relative;
+      z-index: 1;
     }
 
     .pinned {
-      border-color: rgba(167, 139, 250, 0.3);
-      background: rgba(167, 139, 250, 0.05);
+      background: linear-gradient(135deg, rgba(167, 139, 250, 0.08) 0%, rgba(167, 139, 250, 0.03) 100%);
+      border-color: rgba(167, 139, 250, 0.25);
+      box-shadow:
+        0 0 0 1px rgba(167, 139, 250, 0.1),
+        0 8px 32px -8px rgba(167, 139, 250, 0.15);
+    }
+
+    .pinned::before {
+      opacity: 1;
+      background: linear-gradient(90deg, transparent, rgba(167, 139, 250, 0.7), transparent);
     }
 
     .pinned-badge {
-      display: inline-block;
-      background: #a78bfa;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      background: linear-gradient(135deg, #a78bfa 0%, #8b5cf6 100%);
       color: #0c0c0f;
       padding: 4px 10px;
-      border-radius: 12px;
-      font-size: 0.7rem;
-      font-weight: 700;
-      margin-left: 8px;
+      border-radius: 8px;
+      font-size: 0.65rem;
+      font-weight: 800;
+      margin-left: 10px;
       text-transform: uppercase;
+      letter-spacing: 0.5px;
       vertical-align: middle;
+      box-shadow: 0 4px 12px -2px rgba(167, 139, 250, 0.5);
+    }
+
+    .pinned-badge::before {
+      content: '★';
+      font-size: 0.7rem;
     }
 
     .news-loading {
       text-align: center;
-      padding: 40px 0;
+      padding: 60px 20px;
       color: #7c7c8a;
+      font-size: 0.95rem;
     }
 
-    footer {
-      border-top: 1px solid rgba(255,255,255,0.05);
-      padding: 32px 0;
+    .news-loading i {
+      font-size: 2rem;
+      display: block;
+      margin-bottom: 16px;
+      color: #a78bfa;
+    }
+
+    /* УЛУЧШЕННЫЙ ПУСТОЙ ЭКРАН */
+    .no-results {
       text-align: center;
-      color: #6b6b7a;
+      padding: 80px 24px;
+      color: #7c7c8a;
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.03) 0%, rgba(255, 255, 255, 0.01) 100%);
+      border: 1px dashed rgba(167, 139, 250, 0.2);
+      border-radius: 24px;
+      margin-top: 8px;
+    }
+
+    .no-results i.no-results-icon {
+      font-size: 3.5rem;
+      display: block;
+      margin-bottom: 24px;
+      background: linear-gradient(135deg, #a78bfa, #8b5cf6);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      animation: pulse 2s ease-in-out infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); opacity: 0.8; }
+      50% { transform: scale(1.1); opacity: 1; }
+    }
+
+    .no-results h3 {
+      color: #fff;
+      margin-bottom: 10px;
+      font-weight: 700;
+      font-size: 1.4rem;
+    }
+
+    .no-results p {
+      font-size: 0.95rem;
+      margin-bottom: 24px;
+      max-width: 400px;
+      margin-left: auto;
+      margin-right: auto;
+      line-height: 1.6;
+    }
+
+    .reset-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 12px 24px;
+      background: linear-gradient(135deg, #a78bfa 0%, #8b5cf6 100%);
+      color: #0c0c0f;
+      font-weight: 700;
+      font-size: 0.95rem;
+      text-decoration: none;
+      border-radius: 30px;
+      border: none;
+      cursor: pointer;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      box-shadow: 0 8px 20px -4px rgba(167, 139, 250, 0.4);
+      font-family: inherit;
+    }
+
+    .reset-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 28px -4px rgba(167, 139, 250, 0.6);
+    }
+
+    .reset-btn i { transition: transform 0.3s; }
+    .reset-btn:hover i { transform: rotate(180deg); }
+
+    /* ПРЕМИУМ ФУТЕР */
+    .site-footer {
+      position: relative;
+      margin-top: 80px;
+      padding: 60px 0 0;
+      border-top: 1px solid rgba(255, 255, 255, 0.06);
+      background: linear-gradient(180deg, transparent 0%, rgba(167, 139, 250, 0.03) 100%);
+    }
+
+    .site-footer::before {
+      content: '';
+      position: absolute;
+      top: -1px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 200px;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, #a78bfa, transparent);
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 48px;
+      padding-bottom: 48px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    }
+
+    .footer-col h4 {
+      font-size: 0.8rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: #a78bfa;
+      margin-bottom: 20px;
+    }
+
+    .footer-logo {
+      font-weight: 700;
+      font-size: 1.8rem;
+      letter-spacing: -0.5px;
+      color: #ffffff;
+      text-decoration: none;
+      display: inline-block;
+      margin-bottom: 12px;
+    }
+
+    .footer-logo span { color: #a78bfa; }
+
+    .footer-tagline {
+      color: #9090a0;
       font-size: 0.9rem;
-      margin-top: 40px;
+      line-height: 1.6;
+      max-width: 320px;
     }
 
-    @media (max-width: 640px) {
-      .page-header h1 {
-        font-size: 2.2rem;
-      }
-      .news-card {
-        flex-direction: column;
-      }
-      .news-date-badge {
-        display: flex;
-        gap: 8px;
-        align-items: center;
-        padding: 8px 16px;
-      }
-      .news-image {
-        width: 100%;
-        height: 160px;
-      }
+    .footer-links {
+      list-style: none;
+      padding: 0;
     }
 
-    /* ============================================ */
-    /* БОКОВАЯ РЕКЛАМА (ПК) — 2 яруса по 240x400 */
-    /* ============================================ */
+    .footer-links li {
+      margin-bottom: 10px;
+    }
+
+    .footer-links a {
+      color: #b0b0c0;
+      text-decoration: none;
+      font-size: 0.9rem;
+      transition: all 0.2s;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .footer-links a:hover {
+      color: #c4b5fd;
+      transform: translateX(3px);
+    }
+
+    .footer-social {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .footer-social-btn {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 14px;
+      border-radius: 10px;
+      text-decoration: none;
+      color: #b0b0c0;
+      font-size: 0.85rem;
+      font-weight: 500;
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.06);
+      transition: all 0.2s;
+    }
+
+    .footer-social-btn:hover {
+      color: #fff;
+      background: rgba(167, 139, 250, 0.12);
+      border-color: rgba(167, 139, 250, 0.3);
+      transform: translateY(-2px);
+    }
+
+    .footer-social-btn i {
+      font-size: 1rem;
+      color: #a78bfa;
+    }
+
+    .footer-bottom {
+      padding: 24px 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .footer-copy {
+      color: #6b6b7a;
+      font-size: 0.85rem;
+    }
+
+    .footer-copy a {
+      color: #a78bfa;
+      text-decoration: none;
+    }
+
+    .footer-made {
+      color: #6b6b7a;
+      font-size: 0.8rem;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .footer-made i {
+      color: #a78bfa;
+      animation: heartBeat 1.5s ease-in-out infinite;
+    }
+
+    @keyframes heartBeat {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.15); }
+    }
+
+    /* КНОПКА "НАВЕРХ" */
+    .scroll-top-btn {
+      position: fixed;
+      bottom: 32px;
+      right: 32px;
+      width: 52px;
+      height: 52px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #a78bfa 0%, #8b5cf6 100%);
+      border: none;
+      color: #0c0c0f;
+      font-size: 1.2rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow:
+        0 8px 24px -4px rgba(167, 139, 250, 0.5),
+        0 0 0 1px rgba(255, 255, 255, 0.1) inset;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(20px) scale(0.8);
+      z-index: 90;
+      font-family: inherit;
+    }
+
+    .scroll-top-btn.visible {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0) scale(1);
+    }
+
+    .scroll-top-btn:hover {
+      transform: translateY(-4px) scale(1.05);
+      box-shadow:
+        0 12px 32px -4px rgba(167, 139, 250, 0.7),
+        0 0 0 1px rgba(255, 255, 255, 0.15) inset;
+    }
+
+    .scroll-top-btn:active {
+      transform: translateY(-2px) scale(1);
+    }
+
+    /* РЕКЛАМА */
     .ad-side {
       position: fixed;
       top: 100px;
@@ -365,13 +911,8 @@
       gap: 20px;
     }
 
-    .ad-left {
-      left: 20px;
-    }
-
-    .ad-right {
-      right: 20px;
-    }
+    .ad-left { left: 20px; }
+    .ad-right { right: 20px; }
 
     .ad-block {
       width: 240px;
@@ -389,16 +930,11 @@
       margin: 0 !important;
     }
 
-    /* Мобильная реклама (скрыта по умолчанию) */
     .mobile-ad-top,
-    .mobile-ad-bottom {
-      display: none;
-    }
+    .mobile-ad-bottom { display: none; }
 
     @media (max-width: 1500px) {
-      .ad-side {
-        display: none;
-      }
+      .ad-side { display: none; }
 
       .mobile-ad-top,
       .mobile-ad-bottom {
@@ -420,7 +956,18 @@
       }
     }
 
-    /* Мобильная адаптация */
+    /* МОБИЛЬНАЯ АДАПТАЦИЯ */
+    @media (max-width: 900px) {
+      .footer-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 32px;
+      }
+
+      .footer-col:first-child {
+        grid-column: 1 / -1;
+      }
+    }
+
     @media (max-width: 768px) {
       body {
         overflow-x: hidden;
@@ -444,10 +991,71 @@
       }
       .logo { font-size: 1.5rem; }
       .btn-back { padding: 6px 14px; font-size: 0.85rem; }
+
+      .page-header { padding: 40px 0 24px; }
+      .page-header h1 { font-size: 2.2rem; }
+      .page-header p { font-size: 1rem; }
+
+      .news-card {
+        flex-direction: column;
+        padding: 24px 22px;
+        gap: 20px;
+      }
+
+      .news-date-badge {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        padding: 10px 16px;
+        min-width: 0;
+        width: fit-content;
+      }
+
+      .news-date-badge .day { font-size: 1.5rem; }
+      .news-date-badge .month { margin-top: 0; font-size: 0.7rem; }
+
+      .news-image {
+        width: 100%;
+        height: 180px;
+        font-size: 3rem;
+      }
+
+      .news-card h2 { font-size: 1.25rem; }
+
+      .news-link {
+        width: 100%;
+        justify-content: center;
+      }
+
+      .filters { gap: 6px; }
+      .filter-btn { padding: 6px 14px; font-size: 0.8rem; }
+
+      .scroll-top-btn {
+        bottom: 20px;
+        right: 20px;
+        width: 46px;
+        height: 46px;
+        font-size: 1rem;
+      }
+
+      .footer-grid {
+        grid-template-columns: 1fr;
+        gap: 32px;
+        padding-bottom: 32px;
+      }
+
+      .footer-bottom {
+        flex-direction: column;
+        text-align: center;
+      }
+
+      .site-footer { padding: 40px 0 0; }
     }
 
     @media (max-width: 420px) {
       .container { padding: 0 12px; }
+      .page-header h1 { font-size: 1.9rem; }
+      .news-card { padding: 20px 18px; }
     }
   </style>
 </head>
@@ -466,7 +1074,7 @@
     </div>
   </header>
 
-  <!-- Мобильная реклама сверху (только на телефоне) -->
+  <!-- Мобильная реклама сверху -->
   <div class="mobile-ad-top">
     <ins class="mrg-tag" 
         style="display:inline-block;width:320px;height:50px"
@@ -481,63 +1089,39 @@
       <p>Анонсы, обновления, статьи и события из жизни AxKuon. Будьте в курсе всего.</p>
     </div>
 
-    <div class="news-list" id="newsList">
-      <div class="news-loading"><i class="fas fa-spinner fa-spin"></i> Загрузка новостей...</div>
+    <!-- ПОИСК И ФИЛЬТРЫ -->
+    <div class="controls">
+      <div class="search-wrap">
+        <i class="fas fa-search"></i>
+        <input type="text" 
+               class="search-input" 
+               id="searchInput" 
+               placeholder="Поиск по новостям..."
+               autocomplete="off">
+        <button class="search-clear" id="searchClear" aria-label="Очистить" type="button">
+          <i class="fas fa-times"></i>
+        </button>
+      </div>
+
+      <div class="filters" id="filters">
+        <button class="filter-btn active" data-filter="all" type="button">
+          Все <span class="count" id="countAll">0</span>
+        </button>
+      </div>
+
+      <div class="results-info" id="resultsInfo"></div>
     </div>
 
-    <script>
-    fetch('news.json')
-      .then(r => {
-        if (!r.ok) throw new Error('news.json не найден (ошибка ' + r.status + ')');
-        return r.json();
-      })
-      .then(news => {
-        // Сортируем: закреплённые первыми, потом по дате
-        news.sort((a, b) => {
-          if (a.pinned && !b.pinned) return -1;
-          if (!a.pinned && b.pinned) return 1;
-          return new Date(b.date) - new Date(a.date);
-        });
-
-        // Строим карточки
-        document.getElementById('newsList').innerHTML = news.map(n => {
-          const date = new Date(n.date);
-          const months = ['Января','Февраля','Марта','Апреля','Мая','Июня','Июля','Августа','Сентября','Октября','Ноября','Декабря'];
-
-          // Кнопка: если url пустой или не задан — не показываем
-          // Подпись: если задан button — используем его, иначе «Читать»
-          const buttonHtml = n.url
-            ? `<a href="${n.url}" class="news-link">${n.button || 'Читать'} <i class="fas fa-arrow-right"></i></a>`
-            : '';
-
-          return `
-            <div class="news-card ${n.pinned ? 'pinned' : ''}">
-              <div class="news-date-badge">
-                <div class="day">${date.getDate()}</div>
-                <div class="month">${months[date.getMonth()]}</div>
-              </div>
-              <div class="news-content">
-                <span class="news-category">${n.category}</span>
-                <h2>${n.title}${n.pinned ? '<span class="pinned-badge">Закреплено</span>' : ''}</h2>
-                <p>${n.description}</p>
-                ${buttonHtml}
-              </div>
-              <div class="news-image">
-                <i class="fas fa-${n.icon}"></i>
-              </div>
-            </div>
-          `;
-        }).join('');
-      })
-      .catch(e => {
-        console.error('Ошибка загрузки новостей:', e);
-        document.getElementById('newsList').innerHTML = 
-          '<div class="news-loading">Не удалось загрузить новости: ' + e.message + '</div>';
-      });
-    </script>
+    <!-- СПИСОК НОВОСТЕЙ -->
+    <div class="news-list" id="newsList">
+      <div class="news-loading">
+        <i class="fas fa-spinner fa-spin"></i>
+        Загрузка новостей...
+      </div>
+    </div>
   </main>
 
-  <!-- Мобильная реклама снизу (только на телефоне) -->
+  <!-- Мобильная реклама снизу -->
   <div class="mobile-ad-bottom">
     <ins class="mrg-tag" 
         style="display:inline-block;width:240px;height:400px"
@@ -546,13 +1130,74 @@
     </ins>
   </div>
 
-  <footer>
+  <!-- ФУТЕР -->
+  <footer class="site-footer">
     <div class="container">
-      <p>© 2026 AxKuon.ru — приложения для Android, Linux и Windows, open-source проекты.</p>
+      <div class="footer-grid">
+        <!-- О студии -->
+        <div class="footer-col">
+          <a href="index.html" class="footer-logo">
+            Ax<span>Kuon</span>
+          </a>
+          <p class="footer-tagline">
+            Создаём приложения для Android, Linux и Windows. Поддерживаем open-source проекты и развиваем сообщество разработчиков.
+          </p>
+        </div>
+
+        <!-- Разделы -->
+        <div class="footer-col">
+          <h4>Разделы</h4>
+          <ul class="footer-links">
+            <li><a href="index.html"><i class="fas fa-home"></i> Главная</a></li>
+            <li><a href="releases.html"><i class="fas fa-rocket"></i> Релизы</a></li>
+            <li><a href="news.html"><i class="far fa-newspaper"></i> Новости</a></li>
+          </ul>
+        </div>
+
+        <!-- Проекты -->
+        <div class="footer-col">
+          <h4>Проекты</h4>
+          <ul class="footer-links">
+            <li><a href="Releases/FileDrop.html"><i class="fas fa-share-alt"></i> FileDrop</a></li>
+            <li><a href="releases.html"><i class="fas fa-terminal"></i> Code-Analyzer</a></li>
+            <li><a href="releases.html"><i class="fas fa-language"></i> English 120</a></li>
+          </ul>
+        </div>
+
+        <!-- Соцсети -->
+        <div class="footer-col">
+          <h4>Мы в соцсетях</h4>
+          <div class="footer-social">
+            <a href="https://t.me/AxKuon" class="footer-social-btn" target="_blank" rel="noopener">
+              <i class="fab fa-telegram"></i> Telegram
+            </a>
+            <a href="https://max.ru/channel_axkuon" class="footer-social-btn" target="_blank" rel="noopener">
+              <i class="fas fa-comment-dots"></i> MAX
+            </a>
+            <a href="https://vk.ru/axkuon" class="footer-social-btn" target="_blank" rel="noopener">
+              <i class="fab fa-vk"></i> VK
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <div class="footer-copy">
+          © 2026 <a href="index.html">AxKuon.ru</a> — приложения для Android, Linux и Windows, open-source проекты.
+        </div>
+        <div class="footer-made">
+          Made with <i class="fas fa-heart"></i> by AxKuon team
+        </div>
+      </div>
     </div>
   </footer>
 
-<!-- Левый столбец рекламы (ПК) — 2 яруса 240x400 -->
+  <!-- КНОПКА "НАВЕРХ" -->
+  <button class="scroll-top-btn" id="scrollTopBtn" aria-label="Наверх" type="button">
+    <i class="fas fa-arrow-up"></i>
+  </button>
+
+<!-- Левый столбец рекламы (ПК) -->
 <div class="ad-side ad-left">
   <div class="ad-block">
     <ins class="mrg-tag" 
@@ -570,7 +1215,7 @@
   </div>
 </div>
 
-<!-- Правый столбец рекламы (ПК) — 2 яруса 240x400 -->
+<!-- Правый столбец рекламы (ПК) -->
 <div class="ad-side ad-right">
   <div class="ad-block">
     <ins class="mrg-tag" 
@@ -587,6 +1232,222 @@
     </ins>
   </div>
 </div>
+
+<script>
+(function() {
+  'use strict';
+
+  var allNews = [];
+  var currentFilter = 'all';
+  var currentSearch = '';
+
+  var newsList = document.getElementById('newsList');
+  var searchInput = document.getElementById('searchInput');
+  var searchClear = document.getElementById('searchClear');
+  var filtersContainer = document.getElementById('filters');
+  var countAll = document.getElementById('countAll');
+  var resultsInfo = document.getElementById('resultsInfo');
+  var scrollTopBtn = document.getElementById('scrollTopBtn');
+
+  // ЗАГРУЗКА
+  fetch('news.json')
+    .then(function(r) {
+      if (!r.ok) throw new Error('news.json не найден (ошибка ' + r.status + ')');
+      return r.json();
+    })
+    .then(function(news) {
+      allNews = news;
+      allNews.sort(function(a, b) {
+        if (a.pinned && !b.pinned) return -1;
+        if (!a.pinned && b.pinned) return 1;
+        return new Date(b.date) - new Date(a.date);
+      });
+      buildFilters();
+      renderNews();
+    })
+    .catch(function(e) {
+      console.error('Ошибка загрузки новостей:', e);
+      newsList.innerHTML = '<div class="no-results">' +
+        '<i class="fas fa-exclamation-triangle no-results-icon"></i>' +
+        '<h3>Не удалось загрузить новости</h3>' +
+        '<p>' + e.message + '</p>' +
+        '</div>';
+    });
+
+  // ФИЛЬТРЫ
+  function buildFilters() {
+    var categories = {};
+    allNews.forEach(function(item) {
+      var cat = item.category || 'Без категории';
+      categories[cat] = (categories[cat] || 0) + 1;
+    });
+
+    countAll.textContent = allNews.length;
+
+    Object.keys(categories).forEach(function(cat) {
+      var btn = document.createElement('button');
+      btn.className = 'filter-btn';
+      btn.setAttribute('data-filter', cat);
+      btn.setAttribute('type', 'button');
+      btn.innerHTML = cat + ' <span class="count">' + categories[cat] + '</span>';
+      btn.addEventListener('click', function() { setFilter(cat); });
+      filtersContainer.appendChild(btn);
+    });
+  }
+
+  function setFilter(filter) {
+    currentFilter = filter;
+    var buttons = filtersContainer.querySelectorAll('.filter-btn');
+    buttons.forEach(function(btn) {
+      btn.classList.toggle('active', btn.getAttribute('data-filter') === filter);
+    });
+    renderNews();
+  }
+
+  filtersContainer.querySelector('[data-filter="all"]').addEventListener('click', function() {
+    setFilter('all');
+  });
+
+  // ПОИСК
+  searchInput.addEventListener('input', function() {
+    currentSearch = this.value.trim().toLowerCase();
+    searchClear.classList.toggle('visible', currentSearch.length > 0);
+    renderNews();
+  });
+
+  searchClear.addEventListener('click', function() {
+    searchInput.value = '';
+    currentSearch = '';
+    searchClear.classList.remove('visible');
+    searchInput.focus();
+    renderNews();
+  });
+
+  // ПОДСВЕТКА
+  function highlight(text, query) {
+    if (!query) return escapeHtml(text);
+    var escaped = escapeHtml(text);
+    var regex = new RegExp('(' + escapeRegex(query) + ')', 'gi');
+    return escaped.replace(regex, '<mark>$1</mark>');
+  }
+
+  function escapeHtml(text) {
+    var div = document.createElement('div');
+    div.textContent = text;
+    return div.innerHTML;
+  }
+
+  function escapeRegex(str) {
+    return str.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+  }
+
+  // СБРОС ФИЛЬТРОВ
+  function resetFilters() {
+    currentFilter = 'all';
+    currentSearch = '';
+    searchInput.value = '';
+    searchClear.classList.remove('visible');
+    var buttons = filtersContainer.querySelectorAll('.filter-btn');
+    buttons.forEach(function(btn) {
+      btn.classList.toggle('active', btn.getAttribute('data-filter') === 'all');
+    });
+    renderNews();
+  }
+
+  window.resetFilters = resetFilters;
+
+  // РЕНДЕР
+  function renderNews() {
+    var months = ['Января','Февраля','Марта','Апреля','Мая','Июня','Июля','Августа','Сентября','Октября','Ноября','Декабря'];
+
+    var filtered = allNews.filter(function(item) {
+      if (currentFilter !== 'all' && item.category !== currentFilter) return false;
+
+      if (currentSearch) {
+        var haystack = (
+          (item.title || '') + ' ' +
+          (item.description || '') + ' ' +
+          (item.category || '')
+        ).toLowerCase();
+        if (haystack.indexOf(currentSearch) === -1) return false;
+      }
+
+      return true;
+    });
+
+    if (currentSearch || currentFilter !== 'all') {
+      resultsInfo.classList.add('visible');
+      resultsInfo.textContent = 'Найдено: ' + filtered.length + ' из ' + allNews.length;
+    } else {
+      resultsInfo.classList.remove('visible');
+    }
+
+    if (filtered.length === 0) {
+      newsList.innerHTML = '<div class="no-results">' +
+        '<i class="fas fa-search no-results-icon"></i>' +
+        '<h3>Ничего не найдено</h3>' +
+        '<p>Попробуйте изменить запрос или сбросить фильтры — возможно, новость есть в другом разделе.</p>' +
+        '<button class="reset-btn" onclick="resetFilters()" type="button">' +
+          '<i class="fas fa-redo"></i> Показать все новости' +
+        '</button>' +
+        '</div>';
+      return;
+    }
+
+    newsList.innerHTML = filtered.map(function(n) {
+      var date = new Date(n.date);
+      var buttonHtml = n.url
+        ? '<a href="' + n.url + '" class="news-link">' + (n.button || 'Читать') + ' <i class="fas fa-arrow-right"></i></a>'
+        : '';
+
+      return '<div class="news-card ' + (n.pinned ? 'pinned' : '') + '">' +
+        '<div class="news-date-badge">' +
+          '<div class="day">' + date.getDate() + '</div>' +
+          '<div class="month">' + months[date.getMonth()] + '</div>' +
+        '</div>' +
+        '<div class="news-content">' +
+          '<span class="news-category">' + highlight(n.category || '', currentSearch) + '</span>' +
+          '<h2>' + highlight(n.title || '', currentSearch) + (n.pinned ? '<span class="pinned-badge">Закреплено</span>' : '') + '</h2>' +
+          '<p>' + highlight(n.description || '', currentSearch) + '</p>' +
+          buttonHtml +
+        '</div>' +
+        '<div class="news-image">' +
+          '<i class="fas fa-' + (n.icon || 'newspaper') + '"></i>' +
+        '</div>' +
+      '</div>';
+    }).join('');
+  }
+
+  // КНОПКА "НАВЕРХ"
+  window.addEventListener('scroll', function() {
+    if (window.pageYOffset > 400) {
+      scrollTopBtn.classList.add('visible');
+    } else {
+      scrollTopBtn.classList.remove('visible');
+    }
+  });
+
+  scrollTopBtn.addEventListener('click', function() {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+
+  // ГОРЯЧИЕ КЛАВИШИ
+  document.addEventListener('keydown', function(e) {
+    if ((e.ctrlKey && e.key === 'k') || (e.key === '/' && document.activeElement !== searchInput)) {
+      e.preventDefault();
+      searchInput.focus();
+    }
+    if (e.key === 'Escape' && document.activeElement === searchInput) {
+      searchInput.value = '';
+      currentSearch = '';
+      searchClear.classList.remove('visible');
+      renderNews();
+      searchInput.blur();
+    }
+  });
+
+})();
+</script>
 
 <script>
   (MRGtag = window.MRGtag || []).push({});
