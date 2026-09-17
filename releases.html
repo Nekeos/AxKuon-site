@@ -22,37 +22,26 @@
   <link rel="icon" type="image/png" href="favicon.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 
   <script async src="https://ad.mail.ru/static/ads-async.js"></script>
 
   <style>
   /* Стилизация скроллбара браузера */
-    ::-webkit-scrollbar {
-      width: 10px;
-    }
-
-    ::-webkit-scrollbar-track {
-      background: #0c0c0f;
-    }
-
+    ::-webkit-scrollbar { width: 10px; }
+    ::-webkit-scrollbar-track { background: #0c0c0f; }
     ::-webkit-scrollbar-thumb {
       background: rgba(167, 139, 250, 0.3);
       border-radius: 5px;
       border: 2px solid #0c0c0f;
     }
-
-    ::-webkit-scrollbar-thumb:hover {
-      background: rgba(167, 139, 250, 0.5);
-    }
-
-    /* Для Firefox */
+    ::-webkit-scrollbar-thumb:hover { background: rgba(167, 139, 250, 0.5); }
     html {
       scrollbar-width: thin;
       scrollbar-color: rgba(167, 139, 250, 0.3) #0c0c0f;
     }
-    /* бурмалда */
+
     * {
       -webkit-user-select: none;
       -moz-user-select: none;
@@ -60,7 +49,6 @@
       user-select: none;
     }
 
-    /* прогрев гоев */
     img {
       -webkit-user-drag: none;
       -khtml-user-drag: none;
@@ -70,7 +58,6 @@
       pointer-events: none;
     }
 
-    /* ссылки не трогать */
     a {
       -webkit-user-select: none;
       -moz-user-select: none;
@@ -97,10 +84,25 @@
       line-height: 1.5;
     }
 
+    body::before {
+      content: '';
+      position: fixed;
+      top: -50%;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 800px;
+      height: 800px;
+      background: radial-gradient(circle, rgba(167, 139, 250, 0.06) 0%, transparent 60%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
     .container {
       max-width: 1200px;
       margin: 0 auto;
       padding: 0 24px;
+      position: relative;
+      z-index: 1;
     }
 
     header {
@@ -128,13 +130,9 @@
       text-decoration: none;
     }
 
-    .logo span {
-      color: #a78bfa;
-    }
+    .logo span { color: #a78bfa; }
 
-    .logo span:first-of-type {
-      font-weight: inherit;
-    }
+    .logo span:first-of-type { font-weight: inherit; }
 
     .nav-links {
       display: flex;
@@ -150,9 +148,7 @@
       transition: color 0.2s;
     }
 
-    .nav-links a:hover {
-      color: #ffffff;
-    }
+    .nav-links a:hover { color: #ffffff; }
 
     .btn-back {
       background: transparent;
@@ -181,12 +177,13 @@
 
     .page-header h1 {
       font-size: 3rem;
-      font-weight: 700;
+      font-weight: 800;
       margin-bottom: 12px;
       background: linear-gradient(to right, #ffffff, #c4b5fd);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
+      letter-spacing: -1px;
     }
 
     .page-header p {
@@ -196,6 +193,7 @@
       margin: 0 auto;
     }
 
+    /* Сетка релизов */
     .releases-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
@@ -203,22 +201,61 @@
       padding: 20px 0 60px;
     }
 
+    /* Анимация появления */
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(24px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
     .release-card {
-      background: rgba(255, 255, 255, 0.03);
+      position: relative;
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.04) 0%, rgba(255, 255, 255, 0.02) 100%);
       border: 1px solid rgba(255, 255, 255, 0.06);
-      border-radius: 20px;
+      border-radius: 24px;
       padding: 28px;
-      transition: all 0.25s ease;
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
       display: flex;
       flex-direction: column;
+      overflow: hidden;
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      animation: fadeInUp 0.6s cubic-bezier(0.4, 0, 0.2, 1) both;
+    }
+
+    .release-card:nth-child(1) { animation-delay: 0.05s; }
+    .release-card:nth-child(2) { animation-delay: 0.1s; }
+    .release-card:nth-child(3) { animation-delay: 0.15s; }
+    .release-card:nth-child(4) { animation-delay: 0.2s; }
+
+    .release-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(167, 139, 250, 0.4), transparent);
+      opacity: 0;
+      transition: opacity 0.4s;
     }
 
     .release-card:hover {
-      border-color: rgba(167, 139, 250, 0.4);
-      background: rgba(167, 139, 250, 0.04);
-      transform: translateY(-4px);
-      box-shadow: 0 12px 28px rgba(0, 0, 0, 0.3);
+      border-color: rgba(167, 139, 250, 0.35);
+      background: linear-gradient(135deg, rgba(167, 139, 250, 0.06) 0%, rgba(167, 139, 250, 0.02) 100%);
+      transform: translateY(-6px);
+      box-shadow:
+        0 20px 40px -12px rgba(0, 0, 0, 0.5),
+        0 0 0 1px rgba(167, 139, 250, 0.1),
+        0 0 40px -10px rgba(167, 139, 250, 0.2);
     }
+
+    .release-card:hover::before { opacity: 1; }
 
     .release-header {
       display: flex;
@@ -235,6 +272,7 @@
       display: flex;
       align-items: center;
       justify-content: center;
+      filter: drop-shadow(0 0 12px rgba(167, 139, 250, 0.4));
     }
 
     .release-icon img {
@@ -246,9 +284,10 @@
 
     .release-info h2 {
       font-size: 1.5rem;
-      font-weight: 600;
+      font-weight: 700;
       color: #fff;
       margin-bottom: 4px;
+      letter-spacing: -0.3px;
     }
 
     .version-tag {
@@ -276,19 +315,19 @@
       gap: 6px;
     }
 
-    .release-meta i {
-      color: #a78bfa;
-    }
+    .release-meta i { color: #a78bfa; }
 
     .release-description {
       color: #b0b0c0;
       font-size: 0.95rem;
       margin-bottom: 20px;
       flex-grow: 1;
+      line-height: 1.6;
     }
 
     .changelog-preview {
       background: rgba(0, 0, 0, 0.2);
+      border: 1px solid rgba(255, 255, 255, 0.04);
       border-radius: 12px;
       padding: 16px;
       margin-bottom: 20px;
@@ -329,83 +368,227 @@
     }
 
     .btn-download {
-      background: #a78bfa;
+      background: linear-gradient(135deg, #a78bfa 0%, #8b5cf6 100%);
       color: #0c0c0f;
-      font-weight: 600;
-      padding: 10px 20px;
+      font-weight: 700;
+      padding: 10px 22px;
       border-radius: 30px;
       text-decoration: none;
       font-size: 0.9rem;
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      transition: all 0.2s;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
       border: none;
       cursor: pointer;
+      box-shadow: 0 4px 16px -4px rgba(167, 139, 250, 0.4);
     }
 
     .btn-download:hover {
-      background: #c4b5fd;
-      transform: translateY(-1px);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px -4px rgba(167, 139, 250, 0.6);
     }
 
     .btn-download.outline {
       background: transparent;
       border: 1px solid #a78bfa;
       color: #c4b5fd;
+      box-shadow: none;
     }
 
     .btn-download.outline:hover {
       background: rgba(167,139,250,0.15);
+      box-shadow: 0 4px 16px -4px rgba(167, 139, 250, 0.4);
     }
 
-    .add-release-card {
-      border: 2px dashed rgba(255,255,255,0.1);
-      background: transparent;
+    /* Кнопка "Наверх" */
+    .scroll-top-btn {
+      position: fixed;
+      bottom: 32px;
+      right: 32px;
+      width: 52px;
+      height: 52px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #a78bfa 0%, #8b5cf6 100%);
+      border: none;
+      color: #0c0c0f;
+      font-size: 1.2rem;
+      cursor: pointer;
       display: flex;
       align-items: center;
       justify-content: center;
-      text-align: center;
-      cursor: pointer;
-      min-height: 300px;
+      box-shadow:
+        0 8px 24px -4px rgba(167, 139, 250, 0.5),
+        0 0 0 1px rgba(255, 255, 255, 0.1) inset;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(20px) scale(0.8);
+      z-index: 90;
+      font-family: inherit;
     }
 
-    .add-release-card:hover {
-      border-color: rgba(167,139,250,0.5);
-      background: rgba(167,139,250,0.03);
+    .scroll-top-btn.visible {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0) scale(1);
     }
 
-    .add-release-content {
-      color: #9090a0;
+    .scroll-top-btn:hover {
+      transform: translateY(-4px) scale(1.05);
+      box-shadow:
+        0 12px 32px -4px rgba(167, 139, 250, 0.7),
+        0 0 0 1px rgba(255, 255, 255, 0.15) inset;
     }
 
-    .add-release-content i {
-      font-size: 3rem;
+    /* Футер */
+    .site-footer {
+      position: relative;
+      margin-top: 80px;
+      padding: 60px 0 0;
+      border-top: 1px solid rgba(255, 255, 255, 0.06);
+      background: linear-gradient(180deg, transparent 0%, rgba(167, 139, 250, 0.03) 100%);
+      z-index: 1;
+    }
+
+    .site-footer::before {
+      content: '';
+      position: absolute;
+      top: -1px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 200px;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, #a78bfa, transparent);
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1.5fr;
+      gap: 48px;
+      padding-bottom: 48px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    }
+
+    .footer-col h4 {
+      font-size: 0.8rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
       color: #a78bfa;
-      margin-bottom: 16px;
+      margin-bottom: 20px;
     }
 
-    .add-release-content h3 {
-      color: #ccc;
-      margin-bottom: 8px;
+    .footer-logo {
+      font-weight: 700;
+      font-size: 1.8rem;
+      letter-spacing: -0.5px;
+      color: #ffffff;
+      text-decoration: none;
+      display: inline-block;
+      margin-bottom: 12px;
     }
 
-    footer {
-      border-top: 1px solid rgba(255,255,255,0.05);
-      padding: 32px 0;
-      text-align: center;
-      color: #6b6b7a;
+    .footer-logo span { color: #a78bfa; }
+
+    .footer-tagline {
+      color: #9090a0;
       font-size: 0.9rem;
-      margin-top: 40px;
+      line-height: 1.6;
+      max-width: 320px;
     }
 
-    @media (max-width: 640px) {
-      .page-header h1 {
-        font-size: 2.2rem;
-      }
-      .releases-grid {
-        grid-template-columns: 1fr;
-      }
+    .footer-links {
+      list-style: none;
+      padding: 0;
+    }
+
+    .footer-links li { margin-bottom: 10px; }
+
+    .footer-links a {
+      color: #b0b0c0;
+      text-decoration: none;
+      font-size: 0.9rem;
+      transition: all 0.2s;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .footer-links a:hover {
+      color: #c4b5fd;
+      transform: translateX(3px);
+    }
+
+    .footer-social {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+    }
+
+    .footer-social-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 8px 12px;
+      border-radius: 10px;
+      text-decoration: none;
+      color: #b0b0c0;
+      font-size: 0.8rem;
+      font-weight: 500;
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.06);
+      transition: all 0.2s;
+      white-space: nowrap;
+    }
+
+    .footer-social-btn:hover {
+      color: #fff;
+      background: rgba(167, 139, 250, 0.15);
+      border-color: rgba(167, 139, 250, 0.35);
+      transform: translateY(-2px);
+    }
+
+    .footer-social-btn i {
+      font-size: 0.95rem;
+      color: #a78bfa;
+    }
+
+    .footer-bottom {
+      padding: 24px 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .footer-copy {
+      color: #6b6b7a;
+      font-size: 0.85rem;
+    }
+
+    .footer-copy a {
+      color: #a78bfa;
+      text-decoration: none;
+    }
+
+    .footer-made {
+      color: #6b6b7a;
+      font-size: 0.8rem;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .footer-made i {
+      color: #a78bfa;
+      animation: heartBeat 1.5s ease-in-out infinite;
+    }
+
+    @keyframes heartBeat {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.15); }
     }
 
     /* ============================================ */
@@ -421,13 +604,8 @@
       gap: 20px;
     }
 
-    .ad-left {
-      left: 20px;
-    }
-
-    .ad-right {
-      right: 20px;
-    }
+    .ad-left { left: 20px; }
+    .ad-right { right: 20px; }
 
     .ad-block {
       width: 240px;
@@ -445,16 +623,11 @@
       margin: 0 !important;
     }
 
-    /* Мобильная реклама (скрыта по умолчанию) */
     .mobile-ad-top,
-    .mobile-ad-bottom {
-      display: none;
-    }
+    .mobile-ad-bottom { display: none; }
 
     @media (max-width: 1500px) {
-      .ad-side {
-        display: none;
-      }
+      .ad-side { display: none; }
 
       .mobile-ad-top,
       .mobile-ad-bottom {
@@ -477,6 +650,13 @@
     }
 
     /* Мобильная адаптация */
+    @media (max-width: 900px) {
+      .footer-grid {
+        grid-template-columns: 1fr;
+        gap: 32px;
+      }
+    }
+
     @media (max-width: 768px) {
       body {
         overflow-x: hidden;
@@ -501,80 +681,52 @@
       .logo { font-size: 1.5rem; }
       .btn-back { padding: 6px 14px; font-size: 0.85rem; }
 
-      .release-header {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 12px;
-      }
-      .release-title h1 { font-size: 1.6rem; }
-      .version-badge { font-size: 0.85rem; padding: 4px 12px; }
+      .page-header { padding: 40px 0 24px; }
+      .page-header h1 { font-size: 2.2rem; }
+      .page-header p { font-size: 1rem; }
 
-      .download-section h2,
-      .stores-section h2,
-      .requirements h2,
-      .changelog h2 {
-        font-size: 1.2rem;
+      .releases-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
       }
 
-      .download-row {
-        flex-direction: column;
-        align-items: stretch;
-        padding: 14px 16px;
-        gap: 12px;
-      }
-      .download-info {
-        width: 100%;
-      }
-      .download-count {
-        margin-left: 0 !important;
-        width: 100%;
-        text-align: left;
-      }
-      .btn-download {
-        width: 100%;
-        justify-content: center;
-        padding: 12px 18px;
-        font-size: 0.95rem;
+      .release-card { padding: 24px 20px; }
+      .release-info h2 { font-size: 1.3rem; }
+
+      .scroll-top-btn {
+        bottom: 20px;
+        right: 20px;
+        width: 46px;
+        height: 46px;
+        font-size: 1rem;
       }
 
-      .store-buttons {
-        width: 100%;
-      }
-      .btn-store {
-        width: 100%;
-        padding: 12px 18px;
-        justify-content: flex-start;
+      .footer-grid {
+        grid-template-columns: 1fr;
+        gap: 32px;
+        padding-bottom: 32px;
       }
 
-      .req-grid {
+      .footer-social {
         grid-template-columns: 1fr 1fr;
       }
-      .req-item {
-        padding: 12px;
-        font-size: 0.85rem;
+
+      .footer-bottom {
+        flex-direction: column;
+        text-align: center;
       }
 
-      .screenshots {
-        flex-direction: column;
-      }
-      .screenshot {
-        min-width: 100%;
-        height: 160px;
-      }
-
-      main > div:last-child {
-        flex-direction: column;
-        gap: 12px !important;
-      }
+      .site-footer { padding: 40px 0 0; }
     }
 
     @media (max-width: 420px) {
-      .req-grid {
+      .container { padding: 0 12px; }
+      .page-header h1 { font-size: 1.9rem; }
+      .release-card { padding: 20px 16px; }
+
+      .footer-social {
         grid-template-columns: 1fr;
       }
-      .release-title h1 { font-size: 1.4rem; }
-      .main-card { padding: 16px 12px; }
-      .container { padding: 0 12px; }
     }
   </style>
 </head>
@@ -583,7 +735,7 @@
   <header>
     <div class="container nav-container">
       <a href="index.html" class="logo">
-        Ax<span>Kuon</span> <!--<span>ru</span>-->
+        Ax<span>Kuon</span>
       </a>
       <div class="nav-links">
         <a href="index.html">Главная</a>
@@ -593,7 +745,7 @@
     </div>
   </header>
 
-  <!-- Мобильная реклама сверху (только на телефоне) -->
+  <!-- Мобильная реклама сверху -->
   <div class="mobile-ad-top">
     <ins class="mrg-tag" 
         style="display:inline-block;width:320px;height:50px"
@@ -652,7 +804,6 @@
         </div>
         <div class="release-meta">
           <span><i class="far fa-calendar-alt"></i> 10 августа 2026</span>
-          <!--<span><i class="fab fa-linux"></i> Linux</span>-->
           <span><i class="fab fa-windows"></i> Windows</span>
           <span><i class="fab fa-android"></i> Android</span>
         </div>
@@ -660,7 +811,6 @@
           Удобный обмен файлами между устройствами без интернета по локальной сети
         </p>
         <div class="changelog-preview">
-          <!-- <h4>Что нового:</h4> -->
           <ul>
             <li>Релиз</li>
           </ul>
@@ -669,12 +819,10 @@
           <a href="../Releases/FileDrop.html" class="btn-download"><i class="fas fa-download"></i> Скачать</a>
         </div>
       </div>
-
-      <!-- Карточка релиза 3 (пустая) -->
     </div>
   </main>
 
-  <!-- Мобильная реклама снизу (только на телефоне) -->
+  <!-- Мобильная реклама снизу -->
   <div class="mobile-ad-bottom">
     <ins class="mrg-tag" 
         style="display:inline-block;width:240px;height:400px"
@@ -683,13 +831,64 @@
     </ins>
   </div>
 
-  <footer>
+  <!-- ФУТЕР -->
+  <footer class="site-footer">
     <div class="container">
-      <p>© 2026 AxKuon.ru — приложения для Android, Linux и Windows, open-source проекты.</p>
+      <div class="footer-grid">
+        <div class="footer-col">
+          <a href="index.html" class="footer-logo">
+            Ax<span>Kuon</span>
+          </a>
+          <p class="footer-tagline">
+            Создаём приложения для Android, Linux и Windows. Поддерживаем open-source проекты и развиваем сообщество разработчиков.
+          </p>
+        </div>
+
+        <div class="footer-col">
+          <h4>Разделы</h4>
+          <ul class="footer-links">
+            <li><a href="index.html"><i class="fas fa-home"></i> Главная</a></li>
+            <li><a href="releases.html"><i class="fas fa-rocket"></i> Релизы</a></li>
+            <li><a href="news.html"><i class="far fa-newspaper"></i> Новости</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Мы в соцсетях</h4>
+          <div class="footer-social">
+            <a href="https://t.me/AxKuon" class="footer-social-btn" target="_blank" rel="noopener">
+              <i class="fab fa-telegram"></i> Telegram
+            </a>
+            <a href="https://max.ru/channel_axkuon" class="footer-social-btn" target="_blank" rel="noopener">
+              <i class="fas fa-comment-dots"></i> MAX
+            </a>
+            <a href="https://vk.ru/axkuon" class="footer-social-btn" target="_blank" rel="noopener">
+              <i class="fab fa-vk"></i> VK
+            </a>
+            <a href="https://www.rustore.ru/catalog/developer/ch7shq" class="footer-social-btn" target="_blank" rel="noopener">
+              <i class="fas fa-store"></i> RuStore
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <div class="footer-copy">
+          © 2026 <a href="index.html">AxKuon.ru</a> — приложения для Android, Linux и Windows, open-source проекты.
+        </div>
+        <div class="footer-made">
+          Made with <i class="fas fa-heart"></i> by AxKuon team
+        </div>
+      </div>
     </div>
   </footer>
 
-<!-- Левый столбец рекламы (ПК) — 2 яруса 240x400 -->
+  <!-- КНОПКА "НАВЕРХ" -->
+  <button class="scroll-top-btn" id="scrollTopBtn" aria-label="Наверх" type="button">
+    <i class="fas fa-arrow-up"></i>
+  </button>
+
+<!-- Левый столбец рекламы (ПК) -->
 <div class="ad-side ad-left">
   <div class="ad-block">
     <ins class="mrg-tag" 
@@ -707,7 +906,7 @@
   </div>
 </div>
 
-<!-- Правый столбец рекламы (ПК) — 2 яруса 240x400 -->
+<!-- Правый столбец рекламы (ПК) -->
 <div class="ad-side ad-right">
   <div class="ad-block">
     <ins class="mrg-tag" 
@@ -724,6 +923,23 @@
     </ins>
   </div>
 </div>
+
+<script>
+  // Кнопка "Наверх"
+  const scrollTopBtn = document.getElementById('scrollTopBtn');
+
+  window.addEventListener('scroll', function() {
+    if (window.pageYOffset > 400) {
+      scrollTopBtn.classList.add('visible');
+    } else {
+      scrollTopBtn.classList.remove('visible');
+    }
+  });
+
+  scrollTopBtn.addEventListener('click', function() {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+</script>
 
 <script>
   (MRGtag = window.MRGtag || []).push({});
