@@ -1,0 +1,1906 @@
+﻿<!DOCTYPE html>
+<html lang="ru">
+<head>
+
+    <!-- Yandex.Metrika counter -->
+    <script type="text/javascript">
+        (function(m,e,t,r,i,k,a){
+            m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+            m[i].l=1*new Date();
+            for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+            k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
+        })(window, document,'script','https://mc.yandex.ru/metrika/tag.js?id=112506059', 'ym');
+
+        ym(112506059, 'init', {ssr:true, webvisor:true, clickmap:true, ecommerce:"dataLayer", referrer: document.referrer, url: location.href, accurateTrackBounce:true, trackLinks:true});
+    </script>
+    <noscript><div><img src="https://mc.yandex.ru/watch/112506059" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+    <!-- /Yandex.Metrika counter -->
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+  <title>Редизайн FileDrop — Новости | AxKuon</title>
+  <link rel="icon" type="image/png" href="../favicon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+  <script async src="https://ad.mail.ru/static/ads-async.js"></script>
+
+  <style>
+
+  /* Стилизация скроллбара браузера */
+    ::-webkit-scrollbar { width: 10px; }
+    ::-webkit-scrollbar-track { background: #0c0c0f; }
+    ::-webkit-scrollbar-thumb {
+      background: rgba(167, 139, 250, 0.3);
+      border-radius: 5px;
+      border: 2px solid #0c0c0f;
+    }
+    ::-webkit-scrollbar-thumb:hover { background: rgba(167, 139, 250, 0.5); }
+    html {
+      scrollbar-width: thin;
+      scrollbar-color: rgba(167, 139, 250, 0.3) #0c0c0f;
+    }
+
+    * {
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
+    }
+
+    img {
+      -webkit-user-drag: none;
+      -khtml-user-drag: none;
+      -moz-user-drag: none;
+      -o-user-drag: none;
+      user-drag: none;
+      pointer-events: none;
+    }
+
+    a {
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
+      -webkit-user-drag: none;
+      -khtml-user-drag: none;
+      -moz-user-drag: none;
+      -o-user-drag: none;
+      user-drag: none;
+      -webkit-touch-callout: none;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: #0c0c0f;
+      color: #e0e0e0;
+      line-height: 1.6;
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      top: -50%;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 800px;
+      height: 800px;
+      background: radial-gradient(circle, rgba(167, 139, 250, 0.06) 0%, transparent 60%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 0 24px;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* LAYOUT С САЙДБАРОМ */
+    .article-layout {
+      display: flex;
+      gap: 32px;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 24px;
+      align-items: flex-start;
+      position: relative;
+      z-index: 1;
+    }
+
+    .article-main {
+      flex: 1;
+      min-width: 0;
+      max-width: 800px;
+    }
+
+    /* САЙДБАР (ПК) */
+    .sidebar {
+      width: 240px;
+      flex-shrink: 0;
+      position: sticky;
+      top: 100px;
+      max-height: calc(100vh - 120px);
+      overflow-y: auto;
+      padding-right: 8px;
+    }
+
+    .sidebar::-webkit-scrollbar { width: 4px; }
+    .sidebar::-webkit-scrollbar-track { background: transparent; }
+    .sidebar::-webkit-scrollbar-thumb {
+      background: rgba(167, 139, 250, 0.2);
+      border-radius: 4px;
+    }
+    .sidebar::-webkit-scrollbar-thumb:hover {
+      background: rgba(167, 139, 250, 0.4);
+    }
+
+    .sidebar-block {
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.04) 0%, rgba(255, 255, 255, 0.02) 100%);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      border-radius: 16px;
+      padding: 20px;
+      margin-bottom: 16px;
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+    }
+
+    .sidebar-title {
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: #a78bfa;
+      margin-bottom: 14px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .sidebar-title i { font-size: 0.9rem; }
+
+    .toc-list {
+      list-style: none;
+      padding: 0;
+    }
+
+    .toc-list li { margin-bottom: 6px; }
+
+    .toc-list a {
+      color: #b0b0c0;
+      text-decoration: none;
+      font-size: 0.85rem;
+      line-height: 1.4;
+      display: block;
+      padding: 6px 10px;
+      border-radius: 8px;
+      border-left: 2px solid transparent;
+      transition: all 0.2s;
+    }
+
+    .toc-list a:hover {
+      color: #fff;
+      background: rgba(167, 139, 250, 0.08);
+    }
+
+    .toc-list a.active {
+      color: #c4b5fd;
+      background: rgba(167, 139, 250, 0.12);
+      border-left-color: #a78bfa;
+    }
+
+    .sidebar-social {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .sidebar-social-btn {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 12px;
+      border-radius: 10px;
+      text-decoration: none;
+      color: #b0b0c0;
+      font-size: 0.85rem;
+      font-weight: 500;
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.06);
+      transition: all 0.2s;
+    }
+
+    .sidebar-social-btn:hover {
+      color: #fff;
+      background: rgba(167, 139, 250, 0.15);
+      border-color: rgba(167, 139, 250, 0.35);
+      transform: translateX(3px);
+    }
+
+    .sidebar-social-btn i {
+      font-size: 1.1rem;
+      color: #a78bfa;
+      width: 20px;
+      text-align: center;
+    }
+
+    .btn-up {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      width: 100%;
+      padding: 12px;
+      border-radius: 10px;
+      background: rgba(167, 139, 250, 0.1);
+      border: 1px solid rgba(167, 139, 250, 0.3);
+      color: #c4b5fd;
+      font-weight: 500;
+      font-size: 0.85rem;
+      cursor: pointer;
+      transition: all 0.2s;
+      font-family: inherit;
+    }
+
+    .btn-up:hover {
+      background: rgba(167, 139, 250, 0.2);
+      color: #fff;
+      border-color: #a78bfa;
+    }
+
+    /* ГАМБУРГЕР */
+    .hamburger {
+      display: none;
+      background: rgba(167, 139, 250, 0.1);
+      border: 1px solid rgba(167, 139, 250, 0.3);
+      color: #c4b5fd;
+      width: 42px;
+      height: 42px;
+      border-radius: 10px;
+      cursor: pointer;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.1rem;
+      transition: all 0.2s;
+      font-family: inherit;
+    }
+
+    .hamburger:hover {
+      background: rgba(167, 139, 250, 0.2);
+      color: #fff;
+    }
+
+    .hamburger i { pointer-events: none; }
+
+    /* МОБИЛЬНОЕ МЕНЮ */
+    .mobile-menu {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.7);
+      z-index: 9999;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      pointer-events: none;
+    }
+
+    .mobile-menu.open {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .mobile-menu-content {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      background: #13131a;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+      padding: 20px;
+      transform: translateY(-100%);
+      transition: transform 0.3s ease;
+      max-height: 85vh;
+      overflow-y: auto;
+    }
+
+    .mobile-menu.open .mobile-menu-content {
+      transform: translateY(0);
+    }
+
+    .mobile-menu-close {
+      position: absolute;
+      top: 16px;
+      right: 16px;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.1);
+      color: #ccc;
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.9rem;
+      transition: all 0.2s;
+      font-family: inherit;
+    }
+
+    .mobile-menu-close:hover {
+      background: rgba(255, 77, 77, 0.15);
+      color: #ff6666;
+      border-color: rgba(255, 77, 77, 0.3);
+    }
+
+    /* НАВИГАЦИЯ */
+    header {
+      position: sticky;
+      top: 0;
+      background-color: rgba(12, 12, 15, 0.85);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+      z-index: 100;
+      padding: 16px 0;
+    }
+
+    .nav-container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    .nav-left {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .logo {
+      font-weight: 700;
+      font-size: 1.8rem;
+      letter-spacing: -0.5px;
+      color: #ffffff;
+      text-decoration: none;
+    }
+
+    .logo span { color: #a78bfa; }
+
+    .nav-links {
+      display: flex;
+      gap: 20px;
+      align-items: center;
+    }
+
+    .nav-links a {
+      color: #b0b0b0;
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 0.95rem;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover { color: #ffffff; }
+
+    .btn-back {
+      background: transparent;
+      border: 1px solid rgba(255,255,255,0.2);
+      color: #ccc;
+      padding: 8px 18px;
+      border-radius: 30px;
+      font-weight: 500;
+      text-decoration: none;
+      transition: all 0.2s;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.9rem;
+    }
+
+    .btn-back:hover {
+      border-color: #a78bfa;
+      color: #fff;
+      background: rgba(167,139,250,0.1);
+    }
+
+    .breadcrumb {
+      padding: 24px 0 0;
+      font-size: 0.85rem;
+      color: #7c7c8a;
+    }
+
+    .breadcrumb a {
+      color: #a78bfa;
+      text-decoration: none;
+    }
+
+    .breadcrumb a:hover { text-decoration: underline; }
+    .breadcrumb span { margin: 0 6px; color: #555; }
+
+    .article-hero { padding: 32px 0 16px; }
+
+    .article-category {
+      display: inline-block;
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1.2px;
+      color: #c4b5fd;
+      background: rgba(167, 139, 250, 0.15);
+      border: 1px solid rgba(167, 139, 250, 0.2);
+      padding: 6px 14px;
+      border-radius: 20px;
+      margin-bottom: 16px;
+    }
+
+    .article-title {
+      font-size: 2.6rem;
+      font-weight: 800;
+      color: #fff;
+      line-height: 1.2;
+      margin-bottom: 20px;
+      letter-spacing: -1px;
+    }
+
+    .article-meta {
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+      font-size: 0.9rem;
+      color: #9090a0;
+      margin-bottom: 28px;
+      align-items: center;
+    }
+
+    .article-meta span { display: flex; align-items: center; gap: 6px; }
+    .article-meta i { color: #a78bfa; }
+
+    .article-authors {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .author-avatar {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, rgba(167, 139, 250, 0.3) 0%, rgba(167, 139, 250, 0.15) 100%);
+      border: 1px solid rgba(167, 139, 250, 0.3);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #c4b5fd;
+      font-weight: 700;
+      font-size: 0.9rem;
+      flex-shrink: 0;
+    }
+
+    .author-avatar img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 50%;
+      display: block;
+    }
+
+    .author-info {
+      display: flex;
+      flex-direction: column;
+      line-height: 1.3;
+    }
+
+    .author-name {
+      color: #e0e0e0;
+      font-weight: 500;
+      font-size: 0.9rem;
+    }
+
+    .author-role {
+      color: #7c7c8a;
+      font-size: 0.75rem;
+    }
+
+    /* КАРУСЕЛЬ */
+    .carousel {
+      position: relative;
+      width: 100%;
+      border-radius: 24px;
+      overflow: hidden;
+      margin-bottom: 16px;
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.06);
+    }
+
+    .carousel-track {
+      display: flex;
+      transition: transform 0.4s ease;
+      will-change: transform;
+    }
+
+    .carousel-slide {
+      min-width: 100%;
+      position: relative;
+    }
+
+    .carousel-slide img {
+      width: 100%;
+      height: auto;
+      display: block;
+      aspect-ratio: 16 / 9;
+      object-fit: cover;
+    }
+
+    .carousel-caption {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: linear-gradient(to top, rgba(0,0,0,0.85), transparent);
+      padding: 24px 24px 16px;
+      color: #fff;
+      font-size: 0.9rem;
+    }
+
+    .carousel-btn {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(12, 12, 15, 0.7);
+      border: 1px solid rgba(255,255,255,0.15);
+      color: #fff;
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.2s;
+      backdrop-filter: blur(8px);
+      font-size: 1rem;
+      z-index: 2;
+    }
+
+    .carousel-btn:hover {
+      background: #a78bfa;
+      border-color: #a78bfa;
+      color: #0c0c0f;
+    }
+
+    .carousel-btn.prev { left: 16px; }
+    .carousel-btn.next { right: 16px; }
+
+    .carousel-dots {
+      display: flex;
+      justify-content: center;
+      gap: 8px;
+      padding: 12px 0 4px;
+    }
+
+    .carousel-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.2);
+      border: none;
+      cursor: pointer;
+      transition: all 0.2s;
+      padding: 0;
+    }
+
+    .carousel-dot.active {
+      background: #a78bfa;
+      width: 24px;
+      border-radius: 4px;
+    }
+
+    .figure-caption {
+      text-align: center;
+      color: #7c7c8a;
+      font-size: 0.85rem;
+      font-style: italic;
+      margin-bottom: 32px;
+    }
+
+    .article-image {
+      margin: 32px 0;
+      border-radius: 20px;
+      overflow: hidden;
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.06);
+    }
+
+    .article-image img {
+      width: 100%;
+      height: auto;
+      display: block;
+      aspect-ratio: 16 / 9;
+      object-fit: cover;
+    }
+
+    .article-image-caption {
+      padding: 12px 20px;
+      font-size: 0.85rem;
+      color: #7c7c8a;
+      font-style: italic;
+      text-align: center;
+      border-top: 1px solid rgba(255,255,255,0.05);
+    }
+
+    .article-collage {
+      display: grid;
+      gap: 12px;
+      margin: 32px 0;
+    }
+
+    .article-collage.cols-2 { grid-template-columns: 1fr 1fr; }
+    .article-collage.cols-3 { grid-template-columns: 1fr 1fr; }
+    .article-collage.cols-3 .collage-item:first-child { grid-column: 1 / -1; }
+    .article-collage.cols-4 { grid-template-columns: 1fr 1fr; }
+
+    .collage-item {
+      position: relative;
+      border-radius: 16px;
+      overflow: hidden;
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.06);
+      aspect-ratio: 16 / 10;
+    }
+
+    .collage-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .collage-caption {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: linear-gradient(to top, rgba(0,0,0,0.85), transparent);
+      padding: 16px 14px 10px;
+      color: #fff;
+      font-size: 0.8rem;
+      line-height: 1.3;
+    }
+
+    /* Анимация появления */
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(24px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .article-body {
+      font-size: 1.1rem;
+      color: #c0c0d0;
+      line-height: 1.8;
+      margin-bottom: 40px;
+    }
+
+    .article-body p { margin-bottom: 20px; }
+
+    .article-body h2 {
+      font-size: 1.8rem;
+      color: #fff;
+      margin: 36px 0 16px;
+      font-weight: 700;
+      letter-spacing: -0.4px;
+      scroll-margin-top: 100px;
+    }
+
+    .article-body h3 {
+      font-size: 1.4rem;
+      color: #fff;
+      margin: 28px 0 12px;
+      font-weight: 700;
+      scroll-margin-top: 100px;
+    }
+
+    .article-body ul,
+    .article-body ol {
+      padding-left: 24px;
+      margin-bottom: 20px;
+    }
+
+    .article-body li { margin-bottom: 8px; }
+    .article-body li::marker { color: #a78bfa; }
+
+    .article-body strong { color: #fff; font-weight: 600; }
+
+    .article-body a {
+      color: #a78bfa;
+      text-decoration: underline;
+      text-decoration-color: rgba(167,139,250,0.3);
+      text-underline-offset: 3px;
+    }
+
+    .article-body blockquote {
+      border-left: 3px solid #a78bfa;
+      padding: 16px 24px;
+      margin: 24px 0;
+      background: rgba(167, 139, 250, 0.05);
+      border-radius: 0 12px 12px 0;
+      color: #d0d0e0;
+      font-style: italic;
+    }
+
+    .article-summary {
+      background: linear-gradient(135deg, rgba(167, 139, 250, 0.08) 0%, rgba(167, 139, 250, 0.03) 100%);
+      border: 1px solid rgba(167, 139, 250, 0.2);
+      border-radius: 16px;
+      padding: 24px;
+      margin: 32px 0;
+    }
+
+    .article-summary h3 {
+      color: #a78bfa;
+      font-size: 1.2rem;
+      margin-bottom: 12px;
+      margin-top: 0;
+    }
+
+    /* КНОПКА "К РЕЛИЗУ" */
+    .btn-release-demo {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      padding: 14px 28px;
+      background: linear-gradient(135deg, #a78bfa 0%, #8b5cf6 100%);
+      color: #0c0c0f !important;
+      font-weight: 700;
+      font-size: 1rem;
+      text-decoration: none;
+      border-radius: 30px;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      margin: 8px 0 32px;
+      box-shadow: 0 8px 24px -4px rgba(167, 139, 250, 0.4);
+      border: none;
+      cursor: pointer;
+    }
+
+    .btn-release-demo i {
+      font-size: 1.1rem;
+      color: #0c0c0f !important;
+    }
+
+    .btn-release-demo:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 32px -4px rgba(167, 139, 250, 0.6);
+    }
+
+    .article-share {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      align-items: center;
+      padding: 24px 0;
+      border-top: 1px solid rgba(255,255,255,0.06);
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+      margin-bottom: 32px;
+    }
+
+    .article-share-label {
+      color: #9090a0;
+      font-size: 0.9rem;
+      margin-right: 8px;
+    }
+
+    .share-btn {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.1);
+      color: #e0e0e0;
+      padding: 8px 16px;
+      border-radius: 20px;
+      text-decoration: none;
+      font-size: 0.85rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.2s;
+      cursor: pointer;
+      font-family: inherit;
+    }
+
+    .share-btn:hover {
+      background: #a78bfa;
+      border-color: #a78bfa;
+      color: #0c0c0f;
+    }
+
+    .related-news { margin-bottom: 60px; }
+
+    .related-news h2 {
+      font-size: 1.5rem;
+      color: #fff;
+      margin-bottom: 20px;
+    }
+
+    .related-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 16px;
+    }
+
+    .related-card {
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.04) 0%, rgba(255, 255, 255, 0.02) 100%);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      border-radius: 16px;
+      padding: 20px;
+      text-decoration: none;
+      color: #e0e0e0;
+      transition: all 0.3s;
+    }
+
+    .related-card:hover {
+      border-color: rgba(167, 139, 250, 0.4);
+      background: linear-gradient(135deg, rgba(167, 139, 250, 0.08) 0%, rgba(167, 139, 250, 0.02) 100%);
+      transform: translateY(-3px);
+      box-shadow: 0 12px 28px -8px rgba(167, 139, 250, 0.2);
+    }
+
+    .related-date {
+      color: #7c7c8a;
+      font-size: 0.8rem;
+      margin-bottom: 6px;
+    }
+
+    .related-title {
+      color: #fff;
+      font-size: 1rem;
+      font-weight: 600;
+      line-height: 1.4;
+    }
+
+    /* РЕКЛАМА */
+    .ad-side {
+      position: fixed;
+      top: 100px;
+      z-index: 50;
+      width: 240px;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .ad-left { left: 20px; }
+    .ad-right { right: 20px; }
+
+    .ad-block {
+      width: 240px;
+      height: 400px;
+      min-height: 400px;
+      flex-shrink: 0;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .ad-block ins {
+      display: block !important;
+      width: 240px !important;
+      height: 400px !important;
+      margin: 0 !important;
+    }
+
+    .mobile-ad-top,
+    .mobile-ad-bottom { display: none; }
+
+    @media (max-width: 1500px) {
+      .ad-side { display: none; }
+
+      .mobile-ad-top,
+      .mobile-ad-bottom {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 12px 0;
+        width: 100%;
+      }
+
+      .mobile-ad-top {
+        background: rgba(255,255,255,0.02);
+        border-bottom: 1px solid rgba(255,255,255,0.05);
+      }
+
+      .mobile-ad-bottom {
+        margin: 32px auto 24px;
+        max-width: 320px;
+      }
+    }
+
+    /* КНОПКА "НАВЕРХ" */
+    .scroll-top-btn {
+      position: fixed;
+      bottom: 32px;
+      right: 32px;
+      width: 52px;
+      height: 52px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #a78bfa 0%, #8b5cf6 100%);
+      border: none;
+      color: #0c0c0f;
+      font-size: 1.2rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow:
+        0 8px 24px -4px rgba(167, 139, 250, 0.5),
+        0 0 0 1px rgba(255, 255, 255, 0.1) inset;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(20px) scale(0.8);
+      z-index: 90;
+      font-family: inherit;
+    }
+
+    .scroll-top-btn.visible {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0) scale(1);
+    }
+
+    .scroll-top-btn:hover {
+      transform: translateY(-4px) scale(1.05);
+      box-shadow:
+        0 12px 32px -4px rgba(167, 139, 250, 0.7),
+        0 0 0 1px rgba(255, 255, 255, 0.15) inset;
+    }
+
+    /* ФУТЕР */
+    .site-footer {
+      position: relative;
+      margin-top: 80px;
+      padding: 60px 0 0;
+      border-top: 1px solid rgba(255, 255, 255, 0.06);
+      background: linear-gradient(180deg, transparent 0%, rgba(167, 139, 250, 0.03) 100%);
+      z-index: 1;
+    }
+
+    .site-footer::before {
+      content: '';
+      position: absolute;
+      top: -1px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 200px;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, #a78bfa, transparent);
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1.5fr;
+      gap: 48px;
+      padding-bottom: 48px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    }
+
+    .footer-col h4 {
+      font-size: 0.8rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: #a78bfa;
+      margin-bottom: 20px;
+    }
+
+    .footer-logo {
+      font-weight: 700;
+      font-size: 1.8rem;
+      letter-spacing: -0.5px;
+      color: #ffffff;
+      text-decoration: none;
+      display: inline-block;
+      margin-bottom: 12px;
+    }
+
+    .footer-logo span { color: #a78bfa; }
+
+    .footer-tagline {
+      color: #9090a0;
+      font-size: 0.9rem;
+      line-height: 1.6;
+      max-width: 320px;
+    }
+
+    .footer-links {
+      list-style: none;
+      padding: 0;
+    }
+
+    .footer-links li { margin-bottom: 10px; }
+
+    .footer-links a {
+      color: #b0b0c0;
+      text-decoration: none;
+      font-size: 0.9rem;
+      transition: all 0.2s;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .footer-links a:hover {
+      color: #c4b5fd;
+      transform: translateX(3px);
+    }
+
+    .footer-social {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+    }
+
+    .footer-social-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 8px 12px;
+      border-radius: 10px;
+      text-decoration: none;
+      color: #b0b0c0;
+      font-size: 0.8rem;
+      font-weight: 500;
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.06);
+      transition: all 0.2s;
+      white-space: nowrap;
+    }
+
+    .footer-social-btn:hover {
+      color: #fff;
+      background: rgba(167, 139, 250, 0.15);
+      border-color: rgba(167, 139, 250, 0.35);
+      transform: translateY(-2px);
+    }
+
+    .footer-social-btn i {
+      font-size: 0.95rem;
+      color: #a78bfa;
+    }
+
+    .footer-bottom {
+      padding: 24px 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .footer-copy {
+      color: #6b6b7a;
+      font-size: 0.85rem;
+    }
+
+    .footer-copy a {
+      color: #a78bfa;
+      text-decoration: none;
+    }
+
+    .footer-made {
+      color: #6b6b7a;
+      font-size: 0.8rem;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .footer-made i {
+      color: #a78bfa;
+      animation: heartBeat 1.5s ease-in-out infinite;
+    }
+
+    @keyframes heartBeat {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.15); }
+    }
+
+    @media (min-width: 768px) and (max-width: 1500px) and (orientation: landscape) {
+      .article-title { font-size: 2.4rem; }
+      .article-body { font-size: 1.05rem; }
+    }
+
+    @media (max-width: 1100px) {
+      .sidebar { display: none; }
+      .article-layout { padding: 0 24px; gap: 0; }
+      .article-main { max-width: 800px; margin: 0 auto; }
+
+      .hamburger { display: flex; }
+      .mobile-menu { display: block; }
+    }
+
+    @media (max-width: 900px) {
+      .footer-grid {
+        grid-template-columns: 1fr;
+        gap: 32px;
+      }
+    }
+
+    @media (max-width: 768px) {
+      body {
+        overflow-x: hidden;
+        -webkit-text-size-adjust: 100%;
+      }
+
+      .article-layout { padding: 0 18px; }
+      .article-main { max-width: 100%; }
+
+      .nav-container {
+        flex-direction: column;
+        gap: 12px;
+        padding: 0 18px;
+      }
+
+      .nav-links {
+        gap: 12px;
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+
+      .nav-left {
+        width: 100%;
+        justify-content: space-between;
+      }
+
+      .logo { font-size: 1.5rem; }
+      .btn-back { padding: 6px 14px; font-size: 0.85rem; }
+
+      header { padding: 12px 0; }
+
+      .article-title { font-size: 1.8rem; line-height: 1.25; }
+      .article-meta { font-size: 0.85rem; gap: 14px; }
+      .article-authors { gap: 10px; }
+      .author-avatar { width: 32px; height: 32px; font-size: 0.8rem; }
+
+      .carousel { border-radius: 16px; }
+      .carousel-slide img { aspect-ratio: 4 / 3; }
+      .carousel-btn { width: 36px; height: 36px; font-size: 0.85rem; }
+      .carousel-btn.prev { left: 8px; }
+      .carousel-btn.next { right: 8px; }
+      .carousel-caption { padding: 16px 16px 12px; font-size: 0.85rem; }
+
+      .article-image { border-radius: 14px; margin: 24px 0; }
+      .article-image img { aspect-ratio: 4 / 3; }
+      .article-collage { gap: 8px; margin: 24px 0; }
+      .collage-item { border-radius: 12px; aspect-ratio: 4 / 3; }
+      .collage-caption { padding: 12px 10px 8px; font-size: 0.75rem; }
+
+      .article-body { font-size: 1.15rem; line-height: 1.85; }
+      .article-body h2 { font-size: 1.5rem; margin: 28px 0 14px; }
+      .article-body h3 { font-size: 1.25rem; margin: 22px 0 10px; }
+      .article-body ul, .article-body ol { padding-left: 20px; }
+      .article-body blockquote { padding: 14px 18px; }
+
+      .article-summary { padding: 18px; }
+      .article-summary h3 { font-size: 1.05rem; }
+
+      .btn-release-demo {
+        padding: 12px 22px;
+        font-size: 0.95rem;
+        width: 100%;
+        justify-content: center;
+      }
+
+      .article-share { padding: 18px 0; gap: 8px; }
+      .share-btn { font-size: 0.8rem; padding: 7px 14px; }
+
+      .related-news h2 { font-size: 1.25rem; }
+      .related-title { font-size: 0.95rem; }
+
+      .scroll-top-btn {
+        bottom: 20px;
+        right: 20px;
+        width: 46px;
+        height: 46px;
+        font-size: 1rem;
+      }
+
+      .footer-grid {
+        grid-template-columns: 1fr;
+        gap: 32px;
+        padding-bottom: 32px;
+      }
+
+      .footer-social { grid-template-columns: 1fr 1fr; }
+      .footer-bottom { flex-direction: column; text-align: center; }
+      .site-footer { padding: 40px 0 0; }
+    }
+
+    @media (min-width: 600px) and (max-width: 900px) and (orientation: portrait) {
+      .article-body { font-size: 1.2rem; line-height: 1.9; }
+      .article-title { font-size: 2rem; }
+    }
+
+    @media (max-width: 420px) {
+      .article-layout { padding: 0 14px; }
+      .article-title { font-size: 1.55rem; }
+      .article-body { font-size: 1.1rem; }
+
+      .article-collage.cols-2,
+      .article-collage.cols-3,
+      .article-collage.cols-4 {
+        grid-template-columns: 1fr;
+      }
+      .article-collage.cols-3 .collage-item:first-child {
+        grid-column: auto;
+      }
+
+      .footer-social { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <div class="nav-container">
+      <div class="nav-left">
+        <a href="../index.html" class="logo">
+          Ax<span>Kuon</span>
+        </a>
+        <button class="hamburger" id="hamburgerBtn" aria-label="Меню" type="button">
+          <i class="fas fa-bars"></i>
+        </button>
+      </div>
+      <div class="nav-links">
+        <a href="../index.html">Главная</a>
+        <a href="../releases.html">Релизы</a>
+        <a href="../news.html" class="btn-back"><i class="fas fa-arrow-left"></i> Все новости</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- МОБИЛЬНОЕ МЕНЮ -->
+  <div class="mobile-menu" id="mobileMenu">
+    <div class="mobile-menu-content" id="mobileMenuContent">
+      <button class="mobile-menu-close" id="mobileMenuClose" aria-label="Закрыть" type="button">
+        <i class="fas fa-times"></i>
+      </button>
+
+      <div class="sidebar-block" style="margin-top: 30px;">
+        <div class="sidebar-title"><i class="fas fa-list"></i> Содержание</div>
+        <ul class="toc-list">
+          <li><a href="#reasons" class="mobile-toc-link">Причина смены дизайна</a></li>
+          <li><a href="#PC-design" class="mobile-toc-link">Изменения на ПК</a></li>
+          <li><a href="#AD-design" class="mobile-toc-link">Изменения на Android</a></li>
+          <li><a href="#finalle" class="mobile-toc-link">Итог</a></li>
+        </ul>
+      </div>
+
+      <div class="sidebar-block">
+        <div class="sidebar-title"><i class="fas fa-share-alt"></i> Мы в соцсетях</div>
+        <div class="sidebar-social">
+          <a href="https://t.me/AxKuon" class="sidebar-social-btn" target="_blank" rel="noopener">
+            <i class="fab fa-telegram"></i> Telegram
+          </a>
+          <a href="https://max.ru/channel_axkuon" class="sidebar-social-btn" target="_blank" rel="noopener">
+            <i class="fas fa-comment-dots"></i> MAX
+          </a>
+          <a href="https://vk.ru/axkuon" class="sidebar-social-btn" target="_blank" rel="noopener">
+            <i class="fab fa-vk"></i> VK
+          </a>
+          <a href="https://www.rustore.ru/catalog/developer/ch7shq" class="sidebar-social-btn" target="_blank" rel="noopener">
+            <i class="fas fa-store"></i> RuStore
+          </a>
+        </div>
+      </div>
+
+      <button class="btn-up" id="mobileBtnUp" type="button">
+        <i class="fas fa-arrow-up"></i> Наверх
+      </button>
+    </div>
+  </div>
+
+  <!-- Мобильная реклама сверху -->
+  <div class="mobile-ad-top">
+    <ins class="mrg-tag" 
+        style="display:inline-block;width:320px;height:50px"
+        data-ad-client="ad-2064565" 
+        data-ad-slot="2064565">
+    </ins>
+  </div>
+
+  <div class="article-layout">
+    <!-- САЙДБАР (ПК) -->
+    <aside class="sidebar">
+      <div class="sidebar-block">
+        <div class="sidebar-title"><i class="fas fa-list"></i> Содержание</div>
+        <ul class="toc-list" id="tocList">
+          <li><a href="#reasons" data-target="reasons">Причина смены дизайна</a></li>
+          <li><a href="#PC-design" data-target="PC-design">Изменения на ПК</a></li>
+          <li><a href="#AD-design" data-target="AD-design">Изменения на Android</a></li>
+          <li><a href="#finalle" data-target="finalle">Итог</a></li>
+        </ul>
+      </div>
+
+      <div class="sidebar-block">
+        <div class="sidebar-title"><i class="fas fa-share-alt"></i> Мы в соцсетях</div>
+        <div class="sidebar-social">
+          <a href="https://t.me/AxKuon" class="sidebar-social-btn" target="_blank" rel="noopener">
+            <i class="fab fa-telegram"></i> Telegram
+          </a>
+          <a href="https://max.ru/channel_axkuon" class="sidebar-social-btn" target="_blank" rel="noopener">
+            <i class="fas fa-comment-dots"></i> MAX
+          </a>
+          <a href="https://vk.ru/axkuon" class="sidebar-social-btn" target="_blank" rel="noopener">
+            <i class="fab fa-vk"></i> VK
+          </a>
+          <a href="https://www.rustore.ru/catalog/developer/ch7shq" class="sidebar-social-btn" target="_blank" rel="noopener">
+            <i class="fas fa-store"></i> RuStore
+          </a>
+        </div>
+      </div>
+
+      <button class="btn-up" id="desktopBtnUp" type="button">
+        <i class="fas fa-arrow-up"></i> Наверх
+      </button>
+    </aside>
+
+    <!-- ОСНОВНОЙ КОНТЕНТ -->
+    <main class="article-main">
+      <div class="breadcrumb">
+        <a href="../index.html">Главная</a><span>/</span><a href="../news.html">Новости</a><span>/</span>Редизайн FileDrop
+      </div>
+
+      <div class="article-hero">
+        <span class="article-category">Редизайн</span>
+        <h1 class="article-title">Полный редизайн FileDrop</h1>
+
+        <div class="article-meta">
+          <span><i class="far fa-calendar-alt"></i> 19 сентября 2026</span>
+          <span><i class="far fa-clock"></i> 2 мин чтения</span>
+          <div class="article-authors">
+            <div class="author-avatar">
+              <img src="../images/avatars/konata-nekeos.jpg" alt="Nekeos">
+            </div>
+            <div class="author-info">
+              <span class="author-name">Nekeos</span>
+              <span class="author-role">Разработчик</span>
+            </div>
+        </div>
+      </div>
+
+      <!-- КАРУСЕЛЬ -->
+      <div class="carousel" id="carousel">
+        <div class="carousel-track" id="carouselTrack">
+          <div class="carousel-slide">
+            <img src="../images/FileDrop/send-2.2.0.png" alt="FileDrop — отправить">
+            <div class="carousel-caption">Новый дизайн FileDrop на пк</div>
+          </div>
+          <div class="carousel-slide">
+            <img src="../images/FileDrop/get-2.2.0.png" alt="FileDrop — получить">
+            <div class="carousel-caption">Новый дизайн FileDrop на пк</div>
+          </div>
+          <div class="carousel-slide">
+            <img src="../images/FileDrop/settings-2.2.0.png" alt="FileDrop — настройки">
+            <div class="carousel-caption">Новый дизайн FileDrop на пк</div>
+          </div>
+          <div class="carousel-slide">
+            <img src="../images/FileDrop/community-2.2.0.png" alt="FileDrop — сообщество">
+            <div class="carousel-caption">Новый дизайн FileDrop на пк</div>
+          </div>
+          <div class="carousel-slide">
+            <img src="../images/FileDrop/FileDrop2.2.0-hor.jpg" alt="FileDrop — планшет">
+            <div class="carousel-caption">Новый дизайн FileDrop на Android</div>
+          </div>
+        </div>
+
+        <button class="carousel-btn prev" id="carouselPrev" aria-label="Назад" type="button">
+          <i class="fas fa-chevron-left"></i>
+        </button>
+        <button class="carousel-btn next" id="carouselNext" aria-label="Вперёд" type="button">
+          <i class="fas fa-chevron-right"></i>
+        </button>
+      </div>
+
+      <div class="carousel-dots" id="carouselDots"></div>
+      <p class="figure-caption">Скриншоты FileDrop v2.2.0 — Windows и Android версии</p>
+
+      <!-- ТЕЛО СТАТЬИ -->
+      <article class="article-body">
+        <p><strong>Новый дизайн FileDrop</strong> -  это более доведённая до ума идея, которую мы заложили на стороне дизайна еще на стадии придумывания самой концепции FileDrop.</p>
+
+        <p>Идея была в минимализме и удобстве для пользователя, когда ничего лишнего не мешает на экране. Наша идея заключается в Open Source и удобстве пользования, в этой статье как раз мы расскажем что и почему мы поменяли в нашем кроссплатформенном приложении.</p>
+
+       <!-- <figure class="article-image">
+          <img src="../images/FileDrop/FileDrop2.2.0-ver.jpg" alt="Главный экран FileDrop">
+          <figcaption class="article-image-caption">Главный экран FileDrop на Windows</figcaption>
+        </figure> -->
+
+        <h2 id="reasons">Почему мы решили менять дизайн?</h2>
+
+        <p>Вообще причин смены дизайна было много, и некоторые из них перечислены далее, но основная идея редизайна появилась еще на стадии обсуждения обновления другого нашего приложения English-120.</p>
+
+        <ul>
+          <li>Старый дизайн был не очень современным и в нём было несколько багов</li>
+          <li>На ПК в любом случае нужно было менять дизайн из-за изменения ссылок</li>
+          <li>Старый дизайн не только нам самим не нравился, но и некоторым другим людям</li>
+        </ul>
+
+        <blockquote>
+          «Вообще это была спонтанная идея. Нет, конечно, я уже говорил, что если мы обновляем English, то и FileDrop надо. Но потом мне один человек, художник, сказал, что дизайн Android-приложения не очень. После этих слов я решил, что пора приниматься за работу.».
+        </blockquote>
+
+        <h2 id="PC-design">Изменения на ПК</h2>
+
+        <p>Вкладки были перенесены влево, так же теперь не обязательно нажимать на кнопку для открытия проводника что бы выбрать файлы для переноса, теперь их просто можно перетащить откуда угодно в специальное окошко. Так же системные уведомления Windows были заменены на красивые плашки внизу окна программы, а все полезные ссылки были перемещены во вкладку "Сообщество", сделанную с дизайном матового стекла. Кроме русского и английского были добавлены немецкий, испанский, японский, китайский и казахские языки. Была решена проблема, когда при нажатии кнопки открытия папки открывалось еще одно окно, теперь в папке загрузки Windows создаётся отдельная папка FileDrop_Download</p>
+
+        <h2 id="AD-design">Изменения на Android</h2>
+
+        <p>Вверху добавлен удобный переключатель темы, сам дизайн приведён к более однотонным цветам, ссылки убраны так же во вкладку "Сообщество", исправлен баг с созданием QR-кода.</p>
+
+        <div class="article-summary" id="finalle">
+          <h3>📌 Итог</h3>
+          <p>В этой нашей первой статье мы рассказали о новом обновлении FileDrop, мы еще не знаем когда оно выйдет, но скачать релизную версию вы можете по ссылке ниже</p>
+        </div>
+
+        <div class="article-summary">
+          <h3>🔮 Что дальше</h3>
+          <p>В следующей версии FileDrop мы планируем добавить уникальный drag-n-drop виджет на рабочий стол Windows — просто тащишь файл на кружок, и он улетает на телефон. Без открытия приложения.</p>
+        </div>
+
+        <a href="../Releases/FileDrop.html" class="btn-release-demo">
+          <i class="fas fa-download"></i> Перейти к FileDrop
+        </a>
+      </article>
+
+      <!-- ПОДЕЛИТЬСЯ -->
+      <div class="article-share">
+        <span class="article-share-label">Поделиться:</span>
+        <a href="#" class="share-btn" id="shareTgBtn"><i class="fab fa-telegram"></i> Telegram</a>
+        <button class="share-btn" id="copyLinkBtn" type="button"><i class="fas fa-link"></i> Копировать ссылку</button>
+      </div>
+
+      <!-- ДРУГИЕ НОВОСТИ -->
+      <section class="related-news">
+        <h2>Другие новости</h2>
+        <div class="related-grid" id="relatedNews"></div>
+      </section>
+    </main>
+  </div>
+
+  <!-- Мобильная реклама снизу -->
+  <div class="mobile-ad-bottom">
+    <ins class="mrg-tag" 
+        style="display:inline-block;width:240px;height:400px"
+        data-ad-client="ad-2064264" 
+        data-ad-slot="2064264">
+    </ins>
+  </div>
+
+  <!-- ФУТЕР -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-col">
+          <a href="../index.html" class="footer-logo">
+            Ax<span>Kuon</span>
+          </a>
+          <p class="footer-tagline">
+            Создаём приложения для Android, Linux и Windows. Поддерживаем open-source проекты и развиваем сообщество разработчиков.
+          </p>
+        </div>
+
+        <div class="footer-col">
+          <h4>Разделы</h4>
+          <ul class="footer-links">
+            <li><a href="../index.html"><i class="fas fa-home"></i> Главная</a></li>
+            <li><a href="../releases.html"><i class="fas fa-rocket"></i> Релизы</a></li>
+            <li><a href="../news.html"><i class="far fa-newspaper"></i> Новости</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Мы в соцсетях</h4>
+          <div class="footer-social">
+            <a href="https://t.me/AxKuon" class="footer-social-btn" target="_blank" rel="noopener">
+              <i class="fab fa-telegram"></i> Telegram
+            </a>
+            <a href="https://max.ru/channel_axkuon" class="footer-social-btn" target="_blank" rel="noopener">
+              <i class="fas fa-comment-dots"></i> MAX
+            </a>
+            <a href="https://vk.ru/axkuon" class="footer-social-btn" target="_blank" rel="noopener">
+              <i class="fab fa-vk"></i> VK
+            </a>
+            <a href="https://www.rustore.ru/catalog/developer/ch7shq" class="footer-social-btn" target="_blank" rel="noopener">
+              <i class="fas fa-store"></i> RuStore
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <div class="footer-copy">
+          © 2026 <a href="../index.html">AxKuon.ru</a> — приложения для Android, Linux и Windows, open-source проекты.
+        </div>
+        <div class="footer-made">
+          Made with <i class="fas fa-heart"></i> by AxKuon team
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- КНОПКА "НАВЕРХ" -->
+  <button class="scroll-top-btn" id="scrollTopBtn" aria-label="Наверх" type="button">
+    <i class="fas fa-arrow-up"></i>
+  </button>
+
+<!-- Левый столбец рекламы (ПК) -->
+<div class="ad-side ad-left">
+  <div class="ad-block">
+    <ins class="mrg-tag" 
+        style="display:inline-block;width:240px;height:400px"
+        data-ad-client="ad-2064264" 
+        data-ad-slot="2064264">
+    </ins>
+  </div>
+  <div class="ad-block">
+    <ins class="mrg-tag" 
+        style="display:inline-block;width:240px;height:400px"
+        data-ad-client="ad-2064264" 
+        data-ad-slot="2064264">
+    </ins>
+  </div>
+</div>
+
+<!-- Правый столбец рекламы (ПК) -->
+<div class="ad-side ad-right">
+  <div class="ad-block">
+    <ins class="mrg-tag" 
+        style="display:inline-block;width:240px;height:400px"
+        data-ad-client="ad-2064264" 
+        data-ad-slot="2064264">
+    </ins>
+  </div>
+  <div class="ad-block">
+    <ins class="mrg-tag" 
+        style="display:inline-block;width:240px;height:400px"
+        data-ad-client="ad-2064264" 
+        data-ad-slot="2064264">
+    </ins>
+  </div>
+</div>
+
+<script>
+(function() {
+  'use strict';
+
+  // ============================================
+  // КАРУСЕЛЬ
+  // ============================================
+  var currentSlide = 0;
+  var track = document.getElementById('carouselTrack');
+  var slides = document.querySelectorAll('.carousel-slide');
+  var dotsContainer = document.getElementById('carouselDots');
+  var totalSlides = slides.length;
+
+  if (track && dotsContainer && totalSlides > 0) {
+    for (var i = 0; i < totalSlides; i++) {
+      (function(index) {
+        var dot = document.createElement('button');
+        dot.className = 'carousel-dot' + (index === 0 ? ' active' : '');
+        dot.setAttribute('aria-label', 'Слайд ' + (index + 1));
+        dot.setAttribute('type', 'button');
+        dot.addEventListener('click', function() { goToSlide(index); });
+        dotsContainer.appendChild(dot);
+      })(i);
+    }
+  }
+
+  function updateCarousel() {
+    if (!track) return;
+    track.style.transform = 'translateX(-' + (currentSlide * 100) + '%)';
+    var dots = document.querySelectorAll('.carousel-dot');
+    for (var i = 0; i < dots.length; i++) {
+      dots[i].classList.toggle('active', i === currentSlide);
+    }
+  }
+
+  function slideNext() {
+    if (totalSlides === 0) return;
+    currentSlide = (currentSlide + 1) % totalSlides;
+    updateCarousel();
+  }
+
+  function slidePrev() {
+    if (totalSlides === 0) return;
+    currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
+    updateCarousel();
+  }
+
+  function goToSlide(index) {
+    currentSlide = index;
+    updateCarousel();
+  }
+
+  var prevBtn = document.getElementById('carouselPrev');
+  var nextBtn = document.getElementById('carouselNext');
+  if (prevBtn) prevBtn.addEventListener('click', slidePrev);
+  if (nextBtn) nextBtn.addEventListener('click', slideNext);
+
+  var carousel = document.getElementById('carousel');
+  if (carousel) {
+    var touchStartX = 0;
+    carousel.addEventListener('touchstart', function(e) {
+      touchStartX = e.changedTouches[0].screenX;
+    }, {passive: true});
+
+    carousel.addEventListener('touchend', function(e) {
+      var touchEndX = e.changedTouches[0].screenX;
+      var diff = touchStartX - touchEndX;
+      if (Math.abs(diff) > 50) {
+        if (diff > 0) slideNext();
+        else slidePrev();
+      }
+    }, {passive: true});
+
+    setInterval(slideNext, 6000);
+  }
+
+  // ============================================
+  // МОБИЛЬНОЕ МЕНЮ
+  // ============================================
+  var hamburgerBtn = document.getElementById('hamburgerBtn');
+  var mobileMenu = document.getElementById('mobileMenu');
+  var mobileMenuContent = document.getElementById('mobileMenuContent');
+  var mobileMenuClose = document.getElementById('mobileMenuClose');
+
+  function openMobileMenu(e) {
+    if (e) { e.preventDefault(); e.stopPropagation(); }
+    if (!mobileMenu) return;
+    mobileMenu.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeMobileMenu(e) {
+    if (e) { e.preventDefault(); e.stopPropagation(); }
+    if (!mobileMenu) return;
+    mobileMenu.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  if (hamburgerBtn) {
+    hamburgerBtn.addEventListener('click', openMobileMenu);
+    hamburgerBtn.addEventListener('touchstart', openMobileMenu, {passive: false});
+  }
+
+  if (mobileMenuClose) {
+    mobileMenuClose.addEventListener('click', closeMobileMenu);
+    mobileMenuClose.addEventListener('touchstart', closeMobileMenu, {passive: false});
+  }
+
+  if (mobileMenu) {
+    mobileMenu.addEventListener('click', function(e) {
+      if (e.target === mobileMenu) closeMobileMenu(e);
+    });
+  }
+
+  var mobileTocLinks = document.querySelectorAll('.mobile-toc-link');
+  for (var j = 0; j < mobileTocLinks.length; j++) {
+    mobileTocLinks[j].addEventListener('click', function() {
+      closeMobileMenu();
+    });
+  }
+
+  var mobileBtnUp = document.getElementById('mobileBtnUp');
+  if (mobileBtnUp) {
+    mobileBtnUp.addEventListener('click', function() {
+      closeMobileMenu();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  }
+
+  var desktopBtnUp = document.getElementById('desktopBtnUp');
+  if (desktopBtnUp) {
+    desktopBtnUp.addEventListener('click', function() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  }
+
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') closeMobileMenu();
+  });
+
+  // ============================================
+  // КНОПКА "НАВЕРХ" (правый нижний угол)
+  // ============================================
+  var scrollTopBtn = document.getElementById('scrollTopBtn');
+  if (scrollTopBtn) {
+    window.addEventListener('scroll', function() {
+      if (window.pageYOffset > 400) {
+        scrollTopBtn.classList.add('visible');
+      } else {
+        scrollTopBtn.classList.remove('visible');
+      }
+    });
+
+    scrollTopBtn.addEventListener('click', function() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  }
+
+  // ============================================
+  // ПОДЕЛИТЬСЯ
+  // ============================================
+  var copyLinkBtn = document.getElementById('copyLinkBtn');
+  var shareTgBtn = document.getElementById('shareTgBtn');
+
+  if (copyLinkBtn) {
+    copyLinkBtn.addEventListener('click', function(e) {
+      e.preventDefault();
+      copyLink();
+    });
+  }
+
+  if (shareTgBtn) {
+    shareTgBtn.addEventListener('click', function(e) {
+      e.preventDefault();
+      shareTelegram();
+    });
+  }
+
+  function copyLink() {
+    var url = window.location.href;
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(url).then(function() {
+        showToast('Ссылка скопирована');
+      }).catch(function() {
+        fallbackCopy(url);
+      });
+    } else {
+      fallbackCopy(url);
+    }
+  }
+
+  function fallbackCopy(text) {
+    var ta = document.createElement('textarea');
+    ta.value = text;
+    ta.style.position = 'fixed';
+    ta.style.opacity = '0';
+    document.body.appendChild(ta);
+    ta.select();
+    try {
+      document.execCommand('copy');
+      showToast('Ссылка скопирована');
+    } catch (e) {
+      showToast('Не удалось скопировать');
+    }
+    document.body.removeChild(ta);
+  }
+
+  function shareTelegram() {
+    var url = encodeURIComponent(window.location.href);
+    var title = encodeURIComponent(document.title);
+    window.open('https://t.me/share/url?url=' + url + '&text=' + title, '_blank');
+  }
+
+  function showToast(text) {
+    var toast = document.createElement('div');
+    toast.textContent = text;
+    toast.style.cssText = 'position:fixed;bottom:30px;left:50%;transform:translateX(-50%) translateY(100px);background:#a78bfa;color:#0c0c0f;padding:12px 24px;border-radius:30px;font-weight:600;font-size:0.9rem;z-index:99999;transition:transform 0.3s ease;pointer-events:none;';
+    document.body.appendChild(toast);
+    requestAnimationFrame(function() {
+      toast.style.transform = 'translateX(-50%) translateY(0)';
+    });
+    setTimeout(function() {
+      toast.style.transform = 'translateX(-50%) translateY(100px)';
+      setTimeout(function() { toast.remove(); }, 300);
+    }, 2000);
+  }
+
+  // ============================================
+  // АКТИВНЫЙ РАЗДЕЛ В САЙДБАРЕ (ПК)
+  // ============================================
+  var tocLinks = document.querySelectorAll('.toc-list a[data-target]');
+  var sections = document.querySelectorAll('.article-body h2, .article-body h3, .article-summary');
+
+  window.addEventListener('scroll', function() {
+    var current = '';
+    sections.forEach(function(section) {
+      var rect = section.getBoundingClientRect();
+      if (rect.top <= 150) {
+        current = section.id;
+      }
+    });
+    tocLinks.forEach(function(link) {
+      link.classList.toggle('active', link.dataset.target === current);
+    });
+  });
+
+  // ============================================
+  // ДРУГИЕ НОВОСТИ (авто из news.json)
+  // ============================================
+  var relatedContainer = document.getElementById('relatedNews');
+
+  if (relatedContainer) {
+    // Имя текущего файла статьи — исключим её из списка
+    var currentPath = window.location.pathname.split('/').pop();
+
+    fetch('../news.json')
+      .then(function(r) {
+        if (!r.ok) throw new Error('news.json не найден');
+        return r.json();
+      })
+      .then(function(news) {
+        // Сортируем: закреплённые первыми, потом по дате
+        news.sort(function(a, b) {
+          if (a.pinned && !b.pinned) return -1;
+          if (!a.pinned && b.pinned) return 1;
+          return new Date(b.date) - new Date(a.date);
+        });
+
+        // Фильтруем: только с url, исключаем текущую статью и внешние ссылки
+        var others = news.filter(function(item) {
+          if (!item.url) return false;
+          if (item.url.indexOf('http') === 0) return false;
+
+          var itemFile = item.url.split('/').pop();
+          return itemFile !== currentPath;
+        });
+
+        var top3 = others.slice(0, 3);
+
+        if (top3.length === 0) {
+          relatedContainer.innerHTML = '<div style="color: #7c7c8a; font-size: 0.9rem; grid-column: 1/-1;">Больше новостей пока нет</div>';
+          return;
+        }
+
+        var months = ['января','февраля','марта','апреля','мая','июня','июля','августа','сентября','октября','ноября','декабря'];
+
+        relatedContainer.innerHTML = top3.map(function(n) {
+          var date = new Date(n.date);
+          var dateStr = date.getDate() + ' ' + months[date.getMonth()] + ' ' + date.getFullYear();
+
+          // Путь: если url начинается с / — значит абсолютный от корня, оставляем как есть
+          // Иначе — добавляем ../ потому что мы в news/
+          var href = (n.url.indexOf('/') === 0) ? n.url : '../' + n.url;
+
+          return '<a href="' + href + '" class="related-card">' +
+            '<div class="related-date">' + dateStr + '</div>' +
+            '<div class="related-title">' + (n.title || '') + '</div>' +
+          '</a>';
+        }).join('');
+      })
+      .catch(function(e) {
+        console.error('Не удалось загрузить другие новости:', e);
+        relatedContainer.innerHTML = '<div style="color: #7c7c8a; font-size: 0.9rem; grid-column: 1/-1;">Не удалось загрузить новости</div>';
+      });
+  }
+
+})();
+</script>
+
+
+
+<script>
+  (MRGtag = window.MRGtag || []).push({});
+</script>
+</body>
+</html>
