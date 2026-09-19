@@ -1,21 +1,11 @@
-﻿[
+[
   {
-    "date": "2026-08-20",
-    "category": "Редизайн",
-    "title": "Новый дизайн English 120",
-    "description": "Готовится редизайн приложения для изучения иностранных языков English, все подробности позже.",
-    "url": "",
-    "button": "Подробнее",
-    "icon": "paint-brush",
-    "pinned": true
-  },
-  {
-    "date": "2026-08-10",
+    "date": "2026-07-28",
     "category": "Релиз",
-    "title": "Релиз FileDrop",
-    "description": "Релиз Windows и Android версии FileDrop на нашем сайте, GitHub и RuStore",
-    "url": "Releases/FileDrop.html",
-    "button": "К релизу",
+    "title": "Вышла программа Code-Analyzer",
+    "description": "Вышла ранняя бета новой программы для анализа кода, пока что работает только в консоли",
+    "url": "https://github.com/Nekeos/code-analyzer",
+    "button": "К релизу(GitHub)",
     "icon": "check-circle",
     "pinned": false
   },
@@ -30,13 +20,34 @@
     "pinned": false
   },
   {
-    "date": "2026-07-28",
+    "date": "2026-08-10",
     "category": "Релиз",
-    "title": "Вышла программа Code-Analyzer",
-    "description": "Вышла ранняя бета новой программы для анализа кода, пока что работает только в консоли",
-    "url": "https://github.com/Nekeos/code-analyzer",
-    "button": "К релизу(GitHub)",
+    "title": "Релиз FileDrop",
+    "description": "Релиз Windows и Android версии FileDrop на нашем сайте, GitHub и RuStore",
+    "url": "Releases/FileDrop.html",
+    "button": "К релизу",
     "icon": "check-circle",
     "pinned": false
+  },
+  {
+    "date": "2026-08-20",
+    "category": "Редизайн",
+    "title": "Новый дизайн English 120",
+    "description": "Готовится редизайн приложения для изучения иностранных языков English, все подробности позже.",
+    "url": "",
+    "button": "Подробнее",
+    "icon": "paint-brush",
+    "pinned": false
+  },
+  {
+    "date": "2026-09-19",
+    "category": "Редизайн",
+    "title": "Новый дизайн FileDrop",
+    "description": "Скриншоты нового дизайна программы для предачи файлов - FileDrop",
+    "url": "News/FileDrop-2.2.0.html",
+    "button": "Читать",
+    "icon": "check-circle",
+    "image": ".../images/FileDrop/FileDrop-icon.png",
+    "pinned": true
   }
 ]
