@@ -44,10 +44,10 @@
     "category": "Редизайн",
     "title": "Новый дизайн FileDrop",
     "description": "Скриншоты нового дизайна программы для предачи файлов - FileDrop",
-    "url": ".../News/FileDrop-2.2.0.html",
+    "url": "News/FileDrop-2.2.0.html",
     "button": "Читать",
     "icon": "check-circle",
-    "image": ".../images/FileDrop/FileDrop-icon.png",
+    "image": "images/FileDrop/FileDrop-icon.png",
     "pinned": true
   }
 ]
