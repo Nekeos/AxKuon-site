@@ -1412,7 +1412,10 @@
           buttonHtml +
         '</div>' +
         '<div class="news-image">' +
-          '<i class="fas fa-' + (n.icon || 'newspaper') + '"></i>' +
+          (n.image
+            ? '<img src="' + n.image + '" alt="' + (n.title || '') + '">'
+            : '<i class="fas fa-' + (n.icon || 'newspaper') + '"></i>'
+          ) +
         '</div>' +
       '</div>';
     }).join('');
