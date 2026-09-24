@@ -48,6 +48,17 @@
     "button": "Читать",
     "icon": "check-circle",
     "image": "images/FileDrop/FileDrop-icon.png",
+    "pinned": false
+  },
+  {
+    "date": "2026-09-24",
+    "category": "Релиз",
+    "title": "Релиз 2.3.0 FileDrop",
+    "description": "Релиз новой версии 2.3.0 FileDrop",
+    "url": "Releases/FileDrop.html",
+    "button": "Скачать",
+    "icon": "check-circle",
+    "image": "images/FileDrop/FileDrop-icon.png",
     "pinned": true
   }
 ]
