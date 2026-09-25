@@ -294,6 +294,8 @@
       line-height: 1.75;
     }
 
+    .description p { white-space: pre-line; }
+
     .changelog { margin-bottom: 32px; }
 
     .changelog h2 {
@@ -446,6 +448,46 @@
     .btn-download.outline:hover {
       background: rgba(167,139,250,0.15);
       box-shadow: 0 4px 16px -4px rgba(167, 139, 250, 0.4);
+    }
+
+    /* Веб-версия — выделяется */
+    .btn-download.web {
+      background: linear-gradient(135deg, #22d3ee 0%, #a78bfa 100%);
+      color: #0c0c0f;
+      box-shadow: 0 4px 16px -4px rgba(34, 211, 238, 0.5);
+    }
+
+    .btn-download.web:hover {
+      box-shadow: 0 8px 24px -4px rgba(34, 211, 238, 0.7);
+    }
+
+    .download-row.web-row {
+      background: linear-gradient(135deg, rgba(34, 211, 238, 0.08) 0%, rgba(167, 139, 250, 0.06) 100%);
+      border-color: rgba(34, 211, 238, 0.3);
+    }
+
+    .download-row.web-row:hover {
+      border-color: rgba(34, 211, 238, 0.6);
+      background: linear-gradient(135deg, rgba(34, 211, 238, 0.12) 0%, rgba(167, 139, 250, 0.08) 100%);
+    }
+
+    .badge-new {
+      display: inline-block;
+      background: linear-gradient(135deg, #22d3ee, #a78bfa);
+      color: #0c0c0f;
+      font-size: 0.65rem;
+      font-weight: 800;
+      padding: 2px 8px;
+      border-radius: 10px;
+      margin-left: 8px;
+      vertical-align: middle;
+      letter-spacing: 0.5px;
+      animation: pulseNew 2s ease-in-out infinite;
+    }
+
+    @keyframes pulseNew {
+      0%, 100% { box-shadow: 0 0 0 0 rgba(34, 211, 238, 0.6); }
+      50% { box-shadow: 0 0 0 6px rgba(34, 211, 238, 0); }
     }
 
     .store-grid {
@@ -961,6 +1003,7 @@
       <div class="platform-tags">
         <span class="platform-tag"><i class="fab fa-windows"></i> Windows</span>
         <span class="platform-tag"><i class="fab fa-android"></i> Android</span>
+        <span class="platform-tag"><i class="fas fa-globe"></i> Web</span>
       </div>
     </div>
 
@@ -995,6 +1038,7 @@
           <li>Ускорен протокол передачи</li>
           <li>Сделан удобный инсталлер для exe</li>
           <li>Улучшена оптимизация</li>
+          <li>Появилась веб-версия FileDrop</li>
         </ul>
       </div>
 
@@ -1042,6 +1086,30 @@
                class="btn-download" 
                download>
               <i class="fas fa-download"></i> Скачать .apk
+            </a>
+          </div>
+
+          <!-- ✅ Веб-версия -->
+          <div class="download-row web-row">
+            <div class="download-info">
+              <i class="fas fa-globe"></i>
+              <div>
+                <div class="file-name">
+                  FileDrop Web <span class="badge-new">NEW</span>
+                </div>
+                <div class="file-meta">Браузер · без установки · любой OS</div>
+              </div>
+            </div>
+
+            <span class="download-count" style="color: #9090a0; font-size: 0.85rem; margin-left: auto;">
+              Онлайн
+            </span>
+
+            <a href="https://axkuon.ru/Web/FileDrop_web.html" 
+               class="btn-download web" 
+               target="_blank"
+               rel="noopener">
+              <i class="fas fa-external-link-alt"></i> Открыть веб-версию
             </a>
           </div>
 
@@ -1097,6 +1165,10 @@
           <div class="req-item">
             <div class="label">Сеть</div>
             <div class="value">Wi-Fi / Ethernet</div>
+          </div>
+          <div class="req-item">
+            <div class="label">Браузер (Web)</div>
+            <div class="value">Chrome, Safari, Edge</div>
           </div>
         </div>
       </div>
@@ -1234,7 +1306,6 @@
     const repo = 'FileDrop';
 
     try {
-      // Забираем все релизы (с пагинацией)
       const counts = { exe: 0, apk: 0 };
       let page = 1;
 
@@ -1262,9 +1333,8 @@
         page++;
       }
 
-      // Обновляем счётчики
       document.querySelectorAll('[data-file]').forEach(el => {
-        const type = el.dataset.file; // 'exe' или 'apk'
+        const type = el.dataset.file;
         if (counts[type] !== undefined) {
           el.textContent = `↓ ${counts[type]} скачиваний`;
         } else {
