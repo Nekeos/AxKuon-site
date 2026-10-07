@@ -40,17 +40,6 @@
     "pinned": false
   },
   {
-    "date": "2026-09-19",
-    "category": "Редизайн",
-    "title": "Новый дизайн FileDrop",
-    "description": "Скриншоты нового дизайна программы для предачи файлов - FileDrop",
-    "url": "News/FileDrop-2.2.0.html",
-    "button": "Читать",
-    "icon": "check-circle",
-    "image": "images/FileDrop/FileDrop-icon.png",
-    "pinned": false
-  },
-  {
     "date": "2026-09-24",
     "category": "Релиз",
     "title": "Релиз 2.3.0 FileDrop",
@@ -60,5 +49,16 @@
     "icon": "check-circle",
     "image": "images/FileDrop/FileDrop-icon.png",
     "pinned": true
-  }
+  },
+    {
+      "date": "2026-09-19",
+      "category": "Редизайн",
+      "title": "Новый дизайн FileDrop",
+      "description": "Скриншоты нового дизайна программы для передачи файлов — FileDrop",
+      "md": "FileDrop-2.2.0.md",
+      "button": "Читать",
+      "icon": "check-circle",
+      "image": "images/FileDrop/FileDrop-icon.png",
+      "pinned": false
+    }
 ]
