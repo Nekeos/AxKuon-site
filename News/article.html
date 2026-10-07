@@ -1,0 +1,1693 @@
+﻿<!DOCTYPE html>
+<html lang="ru">
+<head>
+
+  <!-- Yandex.Metrika counter -->
+  <script type="text/javascript">
+      (function(m,e,t,r,i,k,a){
+          m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+          m[i].l=1*new Date();
+          for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+          k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
+      })(window, document,'script','https://mc.yandex.ru/metrika/tag.js?id=112506059', 'ym');
+
+      ym(112506059, 'init', {ssr:true, webvisor:true, clickmap:true, ecommerce:"dataLayer", referrer: document.referrer, url: location.href, accurateTrackBounce:true, trackLinks:true});
+  </script>
+  <noscript><div><img src="https://mc.yandex.ru/watch/112506059" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+  <!-- /Yandex.Metrika counter -->
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+  <title>Статья — Новости | AxKuon</title>
+  <link rel="icon" type="image/png" href="../favicon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+  <script async src="https://ad.mail.ru/static/ads-async.js"></script>
+
+  <!-- Markdown parser -->
+  <script src="https://cdn.jsdelivr.net/npm/marked@12.0.0/marked.min.js"></script>
+
+  <style>
+    /* Стилизация скроллбара браузера */
+    ::-webkit-scrollbar { width: 10px; }
+    ::-webkit-scrollbar-track { background: #0c0c0f; }
+    ::-webkit-scrollbar-thumb {
+      background: rgba(167, 139, 250, 0.3);
+      border-radius: 5px;
+      border: 2px solid #0c0c0f;
+    }
+    ::-webkit-scrollbar-thumb:hover { background: rgba(167, 139, 250, 0.5); }
+    html {
+      scrollbar-width: thin;
+      scrollbar-color: rgba(167, 139, 250, 0.3) #0c0c0f;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: #0c0c0f;
+      color: #e0e0e0;
+      line-height: 1.6;
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      top: -50%;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 800px;
+      height: 800px;
+      background: radial-gradient(circle, rgba(167, 139, 250, 0.06) 0%, transparent 60%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 0 24px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .article-layout {
+      display: flex;
+      gap: 32px;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 24px;
+      align-items: flex-start;
+      position: relative;
+      z-index: 1;
+    }
+
+    .article-main {
+      flex: 1;
+      min-width: 0;
+      max-width: 800px;
+    }
+
+    .sidebar {
+      width: 240px;
+      flex-shrink: 0;
+      position: sticky;
+      top: 100px;
+      max-height: calc(100vh - 120px);
+      overflow-y: auto;
+      padding-right: 8px;
+    }
+
+    .sidebar::-webkit-scrollbar { width: 4px; }
+    .sidebar::-webkit-scrollbar-track { background: transparent; }
+    .sidebar::-webkit-scrollbar-thumb {
+      background: rgba(167, 139, 250, 0.2);
+      border-radius: 4px;
+    }
+
+    .sidebar-block {
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.04) 0%, rgba(255, 255, 255, 0.02) 100%);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      border-radius: 16px;
+      padding: 20px;
+      margin-bottom: 16px;
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+    }
+
+    .sidebar-title {
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: #a78bfa;
+      margin-bottom: 14px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .toc-list { list-style: none; padding: 0; }
+    .toc-list li { margin-bottom: 6px; }
+
+    .toc-list a {
+      color: #b0b0c0;
+      text-decoration: none;
+      font-size: 0.85rem;
+      line-height: 1.4;
+      display: block;
+      padding: 6px 10px;
+      border-radius: 8px;
+      border-left: 2px solid transparent;
+      transition: all 0.2s;
+    }
+
+    .toc-list a:hover { color: #fff; background: rgba(167, 139, 250, 0.08); }
+    .toc-list a.active {
+      color: #c4b5fd;
+      background: rgba(167, 139, 250, 0.12);
+      border-left-color: #a78bfa;
+    }
+
+    .sidebar-social { display: flex; flex-direction: column; gap: 8px; }
+
+    .sidebar-social-btn {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 12px;
+      border-radius: 10px;
+      text-decoration: none;
+      color: #b0b0c0;
+      font-size: 0.85rem;
+      font-weight: 500;
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.06);
+      transition: all 0.2s;
+    }
+
+    .sidebar-social-btn:hover {
+      color: #fff;
+      background: rgba(167, 139, 250, 0.15);
+      border-color: rgba(167, 139, 250, 0.35);
+      transform: translateX(3px);
+    }
+
+    .sidebar-social-btn i { font-size: 1.1rem; color: #a78bfa; width: 20px; text-align: center; }
+
+    .btn-up {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      width: 100%;
+      padding: 12px;
+      border-radius: 10px;
+      background: rgba(167, 139, 250, 0.1);
+      border: 1px solid rgba(167, 139, 250, 0.3);
+      color: #c4b5fd;
+      font-weight: 500;
+      font-size: 0.85rem;
+      cursor: pointer;
+      transition: all 0.2s;
+      font-family: inherit;
+    }
+
+    .btn-up:hover { background: rgba(167, 139, 250, 0.2); color: #fff; border-color: #a78bfa; }
+
+    .hamburger {
+      display: none;
+      background: rgba(167, 139, 250, 0.1);
+      border: 1px solid rgba(167, 139, 250, 0.3);
+      color: #c4b5fd;
+      width: 42px;
+      height: 42px;
+      border-radius: 10px;
+      cursor: pointer;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.1rem;
+      transition: all 0.2s;
+      font-family: inherit;
+    }
+
+    .hamburger:hover { background: rgba(167, 139, 250, 0.2); color: #fff; }
+
+    .mobile-menu {
+      display: none;
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(0, 0, 0, 0.7);
+      z-index: 9999;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      pointer-events: none;
+    }
+
+    .mobile-menu.open { opacity: 1; pointer-events: auto; }
+
+    .mobile-menu-content {
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      background: #13131a;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+      padding: 20px;
+      transform: translateY(-100%);
+      transition: transform 0.3s ease;
+      max-height: 85vh;
+      overflow-y: auto;
+    }
+
+    .mobile-menu.open .mobile-menu-content { transform: translateY(0); }
+
+    .mobile-menu-close {
+      position: absolute;
+      top: 16px; right: 16px;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.1);
+      color: #ccc;
+      width: 36px; height: 36px;
+      border-radius: 50%;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.9rem;
+      transition: all 0.2s;
+      font-family: inherit;
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      background-color: rgba(12, 12, 15, 0.85);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+      z-index: 100;
+      padding: 16px 0;
+    }
+
+    .nav-container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    .nav-left { display: flex; align-items: center; gap: 12px; }
+
+    .logo {
+      font-weight: 700;
+      font-size: 1.8rem;
+      letter-spacing: -0.5px;
+      color: #ffffff;
+      text-decoration: none;
+    }
+
+    .logo span { color: #a78bfa; }
+
+    .nav-links { display: flex; gap: 20px; align-items: center; }
+
+    .nav-links a {
+      color: #b0b0b0;
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 0.95rem;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover { color: #ffffff; }
+
+    .btn-back {
+      background: transparent;
+      border: 1px solid rgba(255,255,255,0.2);
+      color: #ccc;
+      padding: 8px 18px;
+      border-radius: 30px;
+      font-weight: 500;
+      text-decoration: none;
+      transition: all 0.2s;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.9rem;
+    }
+
+    .btn-back:hover { border-color: #a78bfa; color: #fff; background: rgba(167,139,250,0.1); }
+
+    .breadcrumb { padding: 24px 0 0; font-size: 0.85rem; color: #7c7c8a; }
+    .breadcrumb a { color: #a78bfa; text-decoration: none; }
+    .breadcrumb a:hover { text-decoration: underline; }
+    .breadcrumb span { margin: 0 6px; color: #555; }
+
+    .article-hero { padding: 32px 0 16px; }
+
+    .article-category {
+      display: inline-block;
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1.2px;
+      color: #c4b5fd;
+      background: rgba(167, 139, 250, 0.15);
+      border: 1px solid rgba(167, 139, 250, 0.2);
+      padding: 6px 14px;
+      border-radius: 20px;
+      margin-bottom: 16px;
+    }
+
+    .article-title {
+      font-size: 2.6rem;
+      font-weight: 800;
+      color: #fff;
+      line-height: 1.2;
+      margin-bottom: 20px;
+      letter-spacing: -1px;
+    }
+
+    .article-meta {
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+      font-size: 0.9rem;
+      color: #9090a0;
+      margin-bottom: 28px;
+      align-items: center;
+    }
+
+    .article-meta span { display: flex; align-items: center; gap: 6px; }
+    .article-meta i { color: #a78bfa; }
+
+    .article-authors { display: flex; align-items: center; gap: 12px; }
+
+    .author-avatar {
+      width: 36px; height: 36px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, rgba(167, 139, 250, 0.3) 0%, rgba(167, 139, 250, 0.15) 100%);
+      border: 1px solid rgba(167, 139, 250, 0.3);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #c4b5fd;
+      font-weight: 700;
+      font-size: 0.9rem;
+      flex-shrink: 0;
+      overflow: hidden;
+    }
+
+    .author-avatar img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+    .author-info { display: flex; flex-direction: column; line-height: 1.3; }
+    .author-name { color: #e0e0e0; font-weight: 500; font-size: 0.9rem; }
+    .author-role { color: #7c7c8a; font-size: 0.75rem; }
+
+    .carousel {
+      position: relative;
+      width: 100%;
+      border-radius: 24px;
+      overflow: hidden;
+      margin-bottom: 16px;
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.06);
+    }
+
+    .carousel-track { display: flex; transition: transform 0.4s ease; will-change: transform; }
+    .carousel-slide { min-width: 100%; position: relative; }
+
+    .carousel-slide img {
+      width: 100%;
+      height: auto;
+      display: block;
+      aspect-ratio: 16 / 9;
+      object-fit: cover;
+    }
+
+    .carousel-caption {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      background: linear-gradient(to top, rgba(0,0,0,0.85), transparent);
+      padding: 24px 24px 16px;
+      color: #fff;
+      font-size: 0.9rem;
+    }
+
+    .carousel-btn {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(12, 12, 15, 0.7);
+      border: 1px solid rgba(255,255,255,0.15);
+      color: #fff;
+      width: 44px; height: 44px;
+      border-radius: 50%;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.2s;
+      backdrop-filter: blur(8px);
+      font-size: 1rem;
+      z-index: 2;
+    }
+
+    .carousel-btn:hover { background: #a78bfa; border-color: #a78bfa; color: #0c0c0f; }
+    .carousel-btn.prev { left: 16px; }
+    .carousel-btn.next { right: 16px; }
+
+    .carousel-dots { display: flex; justify-content: center; gap: 8px; padding: 12px 0 4px; }
+
+    .carousel-dot {
+      width: 8px; height: 8px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.2);
+      border: none;
+      cursor: pointer;
+      transition: all 0.2s;
+      padding: 0;
+    }
+
+    .carousel-dot.active { background: #a78bfa; width: 24px; border-radius: 4px; }
+
+    .figure-caption {
+      text-align: center;
+      color: #7c7c8a;
+      font-size: 0.85rem;
+      font-style: italic;
+      margin-bottom: 32px;
+    }
+
+    .article-image {
+      margin: 32px 0;
+      border-radius: 20px;
+      overflow: hidden;
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.06);
+    }
+
+    .article-image img { width: 100%; height: auto; display: block; }
+
+    .article-image-caption {
+      padding: 12px 20px;
+      font-size: 0.85rem;
+      color: #7c7c8a;
+      font-style: italic;
+      text-align: center;
+      border-top: 1px solid rgba(255,255,255,0.05);
+    }
+
+    .article-collage { display: grid; gap: 12px; margin: 32px 0; }
+    .article-collage.cols-2 { grid-template-columns: 1fr 1fr; }
+    .article-collage.cols-3 { grid-template-columns: 1fr 1fr; }
+    .article-collage.cols-3 .collage-item:first-child { grid-column: 1 / -1; }
+    .article-collage.cols-4 { grid-template-columns: 1fr 1fr; }
+
+    .collage-item {
+      position: relative;
+      border-radius: 16px;
+      overflow: hidden;
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.06);
+      aspect-ratio: 16 / 10;
+    }
+
+    .collage-item img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+    .collage-caption {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      background: linear-gradient(to top, rgba(0,0,0,0.85), transparent);
+      padding: 16px 14px 10px;
+      color: #fff;
+      font-size: 0.8rem;
+      line-height: 1.3;
+    }
+
+    .article-body {
+      font-size: 1.1rem;
+      color: #c0c0d0;
+      line-height: 1.8;
+      margin-bottom: 40px;
+    }
+
+    .article-body p { margin-bottom: 20px; }
+
+    .article-body h2 {
+      font-size: 1.8rem;
+      color: #fff;
+      margin: 36px 0 16px;
+      font-weight: 700;
+      letter-spacing: -0.4px;
+      scroll-margin-top: 100px;
+    }
+
+    .article-body h3 {
+      font-size: 1.4rem;
+      color: #fff;
+      margin: 28px 0 12px;
+      font-weight: 700;
+      scroll-margin-top: 100px;
+    }
+
+    .article-body ul, .article-body ol { padding-left: 24px; margin-bottom: 20px; }
+    .article-body li { margin-bottom: 8px; }
+    .article-body li::marker { color: #a78bfa; }
+    .article-body strong { color: #fff; font-weight: 600; }
+
+    .article-body a {
+      color: #a78bfa;
+      text-decoration: underline;
+      text-decoration-color: rgba(167,139,250,0.3);
+      text-underline-offset: 3px;
+    }
+
+    .article-body blockquote {
+      border-left: 3px solid #a78bfa;
+      padding: 16px 24px;
+      margin: 24px 0;
+      background: rgba(167, 139, 250, 0.05);
+      border-radius: 0 12px 12px 0;
+      color: #d0d0e0;
+      font-style: italic;
+    }
+
+    .article-body img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 16px;
+      display: block;
+      margin: 24px 0;
+      border: 1px solid rgba(255,255,255,0.06);
+    }
+
+    .article-body code {
+      background: rgba(167, 139, 250, 0.12);
+      color: #e9d5ff;
+      padding: 2px 6px;
+      border-radius: 6px;
+      font-size: 0.9em;
+      font-family: 'JetBrains Mono', 'Consolas', monospace;
+    }
+
+    .article-body pre {
+      background: rgba(0,0,0,0.4);
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 12px;
+      padding: 16px 20px;
+      overflow-x: auto;
+      margin: 20px 0;
+    }
+
+    .article-body pre code { background: transparent; padding: 0; }
+
+    .article-summary {
+      background: linear-gradient(135deg, rgba(167, 139, 250, 0.08) 0%, rgba(167, 139, 250, 0.03) 100%);
+      border: 1px solid rgba(167, 139, 250, 0.2);
+      border-radius: 16px;
+      padding: 24px;
+      margin: 32px 0;
+    }
+
+    .article-summary h3 {
+      color: #a78bfa;
+      font-size: 1.2rem;
+      margin-bottom: 12px;
+      margin-top: 0;
+    }
+
+    .article-summary p:last-child { margin-bottom: 0; }
+
+    .btn-release-demo {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      padding: 14px 28px;
+      background: linear-gradient(135deg, #a78bfa 0%, #8b5cf6 100%);
+      color: #0c0c0f !important;
+      font-weight: 700;
+      font-size: 1rem;
+      text-decoration: none;
+      border-radius: 30px;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      margin: 8px 0 32px;
+      box-shadow: 0 8px 24px -4px rgba(167, 139, 250, 0.4);
+      border: none;
+      cursor: pointer;
+    }
+
+    .btn-release-demo:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 32px -4px rgba(167, 139, 250, 0.6);
+    }
+
+    .article-share {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      align-items: center;
+      padding: 24px 0;
+      border-top: 1px solid rgba(255,255,255,0.06);
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+      margin-bottom: 32px;
+    }
+
+    .article-share-label { color: #9090a0; font-size: 0.9rem; margin-right: 8px; }
+
+    .share-btn {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.1);
+      color: #e0e0e0;
+      padding: 8px 16px;
+      border-radius: 20px;
+      text-decoration: none;
+      font-size: 0.85rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.2s;
+      cursor: pointer;
+      font-family: inherit;
+    }
+
+    .share-btn:hover { background: #a78bfa; border-color: #a78bfa; color: #0c0c0f; }
+
+    .related-news { margin-bottom: 60px; }
+    .related-news h2 { font-size: 1.5rem; color: #fff; margin-bottom: 20px; }
+
+    .related-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 16px;
+    }
+
+    .related-card {
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.04) 0%, rgba(255, 255, 255, 0.02) 100%);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      border-radius: 16px;
+      padding: 20px;
+      text-decoration: none;
+      color: #e0e0e0;
+      transition: all 0.3s;
+    }
+
+    .related-card:hover {
+      border-color: rgba(167, 139, 250, 0.4);
+      background: linear-gradient(135deg, rgba(167, 139, 250, 0.08) 0%, rgba(167, 139, 250, 0.02) 100%);
+      transform: translateY(-3px);
+    }
+
+    .related-date { color: #7c7c8a; font-size: 0.8rem; margin-bottom: 6px; }
+    .related-title { color: #fff; font-size: 1rem; font-weight: 600; line-height: 1.4; }
+
+    .ad-side {
+      position: fixed;
+      top: 100px;
+      z-index: 50;
+      width: 240px;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .ad-left { left: 20px; }
+    .ad-right { right: 20px; }
+
+    .ad-block {
+      width: 240px; height: 400px;
+      min-height: 400px;
+      flex-shrink: 0;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .ad-block ins {
+      display: block !important;
+      width: 240px !important;
+      height: 400px !important;
+      margin: 0 !important;
+    }
+
+    .mobile-ad-top, .mobile-ad-bottom { display: none; }
+
+    @media (max-width: 1500px) {
+      .ad-side { display: none; }
+      .mobile-ad-top, .mobile-ad-bottom {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 12px 0;
+        width: 100%;
+      }
+      .mobile-ad-top {
+        background: rgba(255,255,255,0.02);
+        border-bottom: 1px solid rgba(255,255,255,0.05);
+      }
+      .mobile-ad-bottom { margin: 32px auto 24px; max-width: 320px; }
+    }
+
+    .scroll-top-btn {
+      position: fixed;
+      bottom: 32px; right: 32px;
+      width: 52px; height: 52px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #a78bfa 0%, #8b5cf6 100%);
+      border: none;
+      color: #0c0c0f;
+      font-size: 1.2rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 8px 24px -4px rgba(167, 139, 250, 0.5);
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(20px) scale(0.8);
+      z-index: 90;
+      font-family: inherit;
+    }
+
+    .scroll-top-btn.visible { opacity: 1; visibility: visible; transform: translateY(0) scale(1); }
+    .scroll-top-btn:hover { transform: translateY(-4px) scale(1.05); }
+
+    .site-footer {
+      position: relative;
+      margin-top: 80px;
+      padding: 60px 0 0;
+      border-top: 1px solid rgba(255, 255, 255, 0.06);
+      background: linear-gradient(180deg, transparent 0%, rgba(167, 139, 250, 0.03) 100%);
+      z-index: 1;
+    }
+
+    .site-footer::before {
+      content: '';
+      position: absolute;
+      top: -1px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 200px;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, #a78bfa, transparent);
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1.5fr;
+      gap: 48px;
+      padding-bottom: 48px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    }
+
+    .footer-col h4 {
+      font-size: 0.8rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: #a78bfa;
+      margin-bottom: 20px;
+    }
+
+    .footer-logo {
+      font-weight: 700;
+      font-size: 1.8rem;
+      letter-spacing: -0.5px;
+      color: #ffffff;
+      text-decoration: none;
+      display: inline-block;
+      margin-bottom: 12px;
+    }
+
+    .footer-logo span { color: #a78bfa; }
+
+    .footer-tagline { color: #9090a0; font-size: 0.9rem; line-height: 1.6; max-width: 320px; }
+
+    .footer-links { list-style: none; padding: 0; }
+    .footer-links li { margin-bottom: 10px; }
+
+    .footer-links a {
+      color: #b0b0c0;
+      text-decoration: none;
+      font-size: 0.9rem;
+      transition: all 0.2s;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .footer-links a:hover { color: #c4b5fd; transform: translateX(3px); }
+
+    .footer-social { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+
+    .footer-social-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 8px 12px;
+      border-radius: 10px;
+      text-decoration: none;
+      color: #b0b0c0;
+      font-size: 0.8rem;
+      font-weight: 500;
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.06);
+      transition: all 0.2s;
+      white-space: nowrap;
+    }
+
+    .footer-social-btn:hover {
+      color: #fff;
+      background: rgba(167, 139, 250, 0.15);
+      border-color: rgba(167, 139, 250, 0.35);
+    }
+
+    .footer-social-btn i { font-size: 0.95rem; color: #a78bfa; }
+
+    .footer-bottom {
+      padding: 24px 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .footer-copy { color: #6b6b7a; font-size: 0.85rem; }
+    .footer-copy a { color: #a78bfa; text-decoration: none; }
+    .footer-made { color: #6b6b7a; font-size: 0.8rem; display: flex; align-items: center; gap: 6px; }
+    .footer-made i { color: #a78bfa; }
+
+    .article-loading, .article-error {
+      text-align: center;
+      padding: 80px 24px;
+      color: #7c7c8a;
+    }
+
+    .article-loading i, .article-error i {
+      font-size: 2.5rem;
+      color: #a78bfa;
+      display: block;
+      margin-bottom: 16px;
+    }
+
+    .article-error h2 { color: #fff; margin-bottom: 12px; }
+    .article-error a {
+      display: inline-block;
+      margin-top: 20px;
+      color: #a78bfa;
+      text-decoration: none;
+    }
+
+    @media (max-width: 1100px) {
+      .sidebar { display: none; }
+      .article-layout { padding: 0 24px; gap: 0; }
+      .article-main { max-width: 800px; margin: 0 auto; }
+      .hamburger { display: flex; }
+      .mobile-menu { display: block; }
+    }
+
+    @media (max-width: 900px) { .footer-grid { grid-template-columns: 1fr; gap: 32px; } }
+
+    @media (max-width: 768px) {
+      body { overflow-x: hidden; -webkit-text-size-adjust: 100%; }
+      .article-layout { padding: 0 18px; }
+      .article-main { max-width: 100%; }
+      .nav-container { flex-direction: column; gap: 12px; padding: 0 18px; }
+      .nav-links { gap: 12px; flex-wrap: wrap; justify-content: center; }
+      .nav-left { width: 100%; justify-content: space-between; }
+      .logo { font-size: 1.5rem; }
+      .btn-back { padding: 6px 14px; font-size: 0.85rem; }
+      header { padding: 12px 0; }
+      .article-title { font-size: 1.8rem; line-height: 1.25; }
+      .article-meta { font-size: 0.85rem; gap: 14px; }
+      .author-avatar { width: 32px; height: 32px; font-size: 0.8rem; }
+      .carousel { border-radius: 16px; }
+      .carousel-slide img { aspect-ratio: 4 / 3; }
+      .carousel-btn { width: 36px; height: 36px; font-size: 0.85rem; }
+      .carousel-btn.prev { left: 8px; }
+      .carousel-btn.next { right: 8px; }
+      .carousel-caption { padding: 16px 16px 12px; font-size: 0.85rem; }
+      .article-image { border-radius: 14px; margin: 24px 0; }
+      .article-collage { gap: 8px; margin: 24px 0; }
+      .collage-item { border-radius: 12px; aspect-ratio: 4 / 3; }
+      .collage-caption { padding: 12px 10px 8px; font-size: 0.75rem; }
+      .article-body { font-size: 1.15rem; line-height: 1.85; }
+      .article-body h2 { font-size: 1.5rem; margin: 28px 0 14px; }
+      .article-body h3 { font-size: 1.25rem; margin: 22px 0 10px; }
+      .article-summary { padding: 18px; }
+      .btn-release-demo { padding: 12px 22px; font-size: 0.95rem; width: 100%; justify-content: center; }
+      .article-share { padding: 18px 0; gap: 8px; }
+      .share-btn { font-size: 0.8rem; padding: 7px 14px; }
+      .related-news h2 { font-size: 1.25rem; }
+      .related-title { font-size: 0.95rem; }
+      .scroll-top-btn { bottom: 20px; right: 20px; width: 46px; height: 46px; font-size: 1rem; }
+      .footer-grid { grid-template-columns: 1fr; gap: 32px; padding-bottom: 32px; }
+      .footer-social { grid-template-columns: 1fr 1fr; }
+      .footer-bottom { flex-direction: column; text-align: center; }
+      .site-footer { padding: 40px 0 0; }
+    }
+
+    @media (max-width: 420px) {
+      .article-layout { padding: 0 14px; }
+      .article-title { font-size: 1.55rem; }
+      .article-body { font-size: 1.1rem; }
+      .article-collage.cols-2,
+      .article-collage.cols-3,
+      .article-collage.cols-4 { grid-template-columns: 1fr; }
+      .article-collage.cols-3 .collage-item:first-child { grid-column: auto; }
+      .footer-social { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <div class="nav-container">
+      <div class="nav-left">
+        <a href="../index.html" class="logo">Ax<span>Kuon</span></a>
+        <button class="hamburger" id="hamburgerBtn" aria-label="Меню" type="button">
+          <i class="fas fa-bars"></i>
+        </button>
+      </div>
+      <div class="nav-links">
+        <a href="../index.html">Главная</a>
+        <a href="../releases.html">Релизы</a>
+        <a href="../news.html" class="btn-back"><i class="fas fa-arrow-left"></i> Все новости</a>
+      </div>
+    </div>
+  </header>
+
+  <div class="mobile-menu" id="mobileMenu">
+    <div class="mobile-menu-content" id="mobileMenuContent">
+      <button class="mobile-menu-close" id="mobileMenuClose" aria-label="Закрыть" type="button">
+        <i class="fas fa-times"></i>
+      </button>
+      <div class="sidebar-block" style="margin-top: 30px;">
+        <div class="sidebar-title"><i class="fas fa-list"></i> Содержание</div>
+        <ul class="toc-list" id="mobileTocList"></ul>
+      </div>
+      <div class="sidebar-block">
+        <div class="sidebar-title"><i class="fas fa-share-alt"></i> Мы в соцсетях</div>
+        <div class="sidebar-social">
+          <a href="https://t.me/AxKuon" class="sidebar-social-btn" target="_blank" rel="noopener"><i class="fab fa-telegram"></i> Telegram</a>
+          <a href="https://max.ru/channel_axkuon" class="sidebar-social-btn" target="_blank" rel="noopener"><i class="fas fa-comment-dots"></i> MAX</a>
+          <a href="https://vk.ru/axkuon" class="sidebar-social-btn" target="_blank" rel="noopener"><i class="fab fa-vk"></i> VK</a>
+          <a href="https://www.rustore.ru/catalog/developer/ch7shq" class="sidebar-social-btn" target="_blank" rel="noopener"><i class="fas fa-store"></i> RuStore</a>
+        </div>
+      </div>
+      <button class="btn-up" id="mobileBtnUp" type="button"><i class="fas fa-arrow-up"></i> Наверх</button>
+    </div>
+  </div>
+
+  <div class="mobile-ad-top">
+    <ins class="mrg-tag" style="display:inline-block;width:320px;height:50px" data-ad-client="ad-2064565" data-ad-slot="2064565"></ins>
+  </div>
+
+  <div class="article-layout">
+    <aside class="sidebar">
+      <div class="sidebar-block">
+        <div class="sidebar-title"><i class="fas fa-list"></i> Содержание</div>
+        <ul class="toc-list" id="desktopTocList"></ul>
+      </div>
+      <div class="sidebar-block">
+        <div class="sidebar-title"><i class="fas fa-share-alt"></i> Мы в соцсетях</div>
+        <div class="sidebar-social">
+          <a href="https://t.me/AxKuon" class="sidebar-social-btn" target="_blank" rel="noopener"><i class="fab fa-telegram"></i> Telegram</a>
+          <a href="https://max.ru/channel_axkuon" class="sidebar-social-btn" target="_blank" rel="noopener"><i class="fas fa-comment-dots"></i> MAX</a>
+          <a href="https://vk.ru/axkuon" class="sidebar-social-btn" target="_blank" rel="noopener"><i class="fab fa-vk"></i> VK</a>
+          <a href="https://www.rustore.ru/catalog/developer/ch7shq" class="sidebar-social-btn" target="_blank" rel="noopener"><i class="fas fa-store"></i> RuStore</a>
+        </div>
+      </div>
+      <button class="btn-up" id="desktopBtnUp" type="button"><i class="fas fa-arrow-up"></i> Наверх</button>
+    </aside>
+
+    <main class="article-main" id="articleMain">
+      <div class="article-loading" id="articleLoading">
+        <i class="fas fa-spinner fa-spin"></i>
+        Загрузка статьи...
+      </div>
+    </main>
+  </div>
+
+  <div class="mobile-ad-bottom">
+    <ins class="mrg-tag" style="display:inline-block;width:240px;height:400px" data-ad-client="ad-2064264" data-ad-slot="2064264"></ins>
+  </div>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-col">
+          <a href="../index.html" class="footer-logo">Ax<span>Kuon</span></a>
+          <p class="footer-tagline">Создаём приложения для Android, Linux и Windows. Поддерживаем open-source проекты и развиваем сообщество разработчиков.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Разделы</h4>
+          <ul class="footer-links">
+            <li><a href="../index.html"><i class="fas fa-home"></i> Главная</a></li>
+            <li><a href="../releases.html"><i class="fas fa-rocket"></i> Релизы</a></li>
+            <li><a href="../news.html"><i class="far fa-newspaper"></i> Новости</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Мы в соцсетях</h4>
+          <div class="footer-social">
+            <a href="https://t.me/AxKuon" class="footer-social-btn" target="_blank" rel="noopener"><i class="fab fa-telegram"></i> Telegram</a>
+            <a href="https://max.ru/channel_axkuon" class="footer-social-btn" target="_blank" rel="noopener"><i class="fas fa-comment-dots"></i> MAX</a>
+            <a href="https://vk.ru/axkuon" class="footer-social-btn" target="_blank" rel="noopener"><i class="fab fa-vk"></i> VK</a>
+            <a href="https://www.rustore.ru/catalog/developer/ch7shq" class="footer-social-btn" target="_blank" rel="noopener"><i class="fas fa-store"></i> RuStore</a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <div class="footer-copy">© 2026 <a href="../index.html">AxKuon.ru</a> — приложения для Android, Linux и Windows, open-source проекты.</div>
+        <div class="footer-made">Made with <i class="fas fa-heart"></i> by AxKuon team</div>
+      </div>
+    </div>
+  </footer>
+
+  <button class="scroll-top-btn" id="scrollTopBtn" aria-label="Наверх" type="button">
+    <i class="fas fa-arrow-up"></i>
+  </button>
+
+  <div class="ad-side ad-left">
+    <div class="ad-block"><ins class="mrg-tag" style="display:inline-block;width:240px;height:400px" data-ad-client="ad-2064264" data-ad-slot="2064264"></ins></div>
+    <div class="ad-block"><ins class="mrg-tag" style="display:inline-block;width:240px;height:400px" data-ad-client="ad-2064264" data-ad-slot="2064264"></ins></div>
+  </div>
+
+  <div class="ad-side ad-right">
+    <div class="ad-block"><ins class="mrg-tag" style="display:inline-block;width:240px;height:400px" data-ad-client="ad-2064264" data-ad-slot="2064264"></ins></div>
+    <div class="ad-block"><ins class="mrg-tag" style="display:inline-block;width:240px;height:400px" data-ad-client="ad-2064264" data-ad-slot="2064264"></ins></div>
+  </div>
+
+<script>
+(function() {
+  'use strict';
+
+  // ============================================
+  // 1. Получаем имя файла из URL
+  // ============================================
+  var params = new URLSearchParams(window.location.search);
+  var file = params.get('file');
+
+  var mainEl = document.getElementById('articleMain');
+
+  if (!file) {
+    mainEl.innerHTML = '<div class="article-error">' +
+      '<i class="fas fa-exclamation-triangle"></i>' +
+      '<h2>Статья не найдена</h2>' +
+      '<p>В адресе не указан файл статьи.</p>' +
+      '<a href="../news.html"><i class="fas fa-arrow-left"></i> Все новости</a>' +
+      '</div>';
+    return;
+  }
+
+  // ============================================
+  // 2. Загружаем news.json и ищем запись с md
+  // ============================================
+  var mdFileName = file + '.md';
+  var articleMeta = null;
+
+  fetch('../news.json')
+    .then(function(r) { return r.json(); })
+    .then(function(news) {
+      articleMeta = news.find(function(n) {
+        return n.md && (n.md === mdFileName || n.md === file);
+      });
+      return fetch(mdFileName).then(function(r) {
+        if (!r.ok) throw new Error('Файл статьи не найден: ' + mdFileName);
+        return r.text();
+      });
+    })
+    .then(function(mdText) {
+      renderArticle(mdText, articleMeta);
+    })
+    .catch(function(e) {
+      console.error(e);
+      mainEl.innerHTML = '<div class="article-error">' +
+        '<i class="fas fa-exclamation-triangle"></i>' +
+        '<h2>Не удалось загрузить статью</h2>' +
+        '<p>' + e.message + '</p>' +
+        '<a href="../news.html"><i class="fas fa-arrow-left"></i> Все новости</a>' +
+        '</div>';
+    });
+
+  // ============================================
+  // 3. Парсинг front matter
+  // ============================================
+  function parseFrontMatter(text) {
+    var meta = {};
+    var body = text;
+
+    var m = text.match(/^---\s*\r?\n([\s\S]*?)\r?\n---\s*\r?\n([\s\S]*)$/);
+    if (!m) return { meta: meta, body: body };
+
+    var yaml = m[1];
+    body = m[2];
+
+    var lines = yaml.split(/\r?\n/);
+    var currentKey = null;
+    var currentArr = null;
+    var currentObj = null;
+
+    for (var i = 0; i < lines.length; i++) {
+      var line = lines[i];
+      if (!line.trim()) continue;
+
+      // Определяем отступ
+      var indentMatch = line.match(/^(\s*)/);
+      var indent = indentMatch ? indentMatch[1].length : 0;
+      var trimmed = line.trim();
+
+      // Элемент массива: "- src: ..." или "- значение"
+      var arrMatch = trimmed.match(/^-\s+(.*)$/);
+      if (arrMatch && currentArr) {
+        var itemText = arrMatch[1];
+        var kv = itemText.match(/^([\w-]+):\s*(.*)$/);
+        if (kv) {
+          // Новый объект в массиве
+          currentObj = {};
+          currentObj[kv[1]] = stripQuotes(kv[2]);
+          currentArr.push(currentObj);
+        } else {
+          // Простое значение
+          currentArr.push(stripQuotes(itemText));
+          currentObj = null;
+        }
+        continue;
+      }
+
+      // Продолжение объекта массива (с отступом больше, чем у "- ")
+      var contMatch = trimmed.match(/^([\w-]+):\s*(.*)$/);
+      if (contMatch && currentObj && indent >= 2) {
+        currentObj[contMatch[1]] = stripQuotes(contMatch[2]);
+        continue;
+      }
+
+      // Верхнеуровневый ключ: значение
+      var kvMatch = trimmed.match(/^([\w-]+):\s*(.*)$/);
+      if (kvMatch && indent === 0) {
+        var key = kvMatch[1];
+        var val = kvMatch[2];
+        if (val === '') {
+          // Начало массива или вложенного объекта
+          currentArr = [];
+          currentObj = null;
+          meta[key] = currentArr;
+        } else {
+          meta[key] = stripQuotes(val);
+          currentArr = null;
+          currentObj = null;
+        }
+      }
+    }
+
+    return { meta: meta, body: body };
+  }
+
+  function stripQuotes(s) {
+    s = s.trim();
+    if ((s.startsWith('"') && s.endsWith('"')) || (s.startsWith("'") && s.endsWith("'"))) {
+      return s.slice(1, -1);
+    }
+    return s;
+  }
+
+  // ============================================
+  // 4. Обработка маркеров :::carousel / :::summary / :::collage
+  // ============================================
+  function processMarkers(md) {
+    // :::carousel ... ::: (если в тексте, не из front matter)
+    md = md.replace(/:::carousel\s*\r?\n([\s\S]*?)\r?\n:::/g, function(_, inner) {
+      var lines = inner.split(/\r?\n/).filter(function(l) { return l.trim(); });
+      var slides = lines.map(function(line) {
+        var m = line.match(/^!\[([^\]]*)\]\(([^)]+)\)\s*(.*)$/);
+        if (!m) return '';
+        var alt = m[1];
+        var src = m[2];
+        var caption = m[3] || alt;
+        return '<div class="carousel-slide">' +
+          '<img src="' + src + '" alt="' + alt + '">' +
+          (caption ? '<div class="carousel-caption">' + caption + '</div>' : '') +
+          '</div>';
+      }).join('');
+      return '<div class="carousel" data-carousel>' +
+        '<div class="carousel-track">' + slides + '</div>' +
+        '<button class="carousel-btn prev" aria-label="Назад" type="button"><i class="fas fa-chevron-left"></i></button>' +
+        '<button class="carousel-btn next" aria-label="Вперёд" type="button"><i class="fas fa-chevron-right"></i></button>' +
+        '</div>' +
+        '<div class="carousel-dots" data-carousel-dots></div>';
+    });
+
+    // :::summary Заголовок ... :::
+    md = md.replace(/:::summary\s+([^\r\n]+)\r?\n([\s\S]*?)\r?\n:::/g, function(_, title, inner) {
+      var html = window.marked.parse(inner.trim());
+      return '<div class="article-summary">' +
+        '<h3>' + title.trim() + '</h3>' +
+        html +
+        '</div>';
+    });
+
+    // :::collage cols-2 ... :::
+    md = md.replace(/:::collage\s+(cols-\d)\s*\r?\n([\s\S]*?)\r?\n:::/g, function(_, cols, inner) {
+      var lines = inner.split(/\r?\n/).filter(function(l) { return l.trim(); });
+      var items = lines.map(function(line) {
+        var m = line.match(/^!\[([^\]]*)\]\(([^)]+)\)\s*(.*)$/);
+        if (!m) return '';
+        var alt = m[1];
+        var src = m[2];
+        var caption = m[3] || '';
+        return '<div class="collage-item">' +
+          '<img src="' + src + '" alt="' + alt + '">' +
+          (caption ? '<div class="collage-caption">' + caption + '</div>' : '') +
+          '</div>';
+      }).join('');
+      return '<div class="article-collage ' + cols + '">' + items + '</div>';
+    });
+
+    return md;
+  }
+
+  // ============================================
+  // 5. Рендер статьи
+  // ============================================
+  function renderArticle(mdText, newsMeta) {
+    var parsed = parseFrontMatter(mdText);
+    var meta = parsed.meta;
+    var body = parsed.body;
+
+    // Объединяем метаданные: front matter приоритетнее news.json
+    var title = meta.title || (newsMeta && newsMeta.title) || 'Статья';
+    var category = meta.category || (newsMeta && newsMeta.category) || '';
+    var date = meta.date || (newsMeta && newsMeta.date) || '';
+    var author = meta.author || '';
+    var authorRole = meta.authorRole || '';
+    var authorAvatar = meta.authorAvatar || '';
+    var readingTime = meta.readingTime || '';
+    var figureCaption = meta.figureCaption || '';
+    var releaseLink = meta.releaseLink || '';
+    var releaseText = meta.releaseText || '';
+    var breadcrumbTitle = meta.breadcrumbTitle || title;
+    var carouselFromMeta = meta.images || [];
+
+    // Заменяем плейсхолдер карусели, если она в front matter
+    if (carouselFromMeta.length && body.indexOf('::carousel') !== -1) {
+      var slidesHtml = carouselFromMeta.map(function(img) {
+        return '<div class="carousel-slide">' +
+          '<img src="' + img.src + '" alt="' + (img.caption || '') + '">' +
+          (img.caption ? '<div class="carousel-caption">' + img.caption + '</div>' : '') +
+          '</div>';
+      }).join('');
+      body = body.replace(/::carousel/g,
+        '<div class="carousel" data-carousel>' +
+        '<div class="carousel-track">' + slidesHtml + '</div>' +
+        '<button class="carousel-btn prev" aria-label="Назад" type="button"><i class="fas fa-chevron-left"></i></button>' +
+        '<button class="carousel-btn next" aria-label="Вперёд" type="button"><i class="fas fa-chevron-right"></i></button>' +
+        '</div>' +
+        '<div class="carousel-dots" data-carousel-dots></div>'
+      );
+    }
+
+    // Обработка ::: маркеров
+    body = processMarkers(body);
+
+    // Markdown → HTML
+    window.marked.setOptions({ breaks: true, gfm: true });
+    var html = window.marked.parse(body);
+
+    // Генерируем id для h2/h3 (для сайдбара)
+    html = html.replace(/<(h[23])>([\s\S]*?)<\/\1>/g, function(match, tag, text) {
+      var cleanText = text.replace(/<[^>]+>/g, '');
+      var id = slugify(cleanText);
+      return '<' + tag + ' id="' + id + '">' + text + '</' + tag + '>';
+    });
+
+    // Дата в читаемый формат
+    var dateStr = '';
+    if (date) {
+      var d = new Date(date);
+      var months = ['января','февраля','марта','апреля','мая','июня','июля','августа','сентября','октября','ноября','декабря'];
+      dateStr = d.getDate() + ' ' + months[d.getMonth()] + ' ' + d.getFullYear();
+    }
+
+    // Автор
+    var avatarHtml = authorAvatar
+      ? '<img src="' + authorAvatar + '" alt="' + author + '">'
+      : (author ? author.charAt(0).toUpperCase() : 'А');
+
+    var authorHtml = author
+      ? '<div class="article-authors">' +
+          '<div class="author-avatar">' + avatarHtml + '</div>' +
+          '<div class="author-info">' +
+            '<span class="author-name">' + author + '</span>' +
+            (authorRole ? '<span class="author-role">' + authorRole + '</span>' : '') +
+          '</div>' +
+        '</div>'
+      : '';
+
+    // Кнопка релиза
+    var releaseBtnHtml = (releaseLink && releaseText)
+      ? '<a href="' + releaseLink + '" class="btn-release-demo">' +
+          '<i class="fas fa-download"></i> ' + releaseText +
+        '</a>'
+      : '';
+
+    // Собираем HTML статьи
+    var articleHtml =
+      '<div class="breadcrumb">' +
+        '<a href="../index.html">Главная</a><span>/</span>' +
+        '<a href="../news.html">Новости</a><span>/</span>' +
+        escapeHtml(breadcrumbTitle) +
+      '</div>' +
+      '<div class="article-hero">' +
+        (category ? '<span class="article-category">' + escapeHtml(category) + '</span>' : '') +
+        '<h1 class="article-title">' + escapeHtml(title) + '</h1>' +
+        '<div class="article-meta">' +
+          (dateStr ? '<span><i class="far fa-calendar-alt"></i> ' + dateStr + '</span>' : '') +
+          (readingTime ? '<span><i class="far fa-clock"></i> ' + readingTime + ' мин чтения</span>' : '') +
+          authorHtml +
+        '</div>' +
+      '</div>' +
+      html +
+      (figureCaption ? '<p class="figure-caption">' + escapeHtml(figureCaption) + '</p>' : '') +
+      releaseBtnHtml +
+      '<div class="article-share">' +
+        '<span class="article-share-label">Поделиться:</span>' +
+        '<a href="#" class="share-btn" id="shareTgBtn"><i class="fab fa-telegram"></i> Telegram</a>' +
+        '<button class="share-btn" id="copyLinkBtn" type="button"><i class="fas fa-link"></i> Копировать ссылку</button>' +
+      '</div>' +
+      '<section class="related-news">' +
+        '<h2>Другие новости</h2>' +
+        '<div class="related-grid" id="relatedNews"></div>' +
+      '</section>';
+
+    // Оборачиваем в <article class="article-body">
+    // Разделяем: hero и breadcrumb — вне article-body, остальное — внутри
+    // Для простоты: весь html, что от marked, кладём внутрь .article-body
+    // Но проще — вставить как есть, обернув контент в article-body
+
+    // Найдём место, где начинается контент статьи: после article-meta
+    // Сделаем проще: соберём через шаблон с плейсхолдером
+
+    var finalHtml =
+      '<div class="breadcrumb">' +
+        '<a href="../index.html">Главная</a><span>/</span>' +
+        '<a href="../news.html">Новости</a><span>/</span>' +
+        escapeHtml(breadcrumbTitle) +
+      '</div>' +
+      '<div class="article-hero">' +
+        (category ? '<span class="article-category">' + escapeHtml(category) + '</span>' : '') +
+        '<h1 class="article-title">' + escapeHtml(title) + '</h1>' +
+        '<div class="article-meta">' +
+          (dateStr ? '<span><i class="far fa-calendar-alt"></i> ' + dateStr + '</span>' : '') +
+          (readingTime ? '<span><i class="far fa-clock"></i> ' + readingTime + ' мин чтения</span>' : '') +
+          authorHtml +
+        '</div>' +
+      '</div>' +
+      '<article class="article-body">' + html + '</article>' +
+      (figureCaption ? '<p class="figure-caption">' + escapeHtml(figureCaption) + '</p>' : '') +
+      releaseBtnHtml +
+      '<div class="article-share">' +
+        '<span class="article-share-label">Поделиться:</span>' +
+        '<a href="#" class="share-btn" id="shareTgBtn"><i class="fab fa-telegram"></i> Telegram</a>' +
+        '<button class="share-btn" id="copyLinkBtn" type="button"><i class="fas fa-link"></i> Копировать ссылку</button>' +
+      '</div>' +
+      '<section class="related-news">' +
+        '<h2>Другие новости</h2>' +
+        '<div class="related-grid" id="relatedNews"></div>' +
+      '</section>';
+
+    mainEl.innerHTML = finalHtml;
+    document.title = title + ' — Новости | AxKuon';
+
+    // Инициализация после вставки
+    initCarousels();
+    buildToc();
+    initShare();
+    loadRelated(file);
+  }
+
+  function escapeHtml(t) {
+    var d = document.createElement('div');
+    d.textContent = t || '';
+    return d.innerHTML;
+  }
+
+  function slugify(text) {
+    return text.toLowerCase()
+      .replace(/[^\wа-яё\s-]/gi, '')
+      .replace(/\s+/g, '-')
+      .replace(/-+/g, '-')
+      .replace(/^-|-$/g, '')
+      .substring(0, 60);
+  }
+
+  // ============================================
+  // 6. Карусели (может быть несколько)
+  // ============================================
+  function initCarousels() {
+    var carousels = mainEl.querySelectorAll('[data-carousel]');
+    carousels.forEach(function(carousel) {
+      var track = carousel.querySelector('.carousel-track');
+      var slides = carousel.querySelectorAll('.carousel-slide');
+      var total = slides.length;
+      if (!total) return;
+
+      var dotsContainer = carousel.nextElementSibling;
+      if (dotsContainer && dotsContainer.hasAttribute('data-carousel-dots')) {
+        for (var i = 0; i < total; i++) {
+          (function(idx) {
+            var dot = document.createElement('button');
+            dot.className = 'carousel-dot' + (idx === 0 ? ' active' : '');
+            dot.type = 'button';
+            dot.addEventListener('click', function() { go(idx); });
+            dotsContainer.appendChild(dot);
+          })(i);
+        }
+      }
+
+      var current = 0;
+      function update() {
+        track.style.transform = 'translateX(-' + (current * 100) + '%)';
+        if (dotsContainer) {
+          var dots = dotsContainer.querySelectorAll('.carousel-dot');
+          dots.forEach(function(d, idx) { d.classList.toggle('active', idx === current); });
+        }
+      }
+      function go(n) { current = n; update(); }
+      function next() { current = (current + 1) % total; update(); }
+      function prev() { current = (current - 1 + total) % total; update(); }
+
+      var prevBtn = carousel.querySelector('.carousel-btn.prev');
+      var nextBtn = carousel.querySelector('.carousel-btn.next');
+      if (prevBtn) prevBtn.addEventListener('click', prev);
+      if (nextBtn) nextBtn.addEventListener('click', next);
+
+      var startX = 0;
+      carousel.addEventListener('touchstart', function(e) { startX = e.changedTouches[0].screenX; }, {passive: true});
+      carousel.addEventListener('touchend', function(e) {
+        var diff = startX - e.changedTouches[0].screenX;
+        if (Math.abs(diff) > 50) { if (diff > 0) next(); else prev(); }
+      }, {passive: true});
+
+      if (total > 1) setInterval(next, 6000);
+    });
+  }
+
+  // ============================================
+  // 7. Оглавление из h2/h3
+  // ============================================
+  function buildToc() {
+    var headings = mainEl.querySelectorAll('.article-body h2, .article-body h3');
+    var desktopList = document.getElementById('desktopTocList');
+    var mobileList = document.getElementById('mobileTocList');
+
+    if (!headings.length) {
+      if (desktopList) desktopList.parentElement.style.display = 'none';
+      if (mobileList) mobileList.parentElement.style.display = 'none';
+      return;
+    }
+
+    var itemsHtml = '';
+    headings.forEach(function(h) {
+      if (!h.id) return;
+      itemsHtml += '<li><a href="#' + h.id + '" data-target="' + h.id + '">' + escapeHtml(h.textContent) + '</a></li>';
+    });
+
+    if (desktopList) desktopList.innerHTML = itemsHtml;
+    if (mobileList) mobileList.innerHTML = itemsHtml;
+
+    // Активный раздел при скролле
+    var tocLinks = mainEl.querySelectorAll('.toc-list a[data-target]') ||
+                   document.querySelectorAll('.toc-list a[data-target]');
+    var sections = mainEl.querySelectorAll('.article-body h2, .article-body h3');
+
+    window.addEventListener('scroll', function() {
+      var current = '';
+      sections.forEach(function(section) {
+        var rect = section.getBoundingClientRect();
+        if (rect.top <= 150) current = section.id;
+      });
+      document.querySelectorAll('.toc-list a[data-target]').forEach(function(link) {
+        link.classList.toggle('active', link.dataset.target === current);
+      });
+    });
+
+    // Закрытие мобильного меню по клику на ссылку
+    document.querySelectorAll('.mobile-toc-link, .toc-list a').forEach(function(a) {
+      a.addEventListener('click', function() {
+        var menu = document.getElementById('mobileMenu');
+        if (menu) menu.classList.remove('open');
+        document.body.style.overflow = '';
+      });
+    });
+  }
+
+  // ============================================
+  // 8. Поделиться
+  // ============================================
+  function initShare() {
+    var copyBtn = document.getElementById('copyLinkBtn');
+    var tgBtn = document.getElementById('shareTgBtn');
+
+    if (copyBtn) {
+      copyBtn.addEventListener('click', function(e) {
+        e.preventDefault();
+        var url = window.location.href;
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          navigator.clipboard.writeText(url).then(function() { showToast('Ссылка скопирована'); });
+        } else {
+          var ta = document.createElement('textarea');
+          ta.value = url;
+          ta.style.position = 'fixed';
+          ta.style.opacity = '0';
+          document.body.appendChild(ta);
+          ta.select();
+          document.execCommand('copy');
+          document.body.removeChild(ta);
+          showToast('Ссылка скопирована');
+        }
+      });
+    }
+
+    if (tgBtn) {
+      tgBtn.addEventListener('click', function(e) {
+        e.preventDefault();
+        var url = encodeURIComponent(window.location.href);
+        var title = encodeURIComponent(document.title);
+        window.open('https://t.me/share/url?url=' + url + '&text=' + title, '_blank');
+      });
+    }
+  }
+
+  function showToast(text) {
+    var toast = document.createElement('div');
+    toast.textContent = text;
+    toast.style.cssText = 'position:fixed;bottom:30px;left:50%;transform:translateX(-50%) translateY(100px);background:#a78bfa;color:#0c0c0f;padding:12px 24px;border-radius:30px;font-weight:600;font-size:0.9rem;z-index:99999;transition:transform 0.3s ease;pointer-events:none;';
+    document.body.appendChild(toast);
+    requestAnimationFrame(function() { toast.style.transform = 'translateX(-50%) translateY(0)'; });
+    setTimeout(function() {
+      toast.style.transform = 'translateX(-50%) translateY(100px)';
+      setTimeout(function() { toast.remove(); }, 300);
+    }, 2000);
+  }
+
+  // ============================================
+  // 9. Другие новости
+  // ============================================
+  function loadRelated(currentFile) {
+    var container = document.getElementById('relatedNews');
+    if (!container) return;
+
+    fetch('../news.json')
+      .then(function(r) { return r.json(); })
+      .then(function(news) {
+        news.sort(function(a, b) {
+          if (a.pinned && !b.pinned) return -1;
+          if (!a.pinned && b.pinned) return 1;
+          return new Date(b.date) - new Date(a.date);
+        });
+
+        var others = news.filter(function(item) {
+          if (item.md && item.md === currentFile + '.md') return false;
+          return !!(item.md || item.url);
+        });
+
+        var top3 = others.slice(0, 3);
+        if (!top3.length) {
+          container.innerHTML = '<div style="color:#7c7c8a;font-size:0.9rem;grid-column:1/-1;">Больше новостей пока нет</div>';
+          return;
+        }
+
+        var months = ['января','февраля','марта','апреля','мая','июня','июля','августа','сентября','октября','ноября','декабря'];
+
+        container.innerHTML = top3.map(function(n) {
+          var d = new Date(n.date);
+          var dateStr = d.getDate() + ' ' + months[d.getMonth()] + ' ' + d.getFullYear();
+          var href;
+          if (n.md) {
+            href = 'article.html?file=' + encodeURIComponent(n.md.replace(/\.md$/, ''));
+          } else if (n.url && n.url.indexOf('http') === 0) {
+            href = n.url;
+          } else if (n.url) {
+            href = '../' + n.url;
+          } else {
+            return '';
+          }
+          return '<a href="' + href + '" class="related-card">' +
+            '<div class="related-date">' + dateStr + '</div>' +
+            '<div class="related-title">' + escapeHtml(n.title || '') + '</div>' +
+          '</a>';
+        }).join('');
+      })
+      .catch(function() {
+        container.innerHTML = '<div style="color:#7c7c8a;font-size:0.9rem;grid-column:1/-1;">Не удалось загрузить новости</div>';
+      });
+  }
+
+  // ============================================
+  // 10. Мобильное меню, кнопка "наверх"
+  // ============================================
+  var hamburgerBtn = document.getElementById('hamburgerBtn');
+  var mobileMenu = document.getElementById('mobileMenu');
+  var mobileMenuClose = document.getElementById('mobileMenuClose');
+
+  if (hamburgerBtn) hamburgerBtn.addEventListener('click', function() {
+    mobileMenu.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  });
+
+  if (mobileMenuClose) mobileMenuClose.addEventListener('click', function() {
+    mobileMenu.classList.remove('open');
+    document.body.style.overflow = '';
+  });
+
+  if (mobileMenu) mobileMenu.addEventListener('click', function(e) {
+    if (e.target === mobileMenu) {
+      mobileMenu.classList.remove('open');
+      document.body.style.overflow = '';
+    }
+  });
+
+  var mobileBtnUp = document.getElementById('mobileBtnUp');
+  if (mobileBtnUp) mobileBtnUp.addEventListener('click', function() {
+    mobileMenu.classList.remove('open');
+    document.body.style.overflow = '';
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+
+  var desktopBtnUp = document.getElementById('desktopBtnUp');
+  if (desktopBtnUp) desktopBtnUp.addEventListener('click', function() {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+
+  var scrollTopBtn = document.getElementById('scrollTopBtn');
+  if (scrollTopBtn) {
+    window.addEventListener('scroll', function() {
+      scrollTopBtn.classList.toggle('visible', window.pageYOffset > 400);
+    });
+    scrollTopBtn.addEventListener('click', function() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  }
+
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') {
+      if (mobileMenu) mobileMenu.classList.remove('open');
+      document.body.style.overflow = '';
+    }
+  });
+
+})();
+</script>
+
+<script>
+  (MRGtag = window.MRGtag || []).push({});
+</script>
+</body>
+</html>
