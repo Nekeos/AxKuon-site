@@ -1396,9 +1396,12 @@
 
     newsList.innerHTML = filtered.map(function(n) {
       var date = new Date(n.date);
-      var buttonHtml = n.url
-        ? '<a href="' + n.url + '" class="news-link">' + (n.button || 'Читать') + ' <i class="fas fa-arrow-right"></i></a>'
-        : '';
+        var link = n.md
+          ? 'News/article.html?file=' + encodeURIComponent(n.md.replace(/\.md$/, ''))
+          : n.url;
+        var buttonHtml = link
+          ? '<a href="' + link + '" class="news-link">' + (n.button || 'Читать') + ' <i class="fas fa-arrow-right"></i></a>'
+          : '';
 
       return '<div class="news-card ' + (n.pinned ? 'pinned' : '') + '">' +
         '<div class="news-date-badge">' +
