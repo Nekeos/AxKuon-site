@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="ru">
 <head>
 
@@ -365,7 +365,9 @@
     .article-meta span { display: flex; align-items: center; gap: 6px; }
     .article-meta i { color: #a78bfa; }
 
-    .article-authors { display: flex; align-items: center; gap: 12px; }
+    .article-authors { display: flex; align-items: center; gap: 16px; flex-wrap: wrap; }
+
+    .author-item { display: flex; align-items: center; gap: 10px; }
 
     .author-avatar {
       width: 36px; height: 36px;
@@ -1139,43 +1141,36 @@
       var line = lines[i];
       if (!line.trim()) continue;
 
-      // Определяем отступ
       var indentMatch = line.match(/^(\s*)/);
       var indent = indentMatch ? indentMatch[1].length : 0;
       var trimmed = line.trim();
 
-      // Элемент массива: "- src: ..." или "- значение"
+      // Элемент массива: "- key: value"
       var arrMatch = trimmed.match(/^-\s+(.*)$/);
-      if (arrMatch && currentArr) {
+      if (arrMatch && currentArr !== null) {
         var itemText = arrMatch[1];
         var kv = itemText.match(/^([\w-]+):\s*(.*)$/);
+        currentObj = {};                       // ВСЕГДА создаём новый объект
         if (kv) {
-          // Новый объект в массиве
-          currentObj = {};
           currentObj[kv[1]] = stripQuotes(kv[2]);
-          currentArr.push(currentObj);
-        } else {
-          // Простое значение
-          currentArr.push(stripQuotes(itemText));
-          currentObj = null;
         }
+        currentArr.push(currentObj);
         continue;
       }
 
-      // Продолжение объекта массива (с отступом больше, чем у "- ")
+      // Продолжение свойств текущего объекта массива
       var contMatch = trimmed.match(/^([\w-]+):\s*(.*)$/);
-      if (contMatch && currentObj && indent >= 2) {
+      if (contMatch && currentObj !== null && indent >= 2) {
         currentObj[contMatch[1]] = stripQuotes(contMatch[2]);
         continue;
       }
 
-      // Верхнеуровневый ключ: значение
+      // Верхнеуровневый ключ (indent === 0)
       var kvMatch = trimmed.match(/^([\w-]+):\s*(.*)$/);
       if (kvMatch && indent === 0) {
         var key = kvMatch[1];
         var val = kvMatch[2];
         if (val === '') {
-          // Начало массива или вложенного объекта
           currentArr = [];
           currentObj = null;
           meta[key] = currentArr;
@@ -1315,20 +1310,45 @@
       dateStr = d.getDate() + ' ' + months[d.getMonth()] + ' ' + d.getFullYear();
     }
 
-    // Автор
-    var avatarHtml = authorAvatar
-      ? '<img src="' + authorAvatar + '" alt="' + author + '">'
-      : (author ? author.charAt(0).toUpperCase() : 'А');
+    // Автор(ы) — поддержка одного и нескольких
+    var authorsList = [];
 
-    var authorHtml = author
-      ? '<div class="article-authors">' +
-          '<div class="author-avatar">' + avatarHtml + '</div>' +
-          '<div class="author-info">' +
-            '<span class="author-name">' + author + '</span>' +
-            (authorRole ? '<span class="author-role">' + authorRole + '</span>' : '') +
-          '</div>' +
-        '</div>'
-      : '';
+    // Вариант 1: массив authors в front matter
+    if (meta.authors && Array.isArray(meta.authors) && meta.authors.length) {
+      authorsList = meta.authors.map(function(a) {
+        return {
+          name: a.name || '',
+          role: a.role || '',
+          avatar: a.avatar || ''
+        };
+      });
+    }
+    // Вариант 2: старые поля author/authorRole/authorAvatar
+    else if (author) {
+      authorsList = [{
+        name: author,
+        role: authorRole,
+        avatar: authorAvatar
+      }];
+    }
+
+    var authorsHtml = '';
+    if (authorsList.length) {
+      authorsHtml = '<div class="article-authors">' +
+        authorsList.map(function(a) {
+          var av = a.avatar
+            ? '<img src="' + a.avatar + '" alt="' + a.name + '">'
+            : (a.name ? a.name.charAt(0).toUpperCase() : 'А');
+          return '<div class="author-item">' +
+            '<div class="author-avatar">' + av + '</div>' +
+            '<div class="author-info">' +
+              '<span class="author-name">' + a.name + '</span>' +
+              (a.role ? '<span class="author-role">' + a.role + '</span>' : '') +
+            '</div>' +
+          '</div>';
+        }).join('') +
+        '</div>';
+    }
 
     // Кнопка релиза
     var releaseBtnHtml = (releaseLink && releaseText)
@@ -1337,42 +1357,7 @@
         '</a>'
       : '';
 
-    // Собираем HTML статьи
-    var articleHtml =
-      '<div class="breadcrumb">' +
-        '<a href="../index.html">Главная</a><span>/</span>' +
-        '<a href="../news.html">Новости</a><span>/</span>' +
-        escapeHtml(breadcrumbTitle) +
-      '</div>' +
-      '<div class="article-hero">' +
-        (category ? '<span class="article-category">' + escapeHtml(category) + '</span>' : '') +
-        '<h1 class="article-title">' + escapeHtml(title) + '</h1>' +
-        '<div class="article-meta">' +
-          (dateStr ? '<span><i class="far fa-calendar-alt"></i> ' + dateStr + '</span>' : '') +
-          (readingTime ? '<span><i class="far fa-clock"></i> ' + readingTime + ' мин чтения</span>' : '') +
-          authorHtml +
-        '</div>' +
-      '</div>' +
-      html +
-      (figureCaption ? '<p class="figure-caption">' + escapeHtml(figureCaption) + '</p>' : '') +
-      releaseBtnHtml +
-      '<div class="article-share">' +
-        '<span class="article-share-label">Поделиться:</span>' +
-        '<a href="#" class="share-btn" id="shareTgBtn"><i class="fab fa-telegram"></i> Telegram</a>' +
-        '<button class="share-btn" id="copyLinkBtn" type="button"><i class="fas fa-link"></i> Копировать ссылку</button>' +
-      '</div>' +
-      '<section class="related-news">' +
-        '<h2>Другие новости</h2>' +
-        '<div class="related-grid" id="relatedNews"></div>' +
-      '</section>';
 
-    // Оборачиваем в <article class="article-body">
-    // Разделяем: hero и breadcrumb — вне article-body, остальное — внутри
-    // Для простоты: весь html, что от marked, кладём внутрь .article-body
-    // Но проще — вставить как есть, обернув контент в article-body
-
-    // Найдём место, где начинается контент статьи: после article-meta
-    // Сделаем проще: соберём через шаблон с плейсхолдером
 
     var finalHtml =
       '<div class="breadcrumb">' +
@@ -1386,7 +1371,7 @@
         '<div class="article-meta">' +
           (dateStr ? '<span><i class="far fa-calendar-alt"></i> ' + dateStr + '</span>' : '') +
           (readingTime ? '<span><i class="far fa-clock"></i> ' + readingTime + ' мин чтения</span>' : '') +
-          authorHtml +
+          authorsHtml +
         '</div>' +
       '</div>' +
       '<article class="article-body">' + html + '</article>' +
