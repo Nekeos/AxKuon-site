@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="ru">
 <head>
   <meta charset="UTF-8">
@@ -11,7 +11,6 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
   
   <style>
-    /* Копируем базовые стили из твоего сайта */
     ::-webkit-scrollbar { width: 10px; }
     ::-webkit-scrollbar-track { background: #0c0c0f; }
     ::-webkit-scrollbar-thumb { background: rgba(167, 139, 250, 0.3); border-radius: 5px; border: 2px solid #0c0c0f; }
@@ -41,7 +40,6 @@
     .page-header h1 { font-size: 3rem; font-weight: 800; margin-bottom: 12px; background: linear-gradient(to right, #ffffff, #c4b5fd); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; letter-spacing: -1px; }
     .page-header p { color: #9090a0; font-size: 1.1rem; }
 
-    /* Сетка файлов */
     .file-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(340px, 1fr)); gap: 20px; padding-bottom: 60px; }
     
     .file-card {
@@ -108,7 +106,10 @@
     </div>
 
     <div class="file-grid" id="fileGrid">
-      <!-- Сюда будут вставляться карточки файлов -->
+      <div class="empty-state">
+        <i class="fas fa-spinner fa-spin"></i>
+        <p>Загрузка файлов...</p>
+      </div>
     </div>
   </main>
 
@@ -117,10 +118,10 @@
   </footer>
 
   <script>
-    // Автоматическая загрузка списка файлов из files.json
+    // Загружаем список файлов из files.json
     fetch('files.json')
       .then(res => {
-        if (!res.ok) throw new Error('Не удалось загрузить список файлов (files.json)');
+        if (!res.ok) throw new Error('Файл files.json не найден. Запустите update_files.py');
         return res.json();
       })
       .then(files => {
@@ -129,9 +130,14 @@
       .catch(err => {
         document.getElementById('fileGrid').innerHTML = `
           <div class="empty-state">
-            <i class="fas fa-exclamation-triangle"></i>
-            <p>Ошибка: ${err.message}</p>
-            <p style="font-size: 0.85rem; margin-top: 8px;">Убедитесь, что файл files.json существует в папке Share/</p>
+            <i class="fas fa-folder-open"></i>
+            <p>Файлов пока нет</p>
+            <p style="font-size: 0.85rem; margin-top: 8px; color: #555;">
+              Положите файлы в папку <b>Share</b> и запустите <b>update_files.py</b>
+            </p>
+            <p style="font-size: 0.8rem; margin-top: 16px; color: #ff6666; opacity: 0.7;">
+              (Ошибка: ${err.message})
+            </p>
           </div>
         `;
       });
@@ -143,7 +149,7 @@
         grid.innerHTML = `
           <div class="empty-state">
             <i class="fas fa-folder-open"></i>
-            <p>Пока нет доступных файлов</p>
+            <p>В папке Share пока нет файлов</p>
           </div>
         `;
         return;
