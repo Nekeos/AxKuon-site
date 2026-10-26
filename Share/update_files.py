@@ -1,4 +1,4 @@
-﻿import os
+import os
 import json
 from datetime import datetime
 
@@ -6,7 +6,7 @@ from datetime import datetime
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 OUTPUT_FILE = os.path.join(BASE_DIR, 'files.json')
 
-# Игнорируемые файлы
+# Игнорируемые файлы (не показываем их в списке)
 IGNORE = ['index.html', 'files.json', 'update_files.py', '.git', '.DS_Store', 'desktop.ini', 'Thumbs.db']
 
 files = []
@@ -19,13 +19,13 @@ for filename in os.listdir(BASE_DIR):
     
     if os.path.isfile(filepath):
         size = os.path.getsize(filepath)
-        # Время последнего изменения
+        # Время последнего изменения файла
         mtime = os.path.getmtime(filepath)
         date = datetime.fromtimestamp(mtime).isoformat() + 'Z'
         
         files.append({
             'name': filename,
-            'url': filename,  # Ссылка относительная
+            'url': filename,
             'size': size,
             'date': date
         })
