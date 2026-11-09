@@ -1672,7 +1672,11 @@
 </script>
 
 <script>
-  (MRGtag = window.MRGtag || []).push({});
+  window.addEventListener('load', function() {
+    if (window.MRGtag) {
+      window.MRGtag.push({});
+    }
+  });
 </script>
 </body>
 </html>
